@@ -4,17 +4,16 @@ import pandas as pd
 import requests
 
 dash.register_page(__name__,
-                   path='/tabledata',  # represents the URL text
-                   name='Table Data',  # name of the page, commonly used as the name of the link
-                   title='Table'  # represents the title of the browser's tab
+                   path='/tabledata', 
+                   name='Table Data',  
+                   title='Table'
 )
 
-# Function to fetch data from the API with error handling
 def fetch_data():
     try:
         url = "https://gaspump-18b4eae89030.herokuapp.com/api/stations"
         response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad response status
+        response.raise_for_status()  
         data = response.json()
         df = pd.DataFrame(data)
         return df
@@ -22,12 +21,10 @@ def fetch_data():
         print(f"Error fetching data: {e}")
         return pd.DataFrame()
 
-# Function to get unique municipalities from the data
 def get_unique_municipalities():
     df = fetch_data()
     return df['Municipality'].unique()
 
-# Layout of the Dash app
 layout = html.Div([
     dcc.Dropdown(
         id='municipality-dropdown',
@@ -59,7 +56,7 @@ layout = html.Div([
     ),
 ])
 
-# Callback to update the data in the table based on selected municipality
+
 @callback(
     Output('table', 'data'),
     Input('municipality-dropdown', 'value')
@@ -70,7 +67,6 @@ def update_table(selected_municipality):
         df = df[df['Municipality'] == selected_municipality]
     return df.to_dict('records')
 
-# Callback to trigger CSV export
 @callback(
     Output("table", "exportDataAsCsv"),
     Input("csv-button", "n_clicks"),
@@ -80,7 +76,6 @@ def export_data_as_csv(n_clicks):
         return True
     return False
 
-# Callback to handle row selection
 @callback(
     Output("clipboard", "content"),
     Input("table", "selected_rows"),
@@ -89,8 +84,6 @@ def export_data_as_csv(n_clicks):
 def copy_selected_rows(selected_rows, data):
     if not selected_rows:
         return "No selections"
-    
-    # Get the selected rows from the data
     selected_data = [data[i] for i in selected_rows]
     df_selected = pd.DataFrame(selected_data)
     return df_selected.to_string()

@@ -10,7 +10,6 @@ dash.register_page(__name__,
                    title='Home'
 )
 
-# Function to fetch data
 def fetch_data():
     url = "https://gaspump-18b4eae89030.herokuapp.com/api/stations"
     response = requests.get(url)
@@ -18,9 +17,7 @@ def fetch_data():
     df = pd.DataFrame(data)
     return df
 
-# Layout
 layout = html.Div([
-    # Notification Banner
     html.Div(
         "Note: This map does not yet include the complete list of gas stations.",
         style={
@@ -33,7 +30,6 @@ layout = html.Div([
             'textAlign': 'center'
         }
     ),
-    # Dropdown for selecting address
     dcc.Dropdown(
         id='address-dropdown',
         options=[{
@@ -43,19 +39,17 @@ layout = html.Div([
         placeholder="Select an Address",
         style={'marginBottom': '15px'}
     ),
-    # Map Display
     dcc.Graph(id='gas-stations-map'), 
     # Auto-refresh Interval
     dcc.Interval(
         id='interval-component',
-        interval=10*1000,  # in milliseconds
+        interval=10*1000, 
         n_intervals=0
     )
 ])
 
-# Callback to update map
 @callback(
-    Output('gas-stations-map', 'figure'),  # Update the figure of the map
+    Output('gas-stations-map', 'figure'),
     [Input('interval-component', 'n_intervals'),
      Input('address-dropdown', 'value')]
 )
@@ -64,11 +58,9 @@ def update_map(n_intervals, selected_address):
     if selected_address:
         selected_row = df[df['Address'] == selected_address]
         
-        # Extract latitude and longitude of selected address
         selected_lat = selected_row['Latitude'].iloc[0]
         selected_lon = selected_row['Longitude'].iloc[0]
         
-        # Highlight selected gas station
         fig = px.scatter_mapbox(df, lat='Latitude', lon='Longitude',
                                 hover_name='Municipality',
                                 hover_data=['Station', 'Address'],
@@ -86,7 +78,6 @@ def update_map(n_intervals, selected_address):
         
         return fig
     else:
-        # Default map view
         fig = px.scatter_mapbox(df, lat='Latitude', lon='Longitude',
                                 hover_name='Municipality',
                                 hover_data=['Station', 'Address'],
