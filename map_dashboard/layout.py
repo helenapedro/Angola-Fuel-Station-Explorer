@@ -16,6 +16,7 @@ def build_dashboard_layout():
                 ],
                 className="map-dashboard__layout",
             ),
+            _build_seo_content_section(),
             dcc.Interval(id="map-refresh", interval=180 * 1000, n_intervals=0),
         ],
         className="map-dashboard",
@@ -106,4 +107,25 @@ def _build_stat_card(label, value_id):
             ]
         ),
         className="map-dashboard__stat-card",
+    )
+
+
+def _build_seo_content_section():
+    return html.Section(
+        [
+            html.H2("Find Gas Stations in Angola", className="map-dashboard__seo-title"),
+            html.P(
+                "Angola Fuel Station Explorer helps people find gas stations in Angola with an interactive map and searchable station directory.",
+                className="map-dashboard__seo-copy",
+            ),
+            html.P(
+                "Use the dashboard to search stations by brand, province, municipality, and station name. The app currently supports station discovery for locations across Angola, including Luanda and other major provinces.",
+                className="map-dashboard__seo-copy",
+            ),
+            html.P(
+                "If you are searching for petrol stations in Angola, fuel stations in Luanda, or a station finder for Angola, this tool is designed to make those locations easier to browse.",
+                className="map-dashboard__seo-copy",
+            ),
+        ],
+        className="map-dashboard__seo-section",
     )

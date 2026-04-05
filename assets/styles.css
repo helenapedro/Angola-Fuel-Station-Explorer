@@ -181,6 +181,25 @@ body {
   color: #7d5a48;
 }
 
+.map-dashboard__seo-section {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(255, 252, 248, 0.88);
+  box-shadow: 0 18px 42px rgba(55, 36, 26, 0.08);
+}
+
+.map-dashboard__seo-title {
+  margin: 0 0 14px;
+  color: #5d2819;
+}
+
+.map-dashboard__seo-copy {
+  margin: 0 0 12px;
+  color: #47352d;
+  line-height: 1.7;
+}
+
 @media (max-width: 1200px) {
   .map-dashboard__layout {
     grid-template-columns: 1fr;
