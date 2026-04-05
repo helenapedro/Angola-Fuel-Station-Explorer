@@ -10,12 +10,6 @@ server = app.server
 navbar = dbc.Navbar(
     dbc.Container([
         dbc.NavbarBrand("Angola Fuel Station Explorer", href="/"),
-        dbc.Nav(
-            [
-                dbc.NavLink("Map", href="/", active="exact"),
-            ],
-            navbar=True,
-        ),
     ]),
     color="#802917",
     dark=True,
