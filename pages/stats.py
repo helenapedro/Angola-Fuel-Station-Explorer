@@ -1,6 +1,6 @@
 import dash
-from dash import html, dcc, callback, Output, Input
 import plotly.express as px
+from dash import Input, Output, callback, dcc, html
 
 from data_fetch import get_stations_df
 
@@ -9,32 +9,32 @@ dash.register_page(__name__, path="/stats", name="Statistics", title="Stats")
 
 layout = html.Div([
     html.Div([
-        html.Div(id="stats-api-error", style={"color": "#800000", "marginBottom": "10px"}),
-        html.Div(id="total-gas-stations", style={"fontSize": "24px", "fontWeight": "bold", "marginBottom": "20px"}),
-        html.Div(id="additional-statistics", style={"fontSize": "18px", "marginBottom": "20px"}),
+        html.Div(id="stats-page-api-error", style={"color": "#800000", "marginBottom": "10px"}),
+        html.Div(id="stats-page-total-gas-stations", style={"fontSize": "24px", "fontWeight": "bold", "marginBottom": "20px"}),
+        html.Div(id="stats-page-additional-statistics", style={"fontSize": "18px", "marginBottom": "20px"}),
         html.Div([
             html.Div([
                 html.Label("Select Province:"),
-                dcc.Dropdown(id="province-dropdown", style={"width": "100%"}),
+                dcc.Dropdown(id="stats-page-province-dropdown", style={"width": "100%"}),
             ], style={"flex": "1", "paddingRight": "10px"}),
             html.Div([
                 html.Label("Select Municipality:"),
-                dcc.Dropdown(id="municipality-dropdown", style={"width": "100%"}),
+                dcc.Dropdown(id="stats-page-municipality-dropdown", style={"width": "100%"}),
             ], style={"flex": "1"}),
         ], style={"display": "flex", "justifyContent": "space-between", "marginBottom": "20px"}),
         html.Div([
-            html.Div([dcc.Graph(id="municipality-distribution")], style={"marginBottom": "20px"}),
-            html.Div([dcc.Graph(id="operator-distribution")], style={"marginBottom": "20px"}),
+            html.Div([dcc.Graph(id="stats-page-municipality-distribution")], style={"marginBottom": "20px"}),
+            html.Div([dcc.Graph(id="stats-page-operator-distribution")], style={"marginBottom": "20px"}),
         ]),
     ], style={"maxWidth": "1200px", "margin": "0 auto", "padding": "20px"}),
-    dcc.Interval(id="stats-refresh", interval=180 * 1000, n_intervals=0),
+    dcc.Interval(id="stats-page-refresh", interval=180 * 1000, n_intervals=0),
 ])
 
 
 @callback(
-    Output("province-dropdown", "options"),
-    Output("stats-api-error", "children"),
-    Input("stats-refresh", "n_intervals"),
+    Output("stats-page-province-dropdown", "options"),
+    Output("stats-page-api-error", "children"),
+    Input("stats-page-refresh", "n_intervals"),
 )
 def update_province_dropdown(_):
     df, err = get_stations_df()
@@ -46,9 +46,9 @@ def update_province_dropdown(_):
 
 
 @callback(
-    Output("municipality-dropdown", "options"),
-    Input("province-dropdown", "value"),
-    Input("stats-refresh", "n_intervals"),
+    Output("stats-page-municipality-dropdown", "options"),
+    Input("stats-page-province-dropdown", "value"),
+    Input("stats-page-refresh", "n_intervals"),
 )
 def update_municipality_dropdown(selected_province, _):
     df, _err = get_stations_df()
@@ -62,13 +62,13 @@ def update_municipality_dropdown(selected_province, _):
 
 
 @callback(
-    Output("total-gas-stations", "children"),
-    Output("additional-statistics", "children"),
-    Output("operator-distribution", "figure"),
-    Output("municipality-distribution", "figure"),
-    Input("province-dropdown", "value"),
-    Input("municipality-dropdown", "value"),
-    Input("stats-refresh", "n_intervals"),
+    Output("stats-page-total-gas-stations", "children"),
+    Output("stats-page-additional-statistics", "children"),
+    Output("stats-page-operator-distribution", "figure"),
+    Output("stats-page-municipality-distribution", "figure"),
+    Input("stats-page-province-dropdown", "value"),
+    Input("stats-page-municipality-dropdown", "value"),
+    Input("stats-page-refresh", "n_intervals"),
 )
 def update_graph(selected_province, selected_municipality, _):
     df, err = get_stations_df()
