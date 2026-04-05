@@ -1,0 +1,1034 @@
+{
+  "src/lib/components/AgGrid.react.js": {
+    "description": "Dash interface to AG Grid, a powerful tabular data component.",
+    "displayName": "DashAgGrid",
+    "methods": [
+      {
+        "name": "buildArray",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "arr1",
+            "type": null
+          },
+          {
+            "name": "arr2",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that gets fired when the input changes"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The CSS style for the component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The class for the ag-grid.  Can specify the ag-grid theme here.",
+        "defaultValue": {
+          "value": "'ag-theme-alpine'",
+          "computed": false
+        }
+      },
+      "persistence": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Used to allow user interactions in this component to be persisted when\nthe component - or the page - is refreshed. If `persisted` is truthy and\nhasn't changed from its previous value, a `value` that the user has\nchanged while using the app will keep that change, as long as\nthe new `value` also matches what was given originally.\nUsed in conjunction with `persistence_type`."
+      },
+      "persisted_props": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "Properties whose user interactions will persist after refreshing the\ncomponent or the page.",
+        "defaultValue": {
+          "value": "['selectedRows']",
+          "computed": false
+        }
+      },
+      "persistence_type": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'local'",
+              "computed": false
+            },
+            {
+              "value": "'session'",
+              "computed": false
+            },
+            {
+              "value": "'memory'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Where persisted user changes will be stored:\nmemory: only kept in memory, reset on page refresh.\nlocal: window.localStorage, data is kept after the browser quit.\nsession: window.sessionStorage, data is cleared once the browser quit.",
+        "defaultValue": {
+          "value": "'local'",
+          "computed": false
+        }
+      },
+      "dangerously_allow_code": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Allow strings containing JavaScript code or HTML in certain props.\nIf your app stores Dash layouts for later retrieval this is dangerous\nbecause it can lead to cross-site-scripting attacks.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "resetColumnState": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the internal method resetColumnState() will be called",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "exportDataAsCsv": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the internal method exportDataAsCsv() will be called",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "selectAll": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "filtered": {
+                  "name": "bool",
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": "Set to true to cause all rows to be selected,\nOr pass an object of options for which rows to select.\nCurrently supports `filtered`, set to true to only select filtered rows.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "deselectAll": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the internal method deselectAll() will be called",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "updateColumnState": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the internal method updateColumnState() will be called",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "deleteSelectedRows": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the internal method deleteSelectedRows() will be called"
+      },
+      "rowTransaction": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "async": {
+              "name": "bool",
+              "required": false
+            },
+            "add": {
+              "name": "array",
+              "required": false
+            },
+            "update": {
+              "name": "array",
+              "required": false
+            },
+            "remove": {
+              "name": "array",
+              "required": false
+            },
+            "addIndex": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "If true, the internal method rowTransaction() will be used,\nif async provided as false, applyTransaction() will be called, else applyTransactionAsync()"
+      },
+      "getRowId": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "This is required for change detection in rowData"
+      },
+      "columnState": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Current state of the columns"
+      },
+      "csvExportParams": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "columnSeparator": {
+              "name": "string",
+              "description": "Delimiter to insert between cell values.",
+              "required": false
+            },
+            "suppressQuotes": {
+              "name": "bool",
+              "description": "Pass true to insert the value into the CSV file without escaping. In this case it is your responsibility to ensure that no cells contain the columnSeparator character.",
+              "required": false
+            },
+            "prependContent": {
+              "name": "string",
+              "description": "Content to put at the top of the file export. A 2D array of CsvCell objects.",
+              "required": false
+            },
+            "appendContent": {
+              "name": "string",
+              "description": "Content to put at the bottom of the file export.",
+              "required": false
+            },
+            "allColumns": {
+              "name": "bool",
+              "description": "If true, all columns will be exported in the order they appear in the columnDefs.",
+              "required": false
+            },
+            "columnKeys": {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              },
+              "description": "Provide a list (an array) of column keys or Column objects if you want to export specific columns.",
+              "required": false
+            },
+            "fileName": {
+              "name": "string",
+              "description": "String to use as the file name",
+              "required": false
+            },
+            "onlySelected": {
+              "name": "bool",
+              "description": "Export only selected rows.",
+              "required": false
+            },
+            "onlySelectedAllPages": {
+              "name": "bool",
+              "description": "Only export selected rows including other pages (only makes sense when using pagination).",
+              "required": false
+            },
+            "skipColumnGroupHeaders": {
+              "name": "bool",
+              "description": "Set to true to skip include header column groups.",
+              "required": false
+            },
+            "skipColumnHeaders": {
+              "name": "bool",
+              "description": "Set to true if you don't want to export column headers.",
+              "required": false
+            },
+            "skipRowGroups": {
+              "name": "bool",
+              "description": "Set to true to skip row group headers if grouping rows. Only relevant when grouping rows.",
+              "required": false
+            },
+            "skipPinnedTop": {
+              "name": "bool",
+              "description": "Set to true to suppress exporting rows pinned to the top of the grid.",
+              "required": false
+            },
+            "skipPinnedBottom": {
+              "name": "bool",
+              "description": "Set to true to suppress exporting rows pinned to the bottom of the grid.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Object with properties to pass to the exportDataAsCsv() method"
+      },
+      "columnSize": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'sizeToFit'",
+              "computed": false
+            },
+            {
+              "value": "'autoSize'",
+              "computed": false
+            },
+            {
+              "value": "'responsiveSizeToFit'",
+              "computed": false
+            },
+            {
+              "value": "null",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Size the columns autoSize changes the column sizes to fit the column's content,\nsizeToFit changes the column sizes to fit the width of the table\nresponsiveSizeToFit changes the column sizes to fit the width of the table and also resizing upon grid or column changes\nand null bypasses the altering of the column widths"
+      },
+      "columnSizeOptions": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "columnLimits": {
+              "name": "arrayOf",
+              "value": {
+                "name": "exact",
+                "value": {
+                  "key": {
+                    "name": "string",
+                    "required": false
+                  },
+                  "minWidth": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "maxWidth": {
+                    "name": "number",
+                    "required": false
+                  }
+                }
+              },
+              "description": "for (responsive)sizeToFit: per-column minimum and maximum width, in pixels.",
+              "required": false
+            },
+            "defaultMinWidth": {
+              "name": "number",
+              "description": "for (responsive)sizeToFit: default minimum width, in pixels, if not overridden by columnLimits",
+              "required": false
+            },
+            "defaultMaxWidth": {
+              "name": "number",
+              "description": "for (responsive)sizeToFit: default maximum width, in pixels, if not overridden by columnLimits",
+              "required": false
+            },
+            "keys": {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              },
+              "description": "for autoSize: list of column keys to autosize. If omitted, all columns will be autosized.",
+              "required": false
+            },
+            "skipHeader": {
+              "name": "bool",
+              "description": "for autoSize: If skipHeader=True, the header won't be included when calculating the column widths.\ndefault: False",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Options to customize the columnSize operation.\nautoSize calls either autoSizeColumns or autoSizeAllColumns, see:\nhttps://www.ag-grid.com/react-data-grid/column-sizing/#autosize-column-api,\nand sizeToFit and responsiveSizeToFit call sizeColumnsToFit, see:\nhttps://www.ag-grid.com/react-data-grid/column-sizing/#size-columns-to-fit"
+      },
+      "getRowStyle": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "styleConditions": {
+              "name": "arrayOf",
+              "value": {
+                "name": "shape",
+                "value": {
+                  "condition": {
+                    "name": "string",
+                    "required": true
+                  },
+                  "style": {
+                    "name": "object",
+                    "required": true
+                  }
+                }
+              },
+              "required": false
+            },
+            "defaultStyle": {
+              "name": "object",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Object used to perform the row styling. See AG-Grid Row Style."
+      },
+      "getRowsRequest": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "startRow": {
+              "name": "number",
+              "description": "The first row index to get.",
+              "required": false
+            },
+            "endRow": {
+              "name": "number",
+              "description": "The first row index to NOT get.",
+              "required": false
+            },
+            "sortModel": {
+              "name": "arrayOf",
+              "value": {
+                "name": "object"
+              },
+              "description": "If sorting, what the sort model is",
+              "required": false
+            },
+            "filterModel": {
+              "name": "object",
+              "description": "If filtering, what the filter model is",
+              "required": false
+            },
+            "context": {
+              "name": "any",
+              "description": "The grid context object",
+              "required": false
+            },
+            "successCallback": {
+              "name": "func",
+              "description": "Callback to call when the request is successful.",
+              "required": false
+            },
+            "failCallback": {
+              "name": "func",
+              "description": "Callback to call when the request fails.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Infinite Scroll, Datasource interface\nSee https://www.ag-grid.com/react-grid/infinite-scrolling/#datasource-interface"
+      },
+      "paginationInfo": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "isLastPageFound": {
+              "name": "bool",
+              "required": false
+            },
+            "pageSize": {
+              "name": "number",
+              "required": false
+            },
+            "currentPage": {
+              "name": "number",
+              "required": false
+            },
+            "totalPages": {
+              "name": "number",
+              "required": false
+            },
+            "rowCount": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "If in pagination mode, this will be populated with info from the pagination API:\nhttps://www.ag-grid.com/react-data-grid/grid-api/#reference-pagination"
+      },
+      "paginationGoTo": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'first'",
+                  "computed": false
+                },
+                {
+                  "value": "'last'",
+                  "computed": false
+                },
+                {
+                  "value": "'next'",
+                  "computed": false
+                },
+                {
+                  "value": "'previous'",
+                  "computed": false
+                },
+                {
+                  "value": "null",
+                  "computed": false
+                }
+              ]
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "If in pagination mode, this will navigate to: ['next', 'previous', 'last', 'first', number]\nhttps://www.ag-grid.com/react-data-grid/grid-api/#reference-pagination",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "filterModel": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "If filtering client-side rowModel, what the filter model is.\nPassing a model back to this prop will apply it to the grid.",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      },
+      "getDetailRequest": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "data": {
+              "name": "any",
+              "description": "Details about the row that was opened.",
+              "required": false
+            },
+            "requestTime": {
+              "name": "any",
+              "description": "Datetime representing when the grid was requested.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Request from Dash AgGrid when suppressCallback is disabled and a user opens a row with a detail grid"
+      },
+      "getDetailResponse": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "object"
+          }
+        },
+        "required": false,
+        "description": "RowData to populate the detail grid when callbacks are used to populate"
+      },
+      "cellRendererData": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "value": {
+              "name": "any",
+              "description": "Value set from the function",
+              "required": false
+            },
+            "colId": {
+              "name": "string",
+              "description": "Column ID from where the event was fired",
+              "required": false
+            },
+            "rowIndex": {
+              "name": "number",
+              "description": "Row Index from the grid, this is associated with the row count",
+              "required": false
+            },
+            "rowId": {
+              "name": "any",
+              "description": "Row Id from the grid, this could be a number automatically, or set via getRowId",
+              "required": false
+            },
+            "timestamp": {
+              "name": "any",
+              "description": "Timestamp of when the event was fired",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Special prop to allow feedback from cell renderer to the grid."
+      },
+      "getRowsResponse": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "rowData": {
+              "name": "arrayOf",
+              "value": {
+                "name": "object"
+              },
+              "description": "Data retreived from the server",
+              "required": false
+            },
+            "rowCount": {
+              "name": "number",
+              "description": "Current row count, if known",
+              "required": false
+            },
+            "storeInfo": {
+              "name": "any",
+              "description": "Any extra info for the grid to associate with this load",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Serverside model data response object.\nSee https://www.ag-grid.com/react-grid/server-side-model-datasource/"
+      },
+      "licenseKey": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "License key for ag-grid enterprise. If using Enterprise modules,\nenableEnterpriseModules must also be true."
+      },
+      "enableEnterpriseModules": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If True, enable ag-grid Enterprise modules. Recommended to use with licenseKey.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "virtualRowData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "object"
+          }
+        },
+        "required": false,
+        "description": "The rowData in the grid after inline filters are applied."
+      },
+      "scrollTo": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "rowIndex": {
+              "name": "number",
+              "description": "rowIndex, typically a row number.",
+              "required": false
+            },
+            "rowId": {
+              "name": "string",
+              "description": "Id of the row to scroll to.",
+              "required": false
+            },
+            "data": {
+              "name": "object",
+              "description": "Data of the row to scroll to.",
+              "required": false
+            },
+            "rowPosition": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'top'",
+                  "computed": false
+                },
+                {
+                  "value": "'bottom'",
+                  "computed": false
+                },
+                {
+                  "value": "'middle'",
+                  "computed": false
+                }
+              ],
+              "description": "Position of the row in the grid after scrolling. Default `top`.",
+              "required": false
+            },
+            "column": {
+              "name": "string",
+              "description": "Column to scroll to, must be equal to one `field` in `columnDefs`.",
+              "required": false
+            },
+            "columnPosition": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'auto'",
+                  "computed": false
+                },
+                {
+                  "value": "'start'",
+                  "computed": false
+                },
+                {
+                  "value": "'middle'",
+                  "computed": false
+                },
+                {
+                  "value": "'end'",
+                  "computed": false
+                }
+              ],
+              "description": "Position of the column in the grid after scrolling. Default `auto`.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Scrolls to a specific position."
+      },
+      "columnDefs": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "object"
+          }
+        },
+        "required": false,
+        "description": "Array of Column Definitions."
+      },
+      "defaultColDef": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "A default column definition."
+      },
+      "rowModelType": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'clientSide'",
+              "computed": false
+            },
+            {
+              "value": "'infinite'",
+              "computed": false
+            },
+            {
+              "value": "'viewport'",
+              "computed": false
+            },
+            {
+              "value": "'serverSide'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Sets the Row Model type.\nDefault Value: 'clientSide'",
+        "defaultValue": {
+          "value": "'clientSide'",
+          "computed": false
+        }
+      },
+      "rowData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "object"
+          }
+        },
+        "required": false,
+        "description": "(Client-Side Row Model only) Set the data to be displayed as rows in the grid."
+      },
+      "masterDetail": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Used to enable Master Detail. See Enabling Master Detail.\nDefault Value: false"
+      },
+      "detailCellRendererParams": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "detailGridOptions": {
+              "name": "any",
+              "description": "Grid options for detail grid in master-detail view.",
+              "required": false
+            },
+            "detailColName": {
+              "name": "string",
+              "description": "Column name where detail grid data is located in main dataset, for master-detail view.",
+              "required": false
+            },
+            "suppressCallback": {
+              "name": "bool",
+              "description": "Default: true. If true, suppresses the Dash callback in favor of using the data embedded in rowData at the given detailColName.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Specifies the params to be used by the default detail Cell Renderer. See Detail\nGrids."
+      },
+      "rowStyle": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The style to give a particular row. See Row Style."
+      },
+      "rowClass": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The class to give a particular row. See Row Class."
+      },
+      "rowClassRules": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Rules which can be applied to include certain CSS classes. See Row Class Rules."
+      },
+      "suppressDragLeaveHidesColumns": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, when you drag a column out of the grid (e.g. to the group zone) the column\nis not hidden.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "cellClicked": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "value": {
+              "name": "any",
+              "description": "value of the clicked cell",
+              "required": false
+            },
+            "colId": {
+              "name": "any",
+              "description": "column where the cell was clicked",
+              "required": false
+            },
+            "rowIndex": {
+              "name": "number",
+              "description": "rowIndex, typically a row number",
+              "required": false
+            },
+            "rowId": {
+              "name": "any",
+              "description": "Row Id from the grid, this could be a number automatically, or set via getRowId",
+              "required": false
+            },
+            "timestamp": {
+              "name": "any",
+              "description": "timestamp of last action",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Cell is clicked."
+      },
+      "cellDoubleClicked": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "value": {
+              "name": "any",
+              "description": "value of the double-clicked cell",
+              "required": false
+            },
+            "colId": {
+              "name": "any",
+              "description": "column where the cell was double-clicked",
+              "required": false
+            },
+            "rowIndex": {
+              "name": "number",
+              "description": "rowIndex, typically a row number",
+              "required": false
+            },
+            "rowId": {
+              "name": "any",
+              "description": "Row Id from the grid, this could be a number automatically, or set via getRowId",
+              "required": false
+            },
+            "timestamp": {
+              "name": "any",
+              "description": "timestamp of last action",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Cell is double clicked."
+      },
+      "selectedRows": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "object"
+              }
+            },
+            {
+              "name": "exact",
+              "value": {
+                "function": {
+                  "name": "string",
+                  "required": true
+                }
+              }
+            },
+            {
+              "name": "exact",
+              "value": {
+                "ids": {
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "string"
+                  },
+                  "required": true
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": "The actively selected rows from the grid (may include filtered rows)\nCan take one of three forms:\n(1) an array of row objects - if you have defined `getRowId`, you only need the fields it uses.\n(2) an object containing `function` with a function string\n- see: https://www.ag-grid.com/react-data-grid/row-selection/#example-using-foreachnode (selectAllAmerican function)\n(3) an object containing `ids` with a list of row IDs"
+      },
+      "cellValueChanged": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "rowIndex": {
+                "name": "number",
+                "description": "rowIndex, typically a row number",
+                "required": false
+              },
+              "rowId": {
+                "name": "any",
+                "description": "Row Id from the grid, this could be a number automatically, or set via getRowId",
+                "required": false
+              },
+              "data": {
+                "name": "object",
+                "description": "data, data object from the row",
+                "required": false
+              },
+              "oldValue": {
+                "name": "any",
+                "description": "old value of the cell",
+                "required": false
+              },
+              "newValue": {
+                "name": "any",
+                "description": "new value of the cell",
+                "required": false
+              },
+              "colId": {
+                "name": "any",
+                "description": "column where the cell was changed",
+                "required": false
+              },
+              "timestamp": {
+                "name": "any",
+                "description": "Timestamp of when the event was fired",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": "Value has changed after editing."
+      },
+      "dashGridOptions": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Other ag-grid options",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  }
+}
