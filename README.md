@@ -19,8 +19,6 @@ A Dash application for exploring Angolan fuel stations through a single interact
 - `mysqlConnect.py` - Loader to move scraped data into MySQL.
 - `assets/styles.css` - Dashboard styling.
 
-There is also a duplicated `src/` app tree in this repository. The root app is the current primary entrypoint.
-
 ## Getting Started
 
 1. Create and activate a Python 3.10+ virtual environment.
