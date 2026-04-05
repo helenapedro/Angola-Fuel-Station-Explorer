@@ -1,7 +1,8 @@
-import dash
-from dash import html
-import dash_bootstrap_components as dbc
 import os
+
+import dash
+import dash_bootstrap_components as dbc
+from dash import html
 
 app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SPACELAB])
 server = app.server
@@ -26,10 +27,10 @@ footer = html.Footer(
     dbc.Container([
         html.Div([
             html.A("Helena Pedro", href="https://helenapedro.github.io/", target="_blank", style={"margin-right": "10px"}),
-            html.Span("© 2024 | All rights reserved.")
+            html.Span("(c) 2024 | All rights reserved."),
         ], className="text-center"),
     ], fluid=True, className="py-3"),
-    style={"background-color": "#802917", "color": "white"}
+    style={"background-color": "#802917", "color": "white"},
 )
 
 app.layout = dbc.Container([
@@ -39,7 +40,7 @@ app.layout = dbc.Container([
         dbc.Col(dash.page_container, width={"size": 10, "offset": 1})
     ),
     html.Hr(),
-    footer
+    footer,
 ], fluid=True)
 
 if __name__ == "__main__":
