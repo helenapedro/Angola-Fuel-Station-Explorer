@@ -1,5 +1,7 @@
-venv
+.venv/
+venv/
+__pycache__/
 *.pyc
 .DS_Store
 .env
-.mysqlConnect.py
+.vscode/
