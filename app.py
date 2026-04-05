@@ -13,8 +13,6 @@ navbar = dbc.Navbar(
         dbc.Nav(
             [
                 dbc.NavLink("Map", href="/", active="exact"),
-                dbc.NavLink("Table", href="/tabledata", active="exact"),
-                dbc.NavLink("Stats", href="/stats", active="exact"),
             ],
             navbar=True,
         ),
