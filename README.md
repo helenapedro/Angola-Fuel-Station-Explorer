@@ -45,5 +45,5 @@ A Dash application for exploring Angolan fuel stations through a single interact
 
 ## Notes on Supporting Scripts
 
-- `scrap.py` uses regex to extract station data from the Pumangol site; review the site structure before reusing it
-- `mysqlConnect.py` expects DB credentials via environment variables: `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
+- `scrap.py` uses regex to extract station data from the Pumangol site; review the site structure before reusing it.
+- `mysqlConnect.py` expects DB credentials via environment variables: `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`.
