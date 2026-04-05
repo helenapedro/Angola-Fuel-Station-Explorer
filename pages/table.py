@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc, dash_table, callback, State, Output, Input
+from dash import Input, Output, State, callback, dash_table, dcc, html
 import pandas as pd
 
 from data_fetch import get_stations_df
@@ -19,16 +19,16 @@ TABLE_COLUMNS = [
 
 
 layout = html.Div([
-    html.Div(id="table-api-error", style={"color": "#800000", "marginBottom": "10px"}),
+    html.Div(id="table-page-api-error", style={"color": "#800000", "marginBottom": "10px"}),
     dcc.Dropdown(
-        id="municipality-dropdown",
+        id="table-page-municipality-dropdown",
         options=[],
         placeholder="Select a Municipality",
     ),
     html.Span("Copy selected "),
-    dcc.Clipboard(id="clipboard", style={"display": "inline-block"}),
+    dcc.Clipboard(id="table-page-clipboard", style={"display": "inline-block"}),
     dash_table.DataTable(
-        id="table",
+        id="table-page-table",
         columns=TABLE_COLUMNS,
         style_table={"height": "500px", "overflowY": "auto"},
         style_cell={"padding": "10px", "textAlign": "center"},
@@ -39,14 +39,14 @@ layout = html.Div([
         page_size=25,
         export_format="csv",
     ),
-    dcc.Interval(id="table-refresh", interval=180 * 1000, n_intervals=0),
+    dcc.Interval(id="table-page-refresh", interval=180 * 1000, n_intervals=0),
 ])
 
 
 @callback(
-    Output("municipality-dropdown", "options"),
-    Output("table-api-error", "children"),
-    Input("table-refresh", "n_intervals"),
+    Output("table-page-municipality-dropdown", "options"),
+    Output("table-page-api-error", "children"),
+    Input("table-page-refresh", "n_intervals"),
 )
 def refresh_filters(_):
     df, err = get_stations_df()
@@ -59,9 +59,9 @@ def refresh_filters(_):
 
 
 @callback(
-    Output("table", "data"),
-    Input("municipality-dropdown", "value"),
-    Input("table-refresh", "n_intervals"),
+    Output("table-page-table", "data"),
+    Input("table-page-municipality-dropdown", "value"),
+    Input("table-page-refresh", "n_intervals"),
 )
 def update_table(selected_municipality, _):
     df, _err = get_stations_df()
@@ -75,9 +75,9 @@ def update_table(selected_municipality, _):
 
 
 @callback(
-    Output("clipboard", "content"),
-    Input("table", "selected_rows"),
-    State("table", "data"),
+    Output("table-page-clipboard", "content"),
+    Input("table-page-table", "selected_rows"),
+    State("table-page-table", "data"),
 )
 def copy_selected_rows(selected_rows, data):
     if not selected_rows:
