@@ -8,13 +8,13 @@ A Dash application for exploring Angolan fuel stations through a single interact
 - Filters for station search, brand, province, municipality, and station.
 - Summary cards for total stations, brands, and municipalities in the current view.
 - Clickable map markers with a selected-station detail panel.
-- Graceful error states with short request timeouts and in-memory caching.
+- Graceful data loading with short request timeouts, in-memory caching, and bundled fallback station data.
 
 ## Project Structure
 
 - `app.py` - Dash app shell and navbar.
 - `pages/map.py` - Main station explorer dashboard.
-- `data_fetch.py` - Cached, timeout-bound data fetch helper for the API.
+- `data_fetch.py` - Cached, timeout-bound data fetch helper for the API with local fallback data.
 - `scrap.py` - Scraper for Pumangol station data into `gas_stations.json`.
 - `mysqlConnect.py` - Loader to move scraped data into MySQL.
 - `assets/styles.css` - Dashboard styling.
@@ -41,7 +41,8 @@ A Dash application for exploring Angolan fuel stations through a single interact
 
 - Stations are fetched from `https://gaspump-18b4eae89030.herokuapp.com/api/stations`.
 - Each fetch uses a 5 second timeout and a 5 minute in-memory cache.
-- If the API fails, the UI shows an error and reuses cached data when available.
+- If the API fails, the dashboard reuses cached data when available. If no cache exists yet, it loads bundled station data from `gas_stations.json` so the map remains usable.
+- Set `STATIONS_API_URL` to point the dashboard at a different stations API.
 
 ## Notes on Supporting Scripts
 
