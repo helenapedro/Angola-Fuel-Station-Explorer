@@ -71,6 +71,12 @@ Build from the bundled legacy JSON only:
 python -m ingestion.sync_stations --offline
 ```
 
+Validate the bundled legacy JSON without writing outputs:
+
+```powershell
+python -m ingestion.sync_stations --offline --check
+```
+
 Build from legacy JSON plus live OSM/Pumangol sources:
 
 ```powershell
@@ -130,3 +136,21 @@ Records are deduplicated by normalized operator, normalized station name, and co
 - Store source metadata on every station so stale or disputed records can be audited.
 - If one source fails, review `metadata.source_status` and `metadata.source_errors`.
 - Add parser tests for every operator adapter before relying on it in scheduled ingestion.
+
+## GitHub Automation
+
+The repository includes two GitHub Actions workflows:
+
+- `.github/workflows/ci.yml`
+  - Runs on pushes to `master`/`main` and on pull requests.
+  - Compiles Python sources.
+  - Runs unit tests.
+  - Validates the offline dataset from the bundled legacy JSON as a smoke check without rewriting output files.
+
+- `.github/workflows/refresh-stations.yml`
+  - Runs every Monday at 06:00 UTC and can also be triggered manually from GitHub Actions.
+  - Runs `python -m ingestion.sync_stations` against live sources.
+  - Runs ingestion tests.
+  - Commits changed `data/stations_clean.json` and `data/stations_rejected.json` back to the branch.
+
+After each scheduled refresh, inspect the generated `metadata.source_status` before trusting the new dataset. A successful workflow can still contain `stale_reused` source status if one operator website or OSM was unavailable during the run.

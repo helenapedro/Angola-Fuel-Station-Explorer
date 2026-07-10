@@ -68,6 +68,11 @@ python -m ingestion.sync_stations
 
 See `docs/data-ingestion.md` for the full source strategy, output schema, and runbook.
 
+## CI and Scheduled Data Refresh
+
+- `.github/workflows/ci.yml` runs compile checks, unit tests, and an offline ingestion smoke check on push and pull requests.
+- `.github/workflows/refresh-stations.yml` runs weekly and can be triggered manually to refresh live station data and commit changed `data/` outputs.
+
 ## Notes on Supporting Scripts
 
 - `scrap.py` is retained only for compatibility and delegates to the ingestion pipeline.

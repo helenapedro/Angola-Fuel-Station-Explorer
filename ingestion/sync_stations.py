@@ -81,14 +81,16 @@ def write_dataset(clean_payload, rejected_payload):
 def main():
     parser = argparse.ArgumentParser(description="Refresh validated station data.")
     parser.add_argument("--offline", action="store_true", help="Build only from the bundled legacy JSON.")
+    parser.add_argument("--check", action="store_true", help="Validate dataset generation without writing output files.")
     args = parser.parse_args()
 
     clean_payload, rejected_payload = build_dataset(include_network_sources=not args.offline)
-    write_dataset(clean_payload, rejected_payload)
+    if not args.check:
+        write_dataset(clean_payload, rejected_payload)
     print(
-        "Generated "
-        f"{clean_payload['metadata']['record_count']} clean records and "
-        f"{clean_payload['metadata']['rejected_count']} rejected records."
+        ("Validated " if args.check else "Generated ")
+        + f"{clean_payload['metadata']['record_count']} clean records and "
+        + f"{clean_payload['metadata']['rejected_count']} rejected records."
     )
 
 
