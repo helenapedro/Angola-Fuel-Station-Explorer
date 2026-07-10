@@ -10,7 +10,8 @@ import requests
 API_URL = os.getenv("STATIONS_API_URL", "https://gaspump-18b4eae89030.herokuapp.com/api/stations")
 CACHE_TTL_SECONDS = 300
 REQUEST_TIMEOUT_SECONDS = 5
-FALLBACK_DATA_PATH = Path(__file__).with_name("gas_stations.json")
+CLEAN_DATA_PATH = Path(__file__).parent / "data" / "stations_clean.json"
+LEGACY_FALLBACK_DATA_PATH = Path(__file__).with_name("gas_stations.json")
 FALLBACK_OPERATOR = "Pumangol"
 
 _CACHE = {"df": None, "fetched_at": 0.0, "error": None, "is_fallback": False}
@@ -26,21 +27,26 @@ def _split_city(city: str) -> Tuple[str, str]:
 
 
 def _load_fallback_df() -> pd.DataFrame:
-    with FALLBACK_DATA_PATH.open("r", encoding="utf-8") as fallback_file:
-        stations = json.load(fallback_file)
+    fallback_path = CLEAN_DATA_PATH if CLEAN_DATA_PATH.exists() else LEGACY_FALLBACK_DATA_PATH
+    with fallback_path.open("r", encoding="utf-8") as fallback_file:
+        payload = json.load(fallback_file)
+
+    stations = payload.get("stations", payload) if isinstance(payload, dict) else payload
+    if not isinstance(stations, list):
+        raise ValueError(f"{fallback_path} must contain a station list or a stations object")
 
     rows = []
     for station in stations:
         municipality, parsed_province = _split_city(station.get("city"))
         rows.append(
             {
-                "Operator": FALLBACK_OPERATOR,
-                "Station": station.get("name"),
+                "Operator": station.get("operator") or station.get("Operator") or FALLBACK_OPERATOR,
+                "Station": station.get("station") or station.get("name") or station.get("Station"),
                 "Address": station.get("address"),
                 "Latitude": station.get("latitude"),
                 "Longitude": station.get("longitude"),
-                "Municipality": municipality,
-                "Province": station.get("state") or parsed_province,
+                "Municipality": station.get("municipality") or municipality,
+                "Province": station.get("province") or station.get("state") or parsed_province,
                 "Country": station.get("country") or "Angola",
             }
         )
@@ -75,12 +81,13 @@ def get_stations_df() -> Tuple[pd.DataFrame, str]:
         # If we have usable data, prefer a working dashboard over surfacing an
         # intermittent upstream timeout to users.
         if cached_df is not None:
-            return cached_df.copy(), None
+            return cached_df.copy(), f"Showing cached station data because the upstream source is unavailable: {exc}"
 
         try:
             fallback_df = _load_fallback_df()
         except (OSError, ValueError, TypeError) as fallback_exc:
             return pd.DataFrame(), f"Unable to fetch station data: {exc}; fallback data unavailable: {fallback_exc}"
 
-        _cache_df(fallback_df, now, is_fallback=True)
-        return fallback_df.copy(), None
+        warning = f"Showing bundled fallback station data because the upstream source is unavailable: {exc}"
+        _cache_df(fallback_df, now, error=warning, is_fallback=True)
+        return fallback_df.copy(), warning

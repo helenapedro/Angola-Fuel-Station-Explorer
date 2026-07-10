@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-10T19:06:59+00:00",
+    "record_count": 79,
+    "rejected_count": 1,
+    "source_status": [
+      {
+        "source": "BundledLegacyPumangol",
+        "status": "loaded",
+        "record_count": 80,
+        "is_stale": false
+      }
+    ],
+    "source_errors": []
+  },
+  "stations": [
+    {
+      "operator": "Pumangol",
+      "station": "Caxito",
+      "address": "Bairro do Kixiquela - Caxito, Municipio de Dande",
+      "province": "Bengo",
+      "municipality": "Dande",
+      "country": "Angola",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "source_type": "legacy_snapshot",
+      "source_name": "BundledLegacyPumangol",
+      "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
+      "source_id": "Caxito",
+      "scraped_at": "2026-07-10T19:06:59+00:00",
+      "rejection_reasons": [
+        "null island coordinates"
+      ]
+    }
+  ]
+}

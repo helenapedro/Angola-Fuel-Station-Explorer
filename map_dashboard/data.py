@@ -1,7 +1,11 @@
 """Data preparation helpers for the station explorer dashboard."""
 
+import pandas as pd
+
 SEARCHABLE_COLUMNS = ["Operator", "Station", "Address", "Municipality", "Province", "Country"]
 EXPECTED_COLUMNS = SEARCHABLE_COLUMNS + ["Latitude", "Longitude"]
+ANGOLA_LATITUDE_RANGE = (-18.1, -4.3)
+ANGOLA_LONGITUDE_RANGE = (11.4, 24.2)
 
 
 def normalize_stations_df(df):
@@ -20,9 +24,15 @@ def normalize_stations_df(df):
         clean_df["Station"] + " " + clean_df["Address"] + " " + clean_df["Municipality"] + " " + clean_df["Province"]
     ).str.lower()
 
-    clean_df["Latitude"] = clean_df["Latitude"].fillna(0)
-    clean_df["Longitude"] = clean_df["Longitude"].fillna(0)
-    return clean_df[(clean_df["Latitude"] != 0) & (clean_df["Longitude"] != 0)]
+    clean_df["Latitude"] = pd.to_numeric(clean_df["Latitude"], errors="coerce")
+    clean_df["Longitude"] = pd.to_numeric(clean_df["Longitude"], errors="coerce")
+
+    has_coordinates = clean_df["Latitude"].notna() & clean_df["Longitude"].notna()
+    is_not_null_island = (clean_df["Latitude"] != 0) & (clean_df["Longitude"] != 0)
+    is_in_angola = clean_df["Latitude"].between(*ANGOLA_LATITUDE_RANGE) & clean_df["Longitude"].between(
+        *ANGOLA_LONGITUDE_RANGE
+    )
+    return clean_df[has_coordinates & is_not_null_island & is_in_angola]
 
 
 def apply_station_filters(df, search_text=None, operator=None, province=None, municipality=None, station=None):
@@ -32,7 +42,7 @@ def apply_station_filters(df, search_text=None, operator=None, province=None, mu
 
     if search_text:
         query = search_text.strip().lower()
-        filtered_df = filtered_df[filtered_df["search_blob"].str.contains(query, na=False)]
+        filtered_df = filtered_df[filtered_df["search_blob"].str.contains(query, regex=False, na=False)]
     if operator:
         filtered_df = filtered_df[filtered_df["Operator"] == operator]
     if province:

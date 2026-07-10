@@ -1,0 +1,1 @@
+"""Station ingestion source adapters."""
