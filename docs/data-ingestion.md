@@ -14,7 +14,12 @@ There is no documented official/public Angola fuel-station API currently identif
    - Current scaffold includes Pumangol in `ingestion/sources/pumangol.py`.
    - Add Sonangol, Galp/Sonangalp, and other operators as separate adapters when their station pages are confirmed.
 
-3. Validated output
+3. Operator-specific OSM adapters
+   - When an operator does not expose a station-listing endpoint, use a source-specific OSM adapter to query brand/operator-tagged stations.
+   - Current Sonangol coverage uses `ingestion/sources/sonangol.py`, which queries OSM for fuel stations where `brand` or `operator` contains `Sonangol`.
+   - If Sonangol later publishes an official station list, replace or supplement this adapter with an official-source adapter.
+
+4. Validated output
    - The Dash app should read only validated station data.
    - Raw source failures should not break app startup or user page loads.
 
@@ -127,7 +132,8 @@ Records are deduplicated by normalized operator, normalized station name, and co
 
 1. fresh records over stale records
 2. operator website records over OpenStreetMap records
-3. records with an address over records without an address
+3. operator-specific OpenStreetMap records over broad OpenStreetMap baseline records
+4. records with an address over records without an address
 
 ## Operational Guidance
 

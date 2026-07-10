@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 
 from ingestion.normalize import clean_text, normalize_legacy_pumangol
+from ingestion.sources.sonangol import normalize_sonangol_payload
 from ingestion.sync_stations import _load_previous_source_records, build_dataset
 from ingestion.validate import deduplicate_records, split_valid_records, validate_station
 
@@ -105,6 +106,18 @@ class IngestionValidationTest(unittest.TestCase):
         self.assertEqual(clean_payload["metadata"]["source_status"][0]["source"], "BundledLegacyPumangol")
         self.assertEqual(clean_payload["metadata"]["record_count"], len(clean_payload["stations"]))
         self.assertEqual(rejected_payload["metadata"]["rejected_count"], len(rejected_payload["stations"]))
+
+    def test_sonangol_osm_fixture_is_normalized(self):
+        fixture_path = Path(__file__).parent / "fixtures" / "sonangol_osm_response.json"
+        payload = json.loads(fixture_path.read_text(encoding="utf-8"))
+
+        records = normalize_sonangol_payload(payload, scraped_at="2026-07-10T00:00:00+00:00")
+
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["operator"], "Sonangol")
+        self.assertEqual(records[0]["station"], "Sonangol Maianga")
+        self.assertEqual(records[0]["source_type"], "openstreetmap_operator")
+        self.assertEqual(records[0]["source_name"], "SonangolOpenStreetMap")
 
 
 if __name__ == "__main__":

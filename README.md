@@ -52,6 +52,7 @@ No documented official/public Angola fuel-station API has been identified for go
 
 - OpenStreetMap Overpass API as the public baseline source for `amenity=fuel` stations in Angola.
 - Operator website adapters for brand/operator-owned station listings.
+- Operator-specific OSM adapters where an operator does not expose a station-listing page, starting with Sonangol.
 - Validation, source health tracking, stale-source reuse, deduplication, and rejected-record output before data reaches the dashboard.
 
 Build only from the bundled legacy JSON:

@@ -34,8 +34,13 @@ def build_dataset(include_network_sources=True, previous_clean_path=CLEAN_OUTPUT
     if include_network_sources:
         from ingestion.sources.osm import fetch_osm_stations
         from ingestion.sources.pumangol import fetch_pumangol_stations
+        from ingestion.sources.sonangol import fetch_sonangol_stations
 
-        for source_name, fetcher in (("OpenStreetMap", fetch_osm_stations), ("Pumangol", fetch_pumangol_stations)):
+        for source_name, fetcher in (
+            ("OpenStreetMap", fetch_osm_stations),
+            ("SonangolOpenStreetMap", fetch_sonangol_stations),
+            ("Pumangol", fetch_pumangol_stations),
+        ):
             try:
                 source_records = fetcher()
                 records.extend(source_records)

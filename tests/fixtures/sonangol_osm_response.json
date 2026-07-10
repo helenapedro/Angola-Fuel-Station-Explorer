@@ -1,0 +1,28 @@
+{
+  "elements": [
+    {
+      "type": "node",
+      "id": 1001,
+      "lat": -8.839,
+      "lon": 13.289,
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Sonangol",
+        "name": "Sonangol Maianga",
+        "operator": "Sonangol",
+        "addr:city": "Luanda"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1002,
+      "lat": -8.91,
+      "lon": 13.18,
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Other",
+        "name": "Other Fuel"
+      }
+    }
+  ]
+}

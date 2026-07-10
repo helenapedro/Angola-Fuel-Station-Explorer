@@ -5,8 +5,9 @@ ANGOLA_LONGITUDE_RANGE = (11.4, 24.2)
 BAD_TEXT_MARKERS = ("\u00c3", "\u00c2", "&#")
 SOURCE_PRIORITY = {
     "operator_website": 0,
-    "openstreetmap": 1,
-    "legacy_snapshot": 2,
+    "openstreetmap_operator": 1,
+    "openstreetmap": 2,
+    "legacy_snapshot": 3,
 }
 
 
