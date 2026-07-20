@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-07-13T08:55:59+00:00",
+    "generated_at": "2026-07-20T08:46:46+00:00",
     "record_count": 418,
     "rejected_count": 3,
     "source_status": [
@@ -54,7 +54,7 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-07-13T08:55:34+00:00",
+      "scraped_at": "2026-07-20T08:46:05+00:00",
       "rejection_reasons": [
         "null island coordinates"
       ]
@@ -72,7 +72,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/641259539",
-      "scraped_at": "2026-07-13T08:55:41+00:00",
+      "scraped_at": "2026-07-20T08:46:24+00:00",
       "rejection_reasons": [
         "possible encoding or html entity issue"
       ]
@@ -90,7 +90,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/912806787",
-      "scraped_at": "2026-07-13T08:55:41+00:00",
+      "scraped_at": "2026-07-20T08:46:24+00:00",
       "rejection_reasons": [
         "possible encoding or html entity issue"
       ]
