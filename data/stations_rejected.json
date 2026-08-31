@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated_at": "2026-08-24T06:41:46+00:00",
+    "generated_at": "2026-08-31T12:21:29+00:00",
     "record_count": 418,
-    "rejected_count": 1,
+    "rejected_count": 3,
     "source_status": [
       {
         "source": "BundledLegacyPumangol",
@@ -12,10 +12,9 @@
       },
       {
         "source": "OpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 260,
-        "is_stale": true,
-        "error": "504 Server Error: Gateway Timeout for url: https://overpass-api.de/api/interpreter"
+        "status": "loaded",
+        "record_count": 341,
+        "is_stale": false
       },
       {
         "source": "SonangolOpenStreetMap",
@@ -32,13 +31,6 @@
       }
     ],
     "source_errors": [
-      {
-        "source": "OpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 260,
-        "is_stale": true,
-        "error": "504 Server Error: Gateway Timeout for url: https://overpass-api.de/api/interpreter"
-      },
       {
         "source": "Pumangol",
         "status": "failed",
@@ -62,9 +54,45 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-08-24T06:41:14+00:00",
+      "scraped_at": "2026-08-31T12:21:06+00:00",
       "rejection_reasons": [
         "null island coordinates"
+      ]
+    },
+    {
+      "operator": "TotalEnergies",
+      "station": "TotalEnergies - P.A. SÃO PAULO",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.816587,
+      "longitude": 13.2564595,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/641259539",
+      "scraped_at": "2026-08-31T12:21:12+00:00",
+      "rejection_reasons": [
+        "possible encoding or html entity issue"
+      ]
+    },
+    {
+      "operator": "TotalEnergies",
+      "station": "TotalEnergies - P.A. ALTO DA CONCEIÇÃO",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.9010565,
+      "longitude": 13.5138464,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/912806787",
+      "scraped_at": "2026-08-31T12:21:12+00:00",
+      "rejection_reasons": [
+        "possible encoding or html entity issue"
       ]
     }
   ]
