@@ -151,10 +151,41 @@ honest `Unknown` label rather than being dropped or guessed at. Rationale:
 The registry keeps shrinking this bucket deterministically (179 → 34 in
 the first pass); no fuzzy guessing is used to force it to zero.
 
+### 3.6 Province backfill
+
+OSM records often carry `addr:city`/`addr:municipality` but no
+`addr:province` (204 of 279 records lacked province in the 2026-09-23
+snapshot). `ingestion/provinces.py` fills the gap deterministically from
+an explicit municipality → province table — same data-as-code philosophy
+as the brand registry: only observed, unambiguous municipalities are
+listed; anything ambiguous stays empty.
+
+- Examples: Lubango → Huila, Ondjiva → Cunene, Quibala → Kwanza Sul,
+  Panguila → Bengo, Moçâmedes → Namibe, Malanje → Malange (dataset
+  spelling).
+- Deliberately excluded: municipalities affected by Angola's 2024 reform
+  (18 → 21 provinces, e.g. Funda) until verified; neighborhood names
+  misfiled as municipality (e.g. "Bairro da Luz").
+- Tagged provinces are never overwritten. Backfilled records carry
+  `province_inferred: true`; snapshot metadata records the table version
+  and filled count (`province_backfill: {version, filled_count}`).
+- Measured 2026-09-23: 60 of 204 empty provinces filled (204 → 144).
+
+### 3.7 Stale reuse keeps rejected records
+
+When a network source fails, the pipeline reuses that source's previous
+records — previously only from `stations_clean.json`, which meant a
+flaky-network run silently shrank `stations_rejected.json` and destroyed
+rejection provenance (observed 2026-09-23: 63 → 1). The stale path now
+also reloads the source's previous rejected records; they re-enter the
+pipeline and are re-rejected with fresh reasons, flagged `is_stale`.
+
 ## 4. Data contract
 
-Additive only: clean records gain `merged_sources` (list of source names).
-No serving-layer changes required.
+Additive only: clean records gain `merged_sources` (list of source names)
+and `province_inferred` (bool, true when the province was backfilled from
+the municipality table). Snapshot metadata gains `province_backfill`
+`{version, filled_count}`. No serving-layer changes required.
 
 ## 5. Testing
 
@@ -177,6 +208,13 @@ No serving-layer changes required.
   carry `merged_sources`; every rejected record carries reasons. Offline,
   runs in CI on every PR, so silent data regressions fail the build
   instead of reaching production.
+- Province backfill (`ProvinceBackfillTest`): observed municipalities map
+  to the right province; tagged provinces never overwritten; ambiguous
+  and 2024-reform-affected municipalities stay empty; the inferred flag
+  survives reprocessing of stale records.
+- Stale reuse (`StaleReuseTest`): a failed source reloads its previous
+  clean AND rejected records; rejected ones are re-rejected with fresh
+  reasons instead of being lost.
 
 ## 6. Rollout
 

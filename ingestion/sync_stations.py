@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from ingestion.normalize import normalize_legacy_pumangol, utc_now_iso
+from ingestion.provinces import PROVINCE_BACKFILL_VERSION, count_backfilled
 from ingestion.validate import split_valid_records
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -15,7 +16,8 @@ REJECTED_OUTPUT_PATH = DATA_DIR / "stations_rejected.json"
 LEGACY_SOURCE_NAME = "BundledLegacyPumangol"
 
 
-def build_dataset(include_network_sources=True, previous_clean_path=CLEAN_OUTPUT_PATH):
+def build_dataset(include_network_sources=True, previous_clean_path=CLEAN_OUTPUT_PATH,
+                previous_rejected_path=REJECTED_OUTPUT_PATH):
     records = []
     source_status = []
 
@@ -53,7 +55,13 @@ def build_dataset(include_network_sources=True, previous_clean_path=CLEAN_OUTPUT
                     }
                 )
             except Exception as exc:
+                # A failed source reuses its previous records — clean AND
+                # rejected. Without the rejected half, a flaky-network run
+                # would silently shrink stations_rejected.json and destroy
+                # rejection provenance. Stale rejected records re-enter the
+                # pipeline and are re-rejected with fresh reasons.
                 stale_records = _load_previous_source_records(previous_clean_path, source_name, str(exc))
+                stale_records += _load_previous_source_records(previous_rejected_path, source_name, str(exc))
                 records.extend(stale_records)
                 source_status.append(
                     {
@@ -71,6 +79,10 @@ def build_dataset(include_network_sources=True, previous_clean_path=CLEAN_OUTPUT
         "generated_at": generated_at,
         "record_count": len(clean_records),
         "rejected_count": len(rejected_records),
+        "province_backfill": {
+            "version": PROVINCE_BACKFILL_VERSION,
+            "filled_count": count_backfilled(clean_records),
+        },
         "source_status": source_status,
         "source_errors": [status for status in source_status if status["status"] in {"failed", "stale_reused"}],
     }

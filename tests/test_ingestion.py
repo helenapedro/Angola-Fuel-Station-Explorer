@@ -310,5 +310,182 @@ class DataQualityGatesTest(unittest.TestCase):
         self.assertEqual(clean[0]["operator"], "Pumangol")
 
 
+class ProvinceBackfillTest(unittest.TestCase):
+    def test_fills_province_from_municipality(self):
+        from ingestion.provinces import backfill_province
+
+        cases = {
+            "Luanda": "Luanda",
+            "Lubango": "Huila",
+            "Ondjiva": "Cunene",
+            "Quibala": "Kwanza Sul",
+            "Panguila": "Bengo",
+            "Moçâmedes": "Namibe",
+            "Malanje": "Malange",  # dataset spelling
+        }
+        for municipality, expected in cases.items():
+            record, filled = backfill_province(
+                {"province": "", "municipality": municipality}
+            )
+            self.assertTrue(filled, municipality)
+            self.assertEqual(record["province"], expected, municipality)
+            self.assertTrue(record["province_inferred"], municipality)
+
+    def test_does_not_overwrite_tagged_province(self):
+        from ingestion.provinces import backfill_province
+
+        record, filled = backfill_province(
+            {"province": "Benguela", "municipality": "Luanda"}
+        )
+        self.assertFalse(filled)
+        self.assertEqual(record["province"], "Benguela")
+        self.assertFalse(record["province_inferred"])
+
+    def test_ambiguous_or_reform_affected_stays_empty(self):
+        from ingestion.provinces import backfill_province
+
+        for municipality in ("", "Bairro da Luz", "Funda", "Botomona"):
+            record, filled = backfill_province(
+                {"province": "", "municipality": municipality}
+            )
+            self.assertFalse(filled, municipality)
+            self.assertEqual(record["province"], "", municipality)
+            self.assertFalse(record["province_inferred"], municipality)
+
+    def test_backfill_runs_inside_split_valid_records(self):
+        record = {
+            "operator": "Unknown",
+            "station": "Bombas de Gasolina dos Chineses",
+            "address": "Avenida Deolinda Rodrigues, Luanda",
+            "province": "",
+            "municipality": "Luanda",
+            "country": "Angola",
+            "latitude": -8.8759079,
+            "longitude": 13.3269486,
+            "source_type": "openstreetmap",
+            "source_name": "OpenStreetMap",
+            "source_id": "node/999",
+        }
+        clean, _ = split_valid_records([record])
+        self.assertEqual(clean[0]["province"], "Luanda")
+        self.assertTrue(clean[0]["province_inferred"])
+
+    def test_inferred_flag_survives_reprocessing(self):
+        # Stale records re-enter the pipeline on flaky-network runs; a
+        # previously inferred province must keep its provenance.
+        from ingestion.provinces import backfill_province
+
+        record, filled = backfill_province(
+            {
+                "province": "Luanda",
+                "municipality": "Luanda",
+                "province_inferred": True,
+            }
+        )
+        self.assertFalse(filled)
+        self.assertEqual(record["province"], "Luanda")
+        self.assertTrue(record["province_inferred"])
+
+    def test_count_backfilled(self):
+        from ingestion.provinces import backfill_province, count_backfilled
+
+        records = [
+            {"province": "", "municipality": "Luanda"},
+            {"province": "Huila", "municipality": "Lubango"},  # tagged
+            {"province": "", "municipality": "Nowhere"},
+        ]
+        filled = [backfill_province(r)[0] for r in records]
+        self.assertEqual(count_backfilled(filled), 1)
+
+
+class StaleReuseTest(unittest.TestCase):
+    def _base_record(self, **overrides):
+        record = {
+            "operator": "Sonangol",
+            "station": "Posto Teste",
+            "address": "Luanda",
+            "province": "",
+            "municipality": "Luanda",
+            "country": "Angola",
+            "latitude": -8.8,
+            "longitude": 13.2,
+            "source_type": "openstreetmap",
+            "source_name": "OpenStreetMap",
+            "source_id": "node/1",
+        }
+        record.update(overrides)
+        return record
+
+    def test_failed_source_reuses_previous_rejected_records(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+
+        from ingestion import sync_stations
+
+        clean_prev = {
+            "metadata": {},
+            "stations": [self._base_record()],
+        }
+        rejected_prev = {
+            "metadata": {},
+            "stations": [
+                self._base_record(
+                    station="way/1",
+                    source_id="way/1",
+                    latitude=-9.0,  # far away: must not merge into node/1
+                    longitude=13.5,
+                    rejection_reasons=["osm id as station name"],
+                )
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            clean_path = Path(tmp) / "clean.json"
+            rejected_path = Path(tmp) / "rejected.json"
+            clean_path.write_text(json.dumps(clean_prev), encoding="utf-8")
+            rejected_path.write_text(json.dumps(rejected_prev), encoding="utf-8")
+
+            def boom():
+                raise RuntimeError("network down")
+
+            with (
+                patch(
+                    "ingestion.sources.osm.fetch_osm_stations", side_effect=boom
+                ),
+                patch(
+                    "ingestion.sources.sonangol.fetch_sonangol_stations",
+                    side_effect=boom,
+                ),
+                patch(
+                    "ingestion.sources.pumangol.fetch_pumangol_stations",
+                    side_effect=boom,
+                ),
+                patch.object(
+                    sync_stations,
+                    "LEGACY_FALLBACK_PATH",
+                    Path(tmp) / "no-legacy.json",
+                ),
+            ):
+                clean, rejected = sync_stations.build_dataset(
+                    include_network_sources=True,
+                    previous_clean_path=clean_path,
+                    previous_rejected_path=rejected_path,
+                )
+
+        # The stale clean record survives (with backfilled province)...
+        self.assertEqual(len(clean["stations"]), 1)
+        self.assertEqual(clean["stations"][0]["province"], "Luanda")
+        # ...and the stale rejected record is re-rejected, not lost.
+        self.assertEqual(len(rejected["stations"]), 1)
+        way = rejected["stations"][0]
+        self.assertEqual(way["source_id"], "way/1")
+        self.assertTrue(way["is_stale"])
+        self.assertTrue(
+            any("OSM element id" in r for r in way["rejection_reasons"]),
+            way["rejection_reasons"],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
