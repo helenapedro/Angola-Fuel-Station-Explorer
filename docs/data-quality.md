@@ -180,6 +180,26 @@ rejection provenance (observed 2026-09-23: 63 → 1). The stale path now
 also reloads the source's previous rejected records; they re-enter the
 pipeline and are re-rejected with fresh reasons, flagged `is_stale`.
 
+### 3.8 Geocoding backfill (new: `ingestion/geocode.py`)
+
+Every station has coordinates, so empty `address`/`municipality`/
+`province` fields are recoverable without guessing (129/138/144 empty
+in the 2026-09-23 snapshot). Runs after dedup inside
+`build_dataset`; fills empty fields only, never overwrites; the §3.6
+table runs first and outranks it. Full design:
+`docs/geocoding-backfill.md`.
+
+- `address`: plus code computed offline — compound form
+  (`67Q9+WQ7 Negage, Angola`) when the municipality is known, full
+  11-char code otherwise. Marked `address_source: "plus_code"`; a real
+  street address arriving later wins the dedup merge.
+- `municipality`/`province`: Nominatim reverse geocoding
+  (~1 req/s, cached in `data/geocode_cache.json`), flagged
+  `municipality_inferred` / `province_inferred`. Failures leave the
+  field empty; the pipeline never fails on geocoding.
+- Snapshot metadata gains `geocode_backfill`
+  `{version, address_filled, municipality_filled, province_filled}`.
+
 ## 4. Data contract
 
 Additive only: clean records gain `merged_sources` (list of source names)
