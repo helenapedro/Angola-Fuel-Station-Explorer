@@ -97,7 +97,11 @@ def normalize_stations_df(df: pd.DataFrame) -> pd.DataFrame:
         normalized[canonical] = df[column] if column is not None else None
 
     for column in TEXT_COLUMNS:
-        normalized[column] = normalized[column].map(_clean_text)
+        # Build an explicit object-dtype column so missing values stay None.
+        # (On pandas 3.x, .map() over the default str dtype turns None into
+        # NaN, which would then leak into API responses as invalid values.)
+        cleaned = [_clean_text(value) for value in normalized[column].tolist()]
+        normalized[column] = pd.Series(cleaned, dtype=object, index=normalized.index)
     for column in FLOAT_COLUMNS:
         normalized[column] = normalized[column].map(_clean_float)
 
