@@ -48,8 +48,8 @@ Non-goals:
 
 ### 3.1 Verified operator registry (new: `ingestion/operators.py`)
 
-Angola's fuel retail is an oligopoly of four brands (researched
-2026-09-23):
+Angola's fuel retail was historically an oligopoly of four brands
+(researched 2026-09-23), since joined by a fifth:
 
 | Brand | Notes |
 |---|---|
@@ -57,6 +57,21 @@ Angola's fuel retail is an oligopoly of four brands (researched
 | Pumangol | 80+ stations; wholly owned by Sonangol since Dec 2021 (ex-Puma Energy JV) |
 | TotalEnergies | Present since 1953; stations in partnership with Sonangol |
 | Sonangalp | JV Galp (49%) / Sonangol (51%), since 1994 |
+| Etu Energias | Private; formerly Somoil (rebranded ~2022); own-brand retail stations operating (e.g. Posto Cuca, Luanda, opened Dec 2025) |
+
+Sector context (2026-09-23): outside these brands, private supply comes
+from **"bandeira branca"** (white-flag) independents — small private agents
+selling unbranded fuel — and from independent dealers under models such as
+**COFO** (company-owned, franchise-operated). Neither is a *brand*:
+"bandeira branca" is the absence of one and COFO is an operating model
+(a COFO station still flies a brand flag), so neither gets a registry
+entry. Stations in these categories surface as `Unknown` (see 3.5).
+
+OSM tag semantics: `brand` is the marketed flag on the station (what the
+consumer sees); `operator` is often the local franchisee/dealer. The
+ingestion record's `operator` field models the brand, so `normalize.py`
+prefers the `brand` tag over `operator` — e.g. `brand=TotalEnergies` with
+`operator="P.A. Kindombele"` canonicalizes to TotalEnergies.
 
 The registry is data-as-code (no new dependency):
 
@@ -119,6 +134,23 @@ fetch (all sources)
 All inside `split_valid_records`, so `sync_stations --offline --check`
 (CI) exercises the full gate chain.
 
+### 3.5 `Unknown`-brand policy (decision 2026-09-23: keep in production)
+
+Records whose operator matches nothing in the registry are served with the
+honest `Unknown` label rather than being dropped or guessed at. Rationale:
+
+- They are real, named, coordinate-validated fuel locations
+  (e.g. "Bombas de Gasolina dos Chineses", "Posto de Abastecimento da
+  Tchimucua") — omitting them would make the finder worse at its job.
+- `Unknown` is a confidence signal, not a data error: these are
+  predominantly **bandeira-branca** independents and other small private
+  operators outside the verified brands.
+- They are naturally second-class in the UI: no province tags, so they
+  appear on the map and in unfiltered views but not in province filters.
+
+The registry keeps shrinking this bucket deterministically (179 → 34 in
+the first pass); no fuzzy guessing is used to force it to zero.
+
 ## 4. Data contract
 
 Additive only: clean records gain `merged_sources` (list of source names).
@@ -154,8 +186,10 @@ No serving-layer changes required.
   (visible duplicates) is worse.
 - **Under-merging**: same station with > 150 m coordinate error stays
   duplicated. Accepted; improvable with better source data.
-- **`Unknown` bucket stays large** (~40%). Honest label; future work can
-  shrink it (better OSM tags, brand inference from imagery — out of scope).
+- **`Unknown` bucket** (~12% after the first pass; was ~40%). Honest label
+  for bandeira-branca independents and other unverifiable operators;
+  served in production per the 3.5 policy. Future work can shrink it
+  further (better OSM tags, brand inference from imagery — out of scope).
 - **Name inference misfire** (e.g. a station named "near Sonangol").
   Only applies when the operator tag is missing; observed names are
   brand-led (`"TotalEnergies - …"`), so risk is minimal.

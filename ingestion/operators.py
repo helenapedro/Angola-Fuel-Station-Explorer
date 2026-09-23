@@ -1,25 +1,33 @@
 """Verified operator registry for Angola fuel retail.
 
-Angola's fuel-station market is an oligopoly of four retail brands
-(researched 2026-09-23; see docs/data-quality.md). Raw operator strings
-from OpenStreetMap tags and legacy snapshots are mapped deterministically
-against this registry instead of being guessed at.
+Angola's fuel-station market was historically an oligopoly of four retail
+brands (researched 2026-09-23; see docs/data-quality.md). Etu Energias
+(formerly Somoil, rebranded ~2022) has since entered retail with its own
+branded stations (e.g. Posto de Abastecimento Cuca, Luanda, opened Dec 2025).
+Raw operator strings from OpenStreetMap tags and legacy snapshots are mapped
+deterministically against this registry instead of being guessed at.
 
 Design notes:
 - Data-as-code on purpose: explicit, versioned, reviewable, and it adds
   no new dependency (no YAML/JSON loader needed).
 - Matching is exact/prefix on normalized strings — never fuzzy — so the
   pipeline behaves identically on every run.
+- "Etu" alone is NOT an alias: it means "us/ours" in Bantu languages and
+  appears in ordinary station names, so it would cause false positives in
+  name-based inference. Only the full "Etu Energias" (and the legacy
+  "Somoil") map to the brand.
 """
 
 UNKNOWN_OPERATOR = "Unknown"
 
-# Canonical retail brands, verified against public sources (2026-09-23).
+# Canonical retail brands, verified against public sources (2026-09-23,
+# Etu Energias added 2026-09-23).
 CANONICAL_OPERATORS = (
     "Sonangol",  # state-owned; largest network
     "Pumangol",  # 80+ stations; wholly owned by Sonangol since Dec 2021
     "TotalEnergies",  # in Angola since 1953; stations with Sonangol
     "Sonangalp",  # JV Galp (49%) / Sonangol (51%), since 1994
+    "Etu Energias",  # private; ex-Somoil (rebrand ~2022); own-brand retail
 )
 
 # Normalized alias -> canonical brand. Keys must already be normalized
@@ -27,7 +35,9 @@ CANONICAL_OPERATORS = (
 OPERATOR_ALIASES = {
     "sonangol": "Sonangol",
     "sonagol": "Sonangol",  # typo observed in OSM tags
+    "sonangola": "Sonangol",  # colloquial variant observed in OSM names
     "pumangol": "Pumangol",
+    "pumangola": "Pumangol",  # colloquial variant observed in OSM names
     "puma": "Pumangol",
     "puma energy": "Pumangol",
     "totalenergies": "TotalEnergies",
@@ -37,6 +47,8 @@ OPERATOR_ALIASES = {
     "sonangalp": "Sonangalp",
     "sonagalp": "Sonangalp",  # typo observed in OSM tags
     "galp": "Sonangalp",  # Galp retails in Angola only via the Sonangalp JV
+    "etu energias": "Etu Energias",
+    "somoil": "Etu Energias",  # legacy name before the ~2022 rebrand
 }
 
 _LEGAL_SUFFIXES = ("lda", "s.a.", "sa", "limitada")

@@ -49,8 +49,12 @@ def normalize_osm_element(element, scraped_at=None):
     longitude = element.get("lon", center.get("lon"))
     source_id = f'{element.get("type")}/{element.get("id")}'
 
+    # In OSM, `brand` is the marketed flag on the station (what the consumer
+    # sees) while `operator` is often the local franchisee/dealer
+    # (e.g. brand=TotalEnergies with operator="P.A. Kindombele"). Our
+    # "operator" field models the brand, so `brand` takes precedence.
     return {
-        "operator": clean_text(tags.get("operator") or tags.get("brand") or "Unknown"),
+        "operator": clean_text(tags.get("brand") or tags.get("operator") or "Unknown"),
         "station": clean_text(tags.get("name") or tags.get("brand") or tags.get("operator") or source_id),
         "address": clean_text(_format_osm_address(tags)),
         "province": clean_text(tags.get("addr:province") or tags.get("is_in:province")),

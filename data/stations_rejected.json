@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated_at": "2026-09-23T10:13:46+00:00",
+    "generated_at": "2026-09-23T10:35:56+00:00",
     "record_count": 279,
-    "rejected_count": 61,
+    "rejected_count": 63,
     "source_status": [
       {
         "source": "BundledLegacyPumangol",
@@ -12,17 +12,15 @@
       },
       {
         "source": "OpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 258,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
+        "status": "loaded",
+        "record_count": 341,
+        "is_stale": false
       },
       {
         "source": "SonangolOpenStreetMap",
-        "status": "stale_reused",
+        "status": "loaded",
         "record_count": 81,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
+        "is_stale": false
       },
       {
         "source": "Pumangol",
@@ -33,20 +31,6 @@
       }
     ],
     "source_errors": [
-      {
-        "source": "OpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 258,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
-      },
-      {
-        "source": "SonangolOpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 81,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
-      },
       {
         "source": "Pumangol",
         "status": "failed",
@@ -70,9 +54,45 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-09-23T10:12:41+00:00",
+      "scraped_at": "2026-09-23T10:35:32+00:00",
       "rejection_reasons": [
         "null island coordinates"
+      ]
+    },
+    {
+      "operator": "TotalEnergies",
+      "station": "TotalEnergies - P.A. SÃO PAULO",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.816587,
+      "longitude": 13.2564595,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/641259539",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
+      "rejection_reasons": [
+        "possible encoding or html entity issue"
+      ]
+    },
+    {
+      "operator": "TotalEnergies",
+      "station": "TotalEnergies - P.A. ALTO DA CONCEIÇÃO",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.9010565,
+      "longitude": 13.5138464,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/912806787",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
+      "rejection_reasons": [
+        "possible encoding or html entity issue"
       ]
     },
     {
@@ -88,9 +108,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/2266863113",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -111,9 +129,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/5169888524",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -134,9 +150,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/5553546454",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -157,9 +171,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/605403342",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -180,9 +192,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/605403376",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -203,9 +213,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/636517464",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -226,9 +234,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/1650583781",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -249,9 +255,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/2020014114",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -272,9 +276,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/2542138305",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -295,9 +297,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/3094144003",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -318,9 +318,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/3507061952",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -341,9 +339,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/3747403904",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -364,9 +360,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/3747403906",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -387,9 +381,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/3747439909",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -410,9 +402,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/4224378190",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -433,9 +423,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/4634526889",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -456,9 +444,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/4639642647",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -479,9 +465,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6436550885",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -502,9 +486,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6436565014",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -525,9 +507,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6440232586",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -548,9 +528,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6466143496",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -571,9 +549,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6964921387",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -594,9 +570,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/6964921388",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -617,9 +591,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/7291448285",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -640,9 +612,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/10621426129",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -663,9 +633,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/11358589547",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -686,9 +654,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/11967461569",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -709,9 +675,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/11967461769",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -732,9 +696,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "node/13404088501",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -755,9 +717,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/424826302",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -778,9 +738,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/434750815",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -801,9 +759,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/496339360",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -824,9 +780,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/496950641",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -847,9 +801,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/498247609",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -870,9 +822,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/636984173",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -893,9 +843,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/637660684",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -916,9 +864,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/641259538",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -939,9 +885,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/655437006",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -962,9 +906,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/675117984",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -985,9 +927,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/701039570",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1008,9 +948,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/701039573",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1031,9 +969,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/705430395",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1054,9 +990,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/705448437",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1077,9 +1011,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/741808858",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1100,9 +1032,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/744958362",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1123,9 +1053,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/820001160",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1146,9 +1074,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/838018956",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1169,9 +1095,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/838018959",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1192,9 +1116,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/916358592",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1215,9 +1137,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1050674682",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1238,9 +1158,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1051585059",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1261,9 +1179,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1052308010",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1284,9 +1200,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1052758335",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1307,9 +1221,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1053081661",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1330,9 +1242,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1158307699",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1353,9 +1263,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1178800353",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1376,9 +1284,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1200821193",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1399,9 +1305,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1234291482",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1422,9 +1326,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1235181162",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
@@ -1445,9 +1347,7 @@
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
       "source_id": "way/1275729957",
-      "scraped_at": "2026-09-21T11:39:22+00:00",
-      "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "scraped_at": "2026-09-23T10:35:38+00:00",
       "merged_sources": [
         "OpenStreetMap"
       ],
