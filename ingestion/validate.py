@@ -13,6 +13,7 @@ import math
 import re
 
 from ingestion.operators import UNKNOWN_OPERATOR, canonicalize_record
+from ingestion.provinces import backfill_province
 
 ANGOLA_LATITUDE_RANGE = (-18.1, -4.3)
 ANGOLA_LONGITUDE_RANGE = (11.4, 24.2)
@@ -61,6 +62,7 @@ def split_valid_records(records):
     rejected_records = []
     for record in records:
         canonical_record = canonicalize_record(record)
+        canonical_record, _ = backfill_province(canonical_record)
         clean_record, reasons = validate_station(canonical_record)
         if reasons:
             rejected_record = dict(clean_record)
