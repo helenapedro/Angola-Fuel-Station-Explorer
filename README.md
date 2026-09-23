@@ -6,14 +6,15 @@ A Dash application for exploring Angolan fuel stations through a single interact
 
 - Interactive station explorer with map-first layout.
 - Filters for station search, brand, province, municipality, and station.
-- Summary cards for total stations, brands, and municipalities in the current view.
+- Summary cards for total stations, brands, municipalities, and provinces in the current view.
+- Stable brand colors on the map legend; filter dropdowns labeled with station counts.
 - Clickable map markers with a selected-station detail panel.
 - Graceful data loading with short request timeouts, in-memory caching, and bundled fallback station data.
 - **REST API (FastAPI)** serving the same station dataset as JSON — see below.
 
 ## REST API
 
-The station dataset is also served as a JSON REST API: a separate service in this repo that reuses the same resilient data layer (`data_fetch.py`) as the dashboard. Two services, one source of truth.
+The station dataset is also served as a JSON REST API: the FastAPI app is mounted into the same WSGI server as the Dash dashboard, so one dyno serves both (see `docs/api-deployment.md`). One service, one source of truth.
 
 | Method | Route | Description |
 |---|---|---|
@@ -53,7 +54,7 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 ## Project Structure
 
 - `app.py` - Dash app shell and navbar.
-- `api/` - FastAPI REST layer (`main.py`, `routers/stations.py`, `schemas.py`, `db.py`).
+- `api/` - FastAPI REST layer (`main.py`, `mount.py`, `routers/stations.py`, `schemas.py`, `db.py`, `deps.py`); `mount.py` mounts the API inside the Dash WSGI app so both are served from one dyno.
 - `pages/map.py` - Main station explorer dashboard.
 - `data_fetch.py` - Cached, timeout-bound data fetch helper for the API with local fallback data.
 - `station_data.py` - Shared normalization: canonical columns, cleaning rules, coordinate validity, stable IDs (used by both the dashboard and the API).
