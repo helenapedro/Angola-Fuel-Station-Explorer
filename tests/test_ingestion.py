@@ -322,6 +322,8 @@ class ProvinceBackfillTest(unittest.TestCase):
             "Panguila": "Bengo",
             "Moçâmedes": "Namibe",
             "Malanje": "Malange",  # dataset spelling
+            "Caconda": "Huila",
+            "Alto Hama": "Huambo",
         }
         for municipality, expected in cases.items():
             record, filled = backfill_province(

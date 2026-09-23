@@ -89,15 +89,8 @@ python -m ingestion.sync_stations
 ```
 
 This also runs the geocoding backfill (see `docs/geocoding-backfill.md`):
-empty addresses become plus codes (offline) and empty
-municipalities/provinces are reverse-geocoded via Nominatim (~1 req/s,
-cached in `data/geocode_cache.json`). Sandbox runs should skip the
-Nominatim step — bulk geocoding trips the sandbox network approval
-gate — with `--no-geocode` (plus-code addresses still fill):
-
-```powershell
-python -m ingestion.sync_stations --no-geocode
-```
+empty addresses become locally computed plus codes (fully offline, no
+network calls).
 
 Run the old entrypoint, now a compatibility wrapper:
 

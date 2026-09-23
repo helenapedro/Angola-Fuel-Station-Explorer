@@ -180,25 +180,28 @@ rejection provenance (observed 2026-09-23: 63 → 1). The stale path now
 also reloads the source's previous rejected records; they re-enter the
 pipeline and are re-rejected with fresh reasons, flagged `is_stale`.
 
-### 3.8 Geocoding backfill (new: `ingestion/geocode.py`)
+### 3.8 Geocoding backfill (new: `ingestion/geocode.py`) — fully offline
 
-Every station has coordinates, so empty `address`/`municipality`/
-`province` fields are recoverable without guessing (129/138/144 empty
-in the 2026-09-23 snapshot). Runs after dedup inside
-`build_dataset`; fills empty fields only, never overwrites; the §3.6
-table runs first and outranks it. Full design:
-`docs/geocoding-backfill.md`.
+Every station has coordinates, so empty `address` fields are
+recoverable without guessing (129 empty in the 2026-09-23 snapshot).
+Runs after dedup inside `build_dataset`; fills empty fields only,
+never overwrites. Full design: `docs/geocoding-backfill.md`.
 
-- `address`: plus code computed offline — compound form
-  (`67Q9+WQ7 Negage, Angola`) when the municipality is known, full
-  11-char code otherwise. Marked `address_source: "plus_code"`; a real
-  street address arriving later wins the dedup merge.
-- `municipality`/`province`: Nominatim reverse geocoding
-  (~1 req/s, cached in `data/geocode_cache.json`), flagged
-  `municipality_inferred` / `province_inferred`. Failures leave the
-  field empty; the pipeline never fails on geocoding.
-- Snapshot metadata gains `geocode_backfill`
-  `{version, address_filled, municipality_filled, province_filled}`.
+- `address`: plus code computed locally — bare full 11-char code
+  (e.g. `6F4Q67Q9+WQ7`), which resolves in Google Maps. Marked
+  `address_source: "plus_code"`; a real street address arriving later
+  wins the dedup merge.
+- `province`: the §3.6 municipality→province table only (extended
+  2026-09-23 with `Caconda` → Huíla and `Alto Hama` → Huambo).
+  `municipality` has no offline source and stays empty when unknown —
+  honestly, like `Unknown` operators.
+- Deliberately no online reverse geocoding (Nominatim or otherwise):
+  ~144 sequential per-coordinate requests trip the sandbox network
+  approval gate; a spatial join against GADM/geoBoundaries was also
+  rejected (pre-2024-reform polygons would mislabel post-reform
+  areas). Offline = deterministic, no rate limits, no approval cards.
+- Snapshot metadata gains `geocode_backfill` `{version,
+  address_filled}`.
 
 ## 4. Data contract
 

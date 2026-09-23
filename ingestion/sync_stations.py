@@ -4,25 +4,20 @@ import argparse
 import json
 from pathlib import Path
 
-from ingestion.geocode import (
-    GEOCODE_BACKFILL_VERSION,
-    NominatimClient,
-    backfill_geocode,
-)
+from ingestion.geocode import GEOCODE_BACKFILL_VERSION, backfill_geocode
 from ingestion.normalize import normalize_legacy_pumangol, utc_now_iso
 from ingestion.provinces import PROVINCE_BACKFILL_VERSION, count_backfilled
 from ingestion.validate import split_valid_records
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"
-GEOCODE_CACHE_PATH = DATA_DIR / "geocode_cache.json"
 LEGACY_FALLBACK_PATH = PROJECT_ROOT / "gas_stations.json"
 CLEAN_OUTPUT_PATH = DATA_DIR / "stations_clean.json"
 REJECTED_OUTPUT_PATH = DATA_DIR / "stations_rejected.json"
 LEGACY_SOURCE_NAME = "BundledLegacyPumangol"
 
 
-def build_dataset(include_network_sources=True, geocode=True,
+def build_dataset(include_network_sources=True,
                 previous_clean_path=CLEAN_OUTPUT_PATH,
                 previous_rejected_path=REJECTED_OUTPUT_PATH):
     records = []
@@ -81,15 +76,10 @@ def build_dataset(include_network_sources=True, geocode=True,
                 )
 
     clean_records, rejected_records = split_valid_records(records)
-    # Geocoding runs after dedup (fewer API calls) and only fills fields
-    # still empty — tagged values are never overwritten. Offline mode
-    # (client=None) still fills plus-code addresses; Nominatim is skipped.
-    geocode_client = (
-        NominatimClient(GEOCODE_CACHE_PATH)
-        if (include_network_sources and geocode)
-        else None
-    )
-    clean_records, geocode_stats = backfill_geocode(clean_records, client=geocode_client)
+    # Geocoding runs after dedup and only fills addresses still empty —
+    # tagged values are never overwritten. Fully offline: plus codes are
+    # computed locally, no network calls of any kind.
+    clean_records, geocode_stats = backfill_geocode(clean_records)
     generated_at = utc_now_iso()
     metadata = {
         "generated_at": generated_at,
@@ -119,17 +109,10 @@ def main():
     parser = argparse.ArgumentParser(description="Refresh validated station data.")
     parser.add_argument("--offline", action="store_true", help="Build only from the bundled legacy JSON.")
     parser.add_argument("--check", action="store_true", help="Validate dataset generation without writing output files.")
-    parser.add_argument(
-        "--no-geocode",
-        action="store_true",
-        help="Skip Nominatim reverse geocoding (plus-code addresses still "
-        "fill). For sandbox runs, where bulk geocoding requests hit the "
-        "network approval gate; GitHub Actions runs with full geocoding.",
-    )
     args = parser.parse_args()
 
     clean_payload, rejected_payload = build_dataset(
-        include_network_sources=not args.offline, geocode=not args.no_geocode
+        include_network_sources=not args.offline
     )
     if not args.check:
         write_dataset(clean_payload, rejected_payload)

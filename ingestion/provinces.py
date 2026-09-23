@@ -12,10 +12,12 @@ dataset (18 provinces, with the dataset's spellings such as "Malange" and
 "Kuando Kubango"). Municipalities affected by Angola's 2024 reform
 (18 -> 21 provinces, e.g. Funda) are deliberately excluded until their
 current province is verified. Neighborhood names sometimes misfiled as
-municipality (e.g. "Bairro da Luz") are excluded too.
+municipality (e.g. "Bairro da Luz") are excluded too, as is "Botomona"
+(a village name in Bengo also used for a mountain in Cuanza Norte —
+ambiguous, and not a municipality at all).
 """
 
-PROVINCE_BACKFILL_VERSION = 1
+PROVINCE_BACKFILL_VERSION = 2
 
 # Normalized municipality -> province. Keys must already be normalized
 # with _normalize_municipality(); only unambiguous, verified mappings.
@@ -35,6 +37,8 @@ _MUNICIPALITY_TO_PROVINCE = {
     "canjala": "Benguela",
     "catengue": "Benguela",
     "chinjenje": "Huambo",
+    "caconda": "Huila",  # municipality of Huila (verified 2026-09-23)
+    "alto hama": "Huambo",  # commune/town in Huambo (verified 2026-09-23)
 }
 
 
