@@ -34,26 +34,26 @@ def build_map_figure(filtered_df, selected_station):
         return build_empty_figure("No stations match the current filters.")
 
     center = {
-        "lat": filtered_df["Latitude"].mean(),
-        "lon": filtered_df["Longitude"].mean(),
+        "lat": filtered_df["latitude"].mean(),
+        "lon": filtered_df["longitude"].mean(),
     }
     zoom = 5 if len(filtered_df) > 1 else 11
 
     fig = px.scatter_mapbox(
         filtered_df,
-        lat="Latitude",
-        lon="Longitude",
-        color="Operator",
-        hover_name="Station",
+        lat="latitude",
+        lon="longitude",
+        color="operator",
+        hover_name="station",
         hover_data={
-            "Operator": True,
-            "Municipality": True,
-            "Province": True,
-            "Address": True,
-            "Latitude": False,
-            "Longitude": False,
+            "operator": True,
+            "municipality": True,
+            "province": True,
+            "address": True,
+            "latitude": False,
+            "longitude": False,
         },
-        custom_data=["Station", "Operator", "Municipality", "Province", "Address", "Country"],
+        custom_data=["station", "operator", "municipality", "province", "address", "country"],
         zoom=zoom,
         height=MAP_HEIGHT,
     )
@@ -76,11 +76,11 @@ def build_map_figure(filtered_df, selected_station):
     )
 
     if selected_station:
-        selected_row = filtered_df[filtered_df["Station"] == selected_station]
+        selected_row = filtered_df[filtered_df["station"] == selected_station]
         if not selected_row.empty:
             fig.add_scattermapbox(
-                lat=selected_row["Latitude"],
-                lon=selected_row["Longitude"],
+                lat=selected_row["latitude"],
+                lon=selected_row["longitude"],
                 mode="markers",
                 marker={"size": 20, "color": "#f4a261", "opacity": 1},
                 hoverinfo="skip",
@@ -99,25 +99,25 @@ def build_station_details(filtered_df, selected_station):
 
     station_row = filtered_df.iloc[0]
     if selected_station:
-        selected_rows = filtered_df[filtered_df["Station"] == selected_station]
+        selected_rows = filtered_df[filtered_df["station"] == selected_station]
         if not selected_rows.empty:
             station_row = selected_rows.iloc[0]
 
     items = [
-        ("Brand", station_row.get("Operator")),
-        ("Station", station_row.get("Station")),
-        ("Address", station_row.get("Address")),
-        ("Municipality", station_row.get("Municipality")),
-        ("Province", station_row.get("Province")),
-        ("Country", station_row.get("Country")),
-        ("Coordinates", f'{station_row.get("Latitude")}, {station_row.get("Longitude")}'),
+        ("Brand", station_row.get("operator")),
+        ("station", station_row.get("station")),
+        ("address", station_row.get("address")),
+        ("municipality", station_row.get("municipality")),
+        ("province", station_row.get("province")),
+        ("country", station_row.get("country")),
+        ("Coordinates", f'{station_row.get("latitude")}, {station_row.get("longitude")}'),
     ]
 
     return html.Div(
         [
             html.Div("Selected Station", className="map-dashboard__panel-title"),
-            html.H4(_safe_text(station_row.get("Station")), className="map-dashboard__detail-name"),
-            html.Div(_safe_text(station_row.get("Operator")), className="map-dashboard__detail-brand"),
+            html.H4(_safe_text(station_row.get("station")), className="map-dashboard__detail-name"),
+            html.Div(_safe_text(station_row.get("operator")), className="map-dashboard__detail-brand"),
             html.Div(
                 [
                     html.Div(
