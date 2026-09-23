@@ -83,10 +83,9 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 
 ## Data Source & Resilience
 
-- Stations are fetched from `https://gaspump-18b4eae89030.herokuapp.com/api/stations`.
-- Each fetch uses a 5 second timeout and a 5 minute in-memory cache.
-- If the API fails, the dashboard reuses cached data when available and shows a stale-data warning. If no cache exists yet, it loads bundled station data from `data/stations_clean.json` when present, then falls back to `gas_stations.json`.
-- Set `STATIONS_API_URL` to point the dashboard at a different stations API.
+- Stations are loaded from the bundled `data/stations_clean.json` snapshot, rebuilt weekly by the ingestion workflow.
+- Reads use a 5 minute in-memory cache.
+- If the snapshot is missing or unreadable, the dashboard reuses cached data when available and shows a stale-data warning. If no cache exists yet, it falls back to the legacy bundled `gas_stations.json`.
 
 ## Refreshing Station Data
 
