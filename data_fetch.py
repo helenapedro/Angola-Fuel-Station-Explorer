@@ -91,3 +91,8 @@ def get_stations_df() -> Tuple[pd.DataFrame, str]:
         warning = f"Showing bundled fallback station data because the upstream source is unavailable: {exc}"
         _cache_df(fallback_df, now, error=warning, is_fallback=True)
         return fallback_df.copy(), warning
+
+
+def is_fallback_data() -> bool:
+    """Return True when the cached station data came from the bundled fallback."""
+    return bool(_CACHE["is_fallback"])
