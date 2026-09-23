@@ -160,13 +160,23 @@ No serving-layer changes required.
 
 - `canonicalize_operator`: every observed variant → canonical; unknown
   strings → `Unknown`; legal-suffix stripping; name inference;
-  registry contains exactly the four verified brands.
+  registry contains exactly the verified brands.
+- OSM tag semantics: `brand` tag preferred over `operator`
+  (brand = marketed flag, operator = franchisee); `etu energias`/`somoil`
+  → Etu Energias while bare `etu` stays `Unknown` (Bantu word for
+  "us/ours"); colloquial `sonangola`/`pumangola` variants.
 - Dedupe: OSM-id + branded record < 150 m → one record, branded
   name/operator, `merged_sources` lists both; two different brands
   100 m apart → not merged; same-brand pair 500 m apart → not merged.
 - Name hygiene: lone OSM-id record → rejected with reason.
 - Existing ingestion tests keep passing (exact-key dedupe case is
   subsumed: distance 0 < 150 m, same operator).
+- Dataset contract (`tests/test_dataset_contract.py`): guards the committed
+  snapshot itself — operators ⊆ registry + Unknown; zero OSM-id names
+  served; Unknown share < 20%; coordinates inside Angola; clean records
+  carry `merged_sources`; every rejected record carries reasons. Offline,
+  runs in CI on every PR, so silent data regressions fail the build
+  instead of reaching production.
 
 ## 6. Rollout
 
