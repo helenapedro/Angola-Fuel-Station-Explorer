@@ -79,6 +79,7 @@ def _build_content_area():
                 [
                     _build_stat_card("Stations", "station-count"),
                     _build_stat_card("Brands", "operator-count"),
+                    _build_stat_card("Provinces", "province-count"),
                     _build_stat_card("Municipalities", "municipality-count"),
                 ],
                 className="map-dashboard__stats",

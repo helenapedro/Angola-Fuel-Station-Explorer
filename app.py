@@ -42,7 +42,7 @@ footer = html.Footer(
     dbc.Container([
         html.Div([
             html.A("Helena Pedro", href="https://helenapedro.github.io/", target="_blank", style={"margin-right": "10px"}),
-            html.Span("(c) 2024 | All rights reserved."),
+            html.Span("(c) 2026 | All rights reserved."),
         ], className="text-center"),
     ], fluid=True, className="py-3"),
     style={"background-color": "#802917", "color": "white"},
