@@ -143,8 +143,57 @@ class DataQualityGatesTest(unittest.TestCase):
 
         self.assertEqual(
             set(CANONICAL_OPERATORS),
-            {"Sonangol", "Pumangol", "TotalEnergies", "Sonangalp"},
+            {"Sonangol", "Pumangol", "TotalEnergies", "Sonangalp", "Etu Energias"},
         )
+
+    def test_etu_energias_aliases(self):
+        from ingestion.operators import canonicalize_operator
+
+        self.assertEqual(canonicalize_operator("Etu Energias"), "Etu Energias")
+        self.assertEqual(canonicalize_operator("Somoil"), "Etu Energias")
+        # Bare "etu" means "us/ours" in Bantu languages and shows up in
+        # ordinary station names: never map it to the brand.
+        self.assertEqual(canonicalize_operator("Etu"), "Unknown")
+        self.assertEqual(canonicalize_operator("", "Posto Etu Kwanza"), "Unknown")
+
+    def test_colloquial_brand_variants(self):
+        from ingestion.operators import canonicalize_operator
+
+        self.assertEqual(canonicalize_operator("", "Pumangola"), "Pumangol")
+        self.assertEqual(
+            canonicalize_operator("", "Posto de combustível da Sonangola"),
+            "Sonangol",
+        )
+
+    def test_osm_brand_tag_takes_precedence_over_operator(self):
+        from ingestion.normalize import normalize_osm_element
+
+        element = {
+            "type": "way",
+            "id": 1130685470,
+            "tags": {
+                "amenity": "fuel",
+                "brand": "TotalEnergies",
+                "name": "TotalEnergies",
+                "operator": "P.A. Kindombele",
+            },
+            "center": {"lat": -6.16, "lon": 12.37},
+        }
+        record = normalize_osm_element(element)
+        # OSM `brand` is the marketed flag; `operator` is the franchisee.
+        self.assertEqual(record["operator"], "TotalEnergies")
+
+    def test_osm_operator_used_when_brand_missing(self):
+        from ingestion.normalize import normalize_osm_element
+
+        element = {
+            "type": "node",
+            "id": 1,
+            "lat": -8.83,
+            "lon": 13.24,
+            "tags": {"amenity": "fuel", "name": "X", "operator": "Sonangol"},
+        }
+        self.assertEqual(normalize_osm_element(element)["operator"], "Sonangol")
 
     def test_operator_variants_canonicalize(self):
         from ingestion.operators import canonicalize_operator
