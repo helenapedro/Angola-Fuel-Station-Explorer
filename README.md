@@ -9,10 +9,51 @@ A Dash application for exploring Angolan fuel stations through a single interact
 - Summary cards for total stations, brands, and municipalities in the current view.
 - Clickable map markers with a selected-station detail panel.
 - Graceful data loading with short request timeouts, in-memory caching, and bundled fallback station data.
+- **REST API (FastAPI)** serving the same station dataset as JSON — see below.
+
+## REST API
+
+The station dataset is also served as a JSON REST API: a separate service in this repo that reuses the same resilient data layer (`data_fetch.py`) as the dashboard. Two services, one source of truth.
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/health` | Service health, dataset size and source |
+| GET | `/api/v1/stations` | Paginated stations — filters `province`, `operator`, `search`; `page`, `page_size` (max 100) |
+| GET | `/api/v1/stations/{id}` | Single station (`id` is positional within the current dataset snapshot) |
+| GET | `/api/v1/stations/stats` | Totals by operator and province |
+| GET | `/api/v1/stations/provinces` | Distinct provinces |
+| GET | `/api/v1/stations/operators` | Distinct operators |
+
+Run it:
+
+```powershell
+uvicorn api.main:app --reload
+```
+
+Example:
+
+```bash
+curl "http://127.0.0.1:8000/api/v1/stations?province=Luanda&page_size=2"
+```
+
+```json
+{
+  "items": [
+    {"id": 369, "station": "Viana Km30", "operator": "Pumangol", "province": "Luanda",
+     "latitude": -8.964739, "longitude": 13.470033, "...": "..."},
+    {"id": 370, "station": "Kilamba Kiaxi", "operator": "Pumangol", "province": "Luanda",
+     "latitude": -8.996569, "longitude": 13.289389, "...": "..."}
+  ],
+  "page": 1, "page_size": 2, "total": 35, "total_pages": 18
+}
+```
+
+Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest tests.test_api`.
 
 ## Project Structure
 
 - `app.py` - Dash app shell and navbar.
+- `api/` - FastAPI REST layer (`main.py`, `routers/stations.py`, `schemas.py`, `db.py`).
 - `pages/map.py` - Main station explorer dashboard.
 - `data_fetch.py` - Cached, timeout-bound data fetch helper for the API with local fallback data.
 - `ingestion/` - Multi-source station ingestion, normalization, validation, and clean/rejected output generation.
