@@ -1,17 +1,15 @@
 {
   "metadata": {
-    "generated_at": "2026-09-23T11:24:32+00:00",
+    "generated_at": "2026-09-23T11:27:12+00:00",
     "record_count": 279,
     "rejected_count": 63,
     "province_backfill": {
-      "version": 1,
-      "filled_count": 60
+      "version": 2,
+      "filled_count": 62
     },
     "geocode_backfill": {
-      "version": 1,
-      "address_filled": 129,
-      "municipality_filled": 0,
-      "province_filled": 0
+      "version": 2,
+      "address_filled": 52
     },
     "source_status": [
       {
@@ -25,14 +23,13 @@
         "status": "stale_reused",
         "record_count": 187,
         "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+        "error": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
       },
       {
         "source": "SonangolOpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 80,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+        "status": "loaded",
+        "record_count": 81,
+        "is_stale": false
       },
       {
         "source": "Pumangol",
@@ -48,14 +45,7 @@
         "status": "stale_reused",
         "record_count": 187,
         "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
-      },
-      {
-        "source": "SonangolOpenStreetMap",
-        "status": "stale_reused",
-        "record_count": 80,
-        "is_stale": true,
-        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+        "error": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
       },
       {
         "source": "Pumangol",
@@ -80,7 +70,7 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-09-23T11:24:10+00:00",
+      "scraped_at": "2026-09-23T11:26:46+00:00",
       "province_inferred": false,
       "rejection_reasons": [
         "null island coordinates"
@@ -105,7 +95,7 @@
         "possible encoding or html entity issue"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "TotalEnergies",
@@ -126,7 +116,7 @@
         "possible encoding or html entity issue"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -150,7 +140,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -174,7 +164,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -198,7 +188,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -222,7 +212,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -246,7 +236,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -270,7 +260,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -294,7 +284,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -318,7 +308,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -342,7 +332,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -366,7 +356,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -390,7 +380,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -414,7 +404,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -438,7 +428,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -462,7 +452,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -486,7 +476,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -510,7 +500,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -534,7 +524,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -558,7 +548,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -582,7 +572,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -606,7 +596,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -630,7 +620,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -654,7 +644,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -678,7 +668,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -702,7 +692,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -726,7 +716,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -750,7 +740,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -774,7 +764,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -798,7 +788,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -822,7 +812,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -846,7 +836,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -870,7 +860,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -894,7 +884,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -918,7 +908,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -942,7 +932,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -966,7 +956,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -990,7 +980,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1014,7 +1004,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1038,7 +1028,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1062,7 +1052,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1086,7 +1076,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1110,7 +1100,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1134,7 +1124,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1158,7 +1148,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1182,7 +1172,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1206,7 +1196,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1230,7 +1220,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1254,7 +1244,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1278,7 +1268,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1302,7 +1292,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1326,7 +1316,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1350,7 +1340,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1374,7 +1364,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1398,7 +1388,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1422,7 +1412,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1446,7 +1436,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1470,7 +1460,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1494,7 +1484,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1518,7 +1508,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1542,7 +1532,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     },
     {
       "operator": "Unknown",
@@ -1566,7 +1556,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Max retries exceeded with url: /api/interpreter (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))"
+      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
     }
   ]
 }
