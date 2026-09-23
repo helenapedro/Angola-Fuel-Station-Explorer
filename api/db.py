@@ -1,9 +1,9 @@
 """Data access for the REST API.
 
 The API reuses the project's resilient data layer
-(:func:`data_fetch.get_stations_df`): short-TTL in-memory cache, a live
-upstream fetch with a 5s timeout, and bundled fallback data when the
-upstream source is unavailable. Normalization (cleaning rules, canonical
+(:func:`data_fetch.get_stations_df`): short-TTL in-memory cache over the
+weekly-refreshed bundled snapshot, with legacy bundled fallback data when
+the snapshot is unavailable. Normalization (cleaning rules, canonical
 columns, stable IDs) lives in :mod:`station_data`, shared with the
 dashboard.
 """

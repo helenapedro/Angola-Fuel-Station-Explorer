@@ -1,15 +1,20 @@
+"""Resilient local data loading for the station dataset.
+
+The primary source is the bundled ``data/stations_clean.json`` snapshot,
+rebuilt weekly by the ingestion workflow. A short-TTL in-memory cache
+avoids re-parsing the file on every request. If the snapshot is missing or
+unreadable, the original ``gas_stations.json`` bundle is used as a
+last-resort fallback (flagged via :func:`is_fallback_data`).
+"""
+
 import json
-import os
 import time
 from pathlib import Path
 from typing import Tuple
 
 import pandas as pd
-import requests
 
-API_URL = os.getenv("STATIONS_API_URL", "https://gaspump-18b4eae89030.herokuapp.com/api/stations")
 CACHE_TTL_SECONDS = 300
-REQUEST_TIMEOUT_SECONDS = 5
 CLEAN_DATA_PATH = Path(__file__).parent / "data" / "stations_clean.json"
 LEGACY_FALLBACK_DATA_PATH = Path(__file__).with_name("gas_stations.json")
 FALLBACK_OPERATOR = "Pumangol"
@@ -26,15 +31,17 @@ def _split_city(city: str) -> Tuple[str, str]:
     return "", ""
 
 
-def _load_fallback_df() -> pd.DataFrame:
-    fallback_path = CLEAN_DATA_PATH if CLEAN_DATA_PATH.exists() else LEGACY_FALLBACK_DATA_PATH
-    with fallback_path.open("r", encoding="utf-8") as fallback_file:
-        payload = json.load(fallback_file)
+def _read_station_list(path: Path) -> list:
+    with path.open("r", encoding="utf-8") as data_file:
+        payload = json.load(data_file)
 
     stations = payload.get("stations", payload) if isinstance(payload, dict) else payload
     if not isinstance(stations, list):
-        raise ValueError(f"{fallback_path} must contain a station list or a stations object")
+        raise ValueError(f"{path} must contain a station list or a stations object")
+    return stations
 
+
+def _stations_to_df(stations: list) -> pd.DataFrame:
     rows = []
     for station in stations:
         municipality, parsed_province = _split_city(station.get("city"))
@@ -53,12 +60,22 @@ def _load_fallback_df() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _load_clean_df() -> pd.DataFrame:
+    """Load the weekly-refreshed bundled snapshot (primary source)."""
+    return _stations_to_df(_read_station_list(CLEAN_DATA_PATH))
+
+
+def _load_fallback_df() -> pd.DataFrame:
+    """Load the legacy bundled snapshot (last-resort fallback)."""
+    return _stations_to_df(_read_station_list(LEGACY_FALLBACK_DATA_PATH))
+
+
 def _cache_df(df: pd.DataFrame, now: float, error: str = None, is_fallback: bool = False) -> None:
     _CACHE.update({"df": df, "fetched_at": now, "error": error, "is_fallback": is_fallback})
 
 
 def get_stations_df() -> Tuple[pd.DataFrame, str]:
-    """Fetch station data with a short TTL cache and safe fallbacks."""
+    """Load station data with a short TTL cache and safe fallbacks."""
     now = time.time()
     cached_df = _CACHE["df"]
     cached_error = _CACHE["error"]
@@ -68,29 +85,24 @@ def get_stations_df() -> Tuple[pd.DataFrame, str]:
         return cached_df.copy(), cached_error
 
     try:
-        response = requests.get(API_URL, timeout=REQUEST_TIMEOUT_SECONDS)
-        response.raise_for_status()
-        try:
-            data = response.json()
-        except ValueError as exc:
-            raise requests.RequestException(f"Invalid JSON response: {exc}") from exc
-        df = pd.DataFrame(data)
-        _cache_df(df, now)
-        return df.copy(), None
-    except requests.RequestException as exc:
-        # If we have usable data, prefer a working dashboard over surfacing an
-        # intermittent upstream timeout to users.
+        df = _load_clean_df()
+    except (OSError, ValueError, TypeError) as exc:
+        # Primary snapshot missing or unreadable: prefer stale-but-usable
+        # cached data, then the legacy bundled fallback, over an error page.
         if cached_df is not None:
-            return cached_df.copy(), f"Showing cached station data because the upstream source is unavailable: {exc}"
+            return cached_df.copy(), f"Showing cached station data because the bundled snapshot is unavailable: {exc}"
 
         try:
             fallback_df = _load_fallback_df()
         except (OSError, ValueError, TypeError) as fallback_exc:
-            return pd.DataFrame(), f"Unable to fetch station data: {exc}; fallback data unavailable: {fallback_exc}"
+            return pd.DataFrame(), f"Unable to load station data: {exc}; fallback data unavailable: {fallback_exc}"
 
-        warning = f"Showing bundled fallback station data because the upstream source is unavailable: {exc}"
+        warning = f"Showing bundled fallback station data because the primary snapshot is unavailable: {exc}"
         _cache_df(fallback_df, now, error=warning, is_fallback=True)
         return fallback_df.copy(), warning
+
+    _cache_df(df, now)
+    return df.copy(), None
 
 
 def is_fallback_data() -> bool:
