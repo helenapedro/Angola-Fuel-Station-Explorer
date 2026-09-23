@@ -50,16 +50,29 @@ def apply_station_filters(df, search_text=None, operator=None, province=None, mu
     return filtered_df
 
 
-def build_dropdown_options(values):
-    return [{"label": value, "value": value} for value in values if value]
+def build_dropdown_options(values, show_counts=True):
+    """Dropdown options labeled with result counts, e.g. ``Luanda (45)``.
+
+    Counts make the cascading filters scannable; the station dropdown
+    passes ``show_counts=False`` since every station is unique.
+    """
+    series = values.dropna().astype(str).str.strip()
+    series = series[series != ""]
+    if show_counts:
+        counts = series.value_counts()
+        return [
+            {"label": f"{value} ({count:,})", "value": value}
+            for value, count in sorted(counts.items())
+        ]
+    return [{"label": value, "value": value} for value in sorted(series.unique())]
 
 
 def build_filter_options(df, filtered_df):
     normalized_df = normalize_stations_df(df)
-    operator_options = build_dropdown_options(sorted(normalized_df["operator"].dropna().unique())) if not normalized_df.empty else []
-    province_options = build_dropdown_options(sorted(filtered_df["province"].dropna().unique())) if not filtered_df.empty else []
-    municipality_options = build_dropdown_options(sorted(filtered_df["municipality"].dropna().unique())) if not filtered_df.empty else []
-    station_options = build_dropdown_options(sorted(filtered_df["station"].dropna().unique())) if not filtered_df.empty else []
+    operator_options = build_dropdown_options(normalized_df["operator"]) if not normalized_df.empty else []
+    province_options = build_dropdown_options(filtered_df["province"]) if not filtered_df.empty else []
+    municipality_options = build_dropdown_options(filtered_df["municipality"]) if not filtered_df.empty else []
+    station_options = build_dropdown_options(filtered_df["station"], show_counts=False) if not filtered_df.empty else []
     return operator_options, province_options, municipality_options, station_options
 
 
@@ -73,9 +86,10 @@ def get_selected_station_name(selected_station, click_data):
 
 def build_summary_counts(filtered_df):
     if filtered_df.empty:
-        return "0", "0", "0"
+        return "0", "0", "0", "0"
 
     station_count = f"{len(filtered_df):,}"
     operator_count = f'{filtered_df["operator"].replace("", None).dropna().nunique():,}'
+    province_count = f'{filtered_df["province"].replace("", None).dropna().nunique():,}'
     municipality_count = f'{filtered_df["municipality"].replace("", None).dropna().nunique():,}'
-    return station_count, operator_count, municipality_count
+    return station_count, operator_count, province_count, municipality_count

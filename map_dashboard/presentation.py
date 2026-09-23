@@ -6,6 +6,17 @@ from dash import html
 MAP_HEIGHT = 680
 EMPTY_FIGURE_CENTER = {"lat": -11.2027, "lon": 17.8739}
 
+# Stable brand colors so the map legend is consistent across reloads and
+# filters. Unknown (bandeira-branca independents) stays neutral gray.
+OPERATOR_COLORS = {
+    "Sonangol": "#D7263D",
+    "Pumangol": "#F46036",
+    "TotalEnergies": "#1B4F9C",
+    "Sonangalp": "#F18F01",
+    "Etu Energias": "#2A9D48",
+    "Unknown": "#9E9E9E",
+}
+
 
 def build_empty_figure(message):
     fig = px.scatter_mapbox(lat=[], lon=[], zoom=4, height=MAP_HEIGHT)
@@ -44,6 +55,7 @@ def build_map_figure(filtered_df, selected_station):
         lat="latitude",
         lon="longitude",
         color="operator",
+        color_discrete_map=OPERATOR_COLORS,
         hover_name="station",
         hover_data={
             "operator": True,
@@ -103,8 +115,8 @@ def build_station_details(filtered_df, selected_station):
         if not selected_rows.empty:
             station_row = selected_rows.iloc[0]
 
+    # Brand is already the panel header; the rows below start at the name.
     items = [
-        ("Brand", station_row.get("operator")),
         ("station", station_row.get("station")),
         ("address", station_row.get("address")),
         ("municipality", station_row.get("municipality")),

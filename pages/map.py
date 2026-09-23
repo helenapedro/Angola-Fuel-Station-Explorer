@@ -46,6 +46,7 @@ def refresh_filter_options(_, search_text, operator, province, municipality):
     Output("gas-stations-map", "figure"),
     Output("station-count", "children"),
     Output("operator-count", "children"),
+    Output("province-count", "children"),
     Output("municipality-count", "children"),
     Output("selected-station-card", "children"),
     Input("map-refresh", "n_intervals"),
@@ -75,14 +76,16 @@ def update_dashboard(_, search_text, operator, province, municipality, station, 
             "0",
             "0",
             "0",
+            "0",
             build_station_details(filtered_df, None),
         )
 
-    station_count, operator_count, municipality_count = build_summary_counts(filtered_df)
+    station_count, operator_count, province_count, municipality_count = build_summary_counts(filtered_df)
     return (
         build_map_figure(filtered_df, selected_station),
         station_count,
         operator_count,
+        province_count,
         municipality_count,
         build_station_details(filtered_df, selected_station),
     )
