@@ -19,7 +19,7 @@ The station dataset is also served as a JSON REST API: a separate service in thi
 |---|---|---|
 | GET | `/health` | Service health, dataset size and source |
 | GET | `/api/v1/stations` | Paginated stations — filters `province`, `operator`, `search`; `page`, `page_size` (max 100) |
-| GET | `/api/v1/stations/{id}` | Single station (`id` is positional within the current dataset snapshot) |
+| GET | `/api/v1/stations/{id}` | Single station (`id` is stable — deterministic across dataset refreshes) |
 | GET | `/api/v1/stations/stats` | Totals by operator and province |
 | GET | `/api/v1/stations/provinces` | Distinct provinces |
 | GET | `/api/v1/stations/operators` | Distinct operators |
@@ -56,6 +56,7 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 - `api/` - FastAPI REST layer (`main.py`, `routers/stations.py`, `schemas.py`, `db.py`).
 - `pages/map.py` - Main station explorer dashboard.
 - `data_fetch.py` - Cached, timeout-bound data fetch helper for the API with local fallback data.
+- `station_data.py` - Shared normalization: canonical columns, cleaning rules, coordinate validity, stable IDs (used by both the dashboard and the API).
 - `ingestion/` - Multi-source station ingestion, normalization, validation, and clean/rejected output generation.
 - `scrap.py` - Compatibility wrapper for `python -m ingestion.sync_stations`.
 - `mysqlConnect.py` - Loader to move scraped data into MySQL.
