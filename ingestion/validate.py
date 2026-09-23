@@ -12,6 +12,7 @@ Quality gates (see docs/data-quality.md):
 import math
 import re
 
+from ingestion.geocode import ADDRESS_SOURCE_PLUS_CODE
 from ingestion.operators import UNKNOWN_OPERATOR, canonicalize_record
 from ingestion.provinces import backfill_province
 
@@ -139,6 +140,16 @@ def _merge_into(winner, loser):
     for field in ("address", "municipality", "province"):
         if not winner.get(field) and loser.get(field):
             winner[field] = loser[field]
+    # A real street address beats a plus-code placeholder even when the
+    # placeholder sits on the winning record: stale records re-enter the
+    # pipeline carrying plus codes from previous runs.
+    if (
+        winner.get("address_source") == ADDRESS_SOURCE_PLUS_CODE
+        and loser.get("address")
+        and loser.get("address_source") != ADDRESS_SOURCE_PLUS_CODE
+    ):
+        winner["address"] = loser["address"]
+        winner.pop("address_source", None)
     sources = set(winner.get("merged_sources") or [])
     sources.update(loser.get("merged_sources") or [])
     if loser.get("source_name"):

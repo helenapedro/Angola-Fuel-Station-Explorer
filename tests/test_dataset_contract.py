@@ -83,6 +83,17 @@ class DatasetContractTest(unittest.TestCase):
                 station.get("rejection_reasons"), station.get("source_id")
             )
 
+    def test_stations_with_coordinates_have_address(self):
+        # Plus codes are computed offline from coordinates, so every
+        # clean station must have a navigable address — a silent
+        # regression in the geocode backfill fails the build here.
+        bad = [
+            station.get("source_id")
+            for station in self.stations
+            if not (station.get("address") or "").strip()
+        ]
+        self.assertEqual(bad, [])
+
 
 if __name__ == "__main__":
     unittest.main()
