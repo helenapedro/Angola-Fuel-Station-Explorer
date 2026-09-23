@@ -7,10 +7,11 @@ Run locally with::
 Interactive docs: http://127.0.0.1:8000/docs
 """
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRoute
 
-from api import db
+from api.deps import StationData, get_station_data
 from api.routers import stations
 from api.schemas import Health
 
@@ -37,22 +38,26 @@ app.include_router(stations.router)
 
 
 @app.get("/health", response_model=Health, tags=["meta"])
-def health():
-    df, source = db.load_stations_df()
+def health(station_data: StationData = Depends(get_station_data)):
+    df, source = station_data
     return Health(status="ok", version=API_VERSION, stations=len(df), source=source)
 
 
 @app.get("/api/v1", tags=["meta"])
 def api_index():
+    # Derived from the registered routes so it can't go stale when
+    # endpoints are added or renamed. (In recent FastAPI versions
+    # include_router nests routes instead of flattening them into
+    # app.routes, hence the explicit router list.)
+    sources = [app, stations.router]
+    endpoints = sorted(
+        f"{' '.join(sorted(route.methods))} {route.path}"
+        for source in sources
+        for route in source.routes
+        if isinstance(route, APIRoute)
+    )
     return {
         "name": "Angola Fuel Station Explorer API",
         "version": API_VERSION,
-        "endpoints": [
-            "/health",
-            "/api/v1/stations",
-            "/api/v1/stations/{id}",
-            "/api/v1/stations/stats",
-            "/api/v1/stations/provinces",
-            "/api/v1/stations/operators",
-        ],
+        "endpoints": endpoints,
     }

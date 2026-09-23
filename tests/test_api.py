@@ -1,15 +1,15 @@
 """Tests for the FastAPI stations layer.
 
-The data layer is patched with a small fixed dataset so the tests are
-deterministic and never touch the network.
+The dataset dependency is overridden with a small fixed dataset so the
+tests are deterministic and never touch the network.
 """
 
 import unittest
-from unittest.mock import patch
 
 import pandas as pd
 from fastapi.testclient import TestClient
 
+from api.deps import get_station_data
 from api.main import app
 
 
@@ -55,12 +55,11 @@ def _sample_df() -> pd.DataFrame:
 
 class StationApiTest(unittest.TestCase):
     def setUp(self):
-        self._patcher = patch("api.db.load_stations_df", return_value=(_sample_df(), "live"))
-        self._patcher.start()
+        app.dependency_overrides[get_station_data] = lambda: (_sample_df(), "live")
         self.client = TestClient(app)
 
     def tearDown(self):
-        self._patcher.stop()
+        app.dependency_overrides.clear()
 
     def test_health_reports_ok(self):
         response = self.client.get("/health")
@@ -69,6 +68,13 @@ class StationApiTest(unittest.TestCase):
         self.assertEqual(body["status"], "ok")
         self.assertEqual(body["stations"], 3)
         self.assertEqual(body["source"], "live")
+
+    def test_api_index_lists_routes(self):
+        response = self.client.get("/api/v1")
+        self.assertEqual(response.status_code, 200)
+        endpoints = response.json()["endpoints"]
+        self.assertIn("GET /health", endpoints)
+        self.assertIn("GET /api/v1/stations", endpoints)
 
     def test_list_stations_paginates(self):
         response = self.client.get("/api/v1/stations", params={"page": 2, "page_size": 2})
@@ -86,6 +92,23 @@ class StationApiTest(unittest.TestCase):
         body = response.json()
         self.assertEqual(body["total"], 1)
         self.assertEqual(body["items"][0]["station"], "Sonangol Benguela")
+
+    def test_province_filter_is_exact_match(self):
+        response = self.client.get("/api/v1/stations", params={"province": "enguela"})
+        body = response.json()
+        self.assertEqual(body["total"], 0)
+        self.assertEqual(body["items"], [])
+
+    def test_filter_with_no_match_returns_empty(self):
+        response = self.client.get("/api/v1/stations", params={"operator": "Nope"})
+        body = response.json()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(body["total"], 0)
+
+    def test_filter_with_regex_chars_does_not_500(self):
+        for params in ({"province": "("}, {"operator": ".*"}, {"search": "[a-z"}):
+            response = self.client.get("/api/v1/stations", params=params)
+            self.assertEqual(response.status_code, 200, f"params={params}")
 
     def test_list_stations_searches_name_and_address(self):
         response = self.client.get("/api/v1/stations", params={"search": "viana"})

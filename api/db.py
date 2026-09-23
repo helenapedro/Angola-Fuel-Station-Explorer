@@ -39,7 +39,7 @@ def _resolve_column(df: pd.DataFrame, aliases: list) -> str | None:
 def _clean_text(value) -> str | None:
     if value is None:
         return None
-    if isinstance(value, float) and math.isnan(value):
+    if not isinstance(value, str) and pd.isna(value):
         return None
     text = str(value).strip()
     return text or None
@@ -57,14 +57,16 @@ def _clean_float(value) -> float | None:
     return number
 
 
-def load_stations_df() -> tuple:
+def load_stations_df() -> tuple[pd.DataFrame, str]:
     """Return ``(normalized stations DataFrame, source label)``.
 
     The frame always carries the canonical columns plus a 1-based
     positional ``id``. IDs are stable only within one dataset snapshot —
-    they identify rows, not real-world entities.
+    they identify rows, not real-world entities. The source label is
+    ``"fallback"`` when the data came from the bundled fallback dataset,
+    otherwise ``"live"``.
     """
-    raw_df, warning = data_fetch.get_stations_df()
+    raw_df, _warning = data_fetch.get_stations_df()
 
     normalized = pd.DataFrame()
     for canonical, aliases in _COLUMN_ALIASES.items():
@@ -79,5 +81,5 @@ def load_stations_df() -> tuple:
     normalized = normalized.reset_index(drop=True)
     normalized.insert(0, "id", normalized.index + 1)
 
-    source = "fallback" if warning and "fallback" in warning.lower() else "live"
+    source = "fallback" if data_fetch.is_fallback_data() else "live"
     return normalized, source
