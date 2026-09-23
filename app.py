@@ -7,6 +7,8 @@ from dash import html
 
 from seo import SITE_DESCRIPTION, SITE_TITLE, build_meta_tags, build_robots_txt, build_sitemap_xml
 
+from api.mount import mount_api
+
 app = dash.Dash(
     __name__,
     use_pages=True,
@@ -15,6 +17,8 @@ app = dash.Dash(
     title=SITE_TITLE,
 )
 server = app.server
+# Serve the FastAPI REST API from the same process (see docs/api-deployment.md).
+server.wsgi_app = mount_api(server.wsgi_app)
 
 
 @server.route("/robots.txt")
