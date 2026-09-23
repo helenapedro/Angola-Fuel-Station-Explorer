@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated_at": "2026-09-21T11:39:45+00:00",
-    "record_count": 418,
-    "rejected_count": 3,
+    "generated_at": "2026-09-23T10:13:46+00:00",
+    "record_count": 279,
+    "rejected_count": 61,
     "source_status": [
       {
         "source": "BundledLegacyPumangol",
@@ -12,15 +12,17 @@
       },
       {
         "source": "OpenStreetMap",
-        "status": "loaded",
-        "record_count": 341,
-        "is_stale": false
+        "status": "stale_reused",
+        "record_count": 258,
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
       },
       {
         "source": "SonangolOpenStreetMap",
-        "status": "loaded",
+        "status": "stale_reused",
         "record_count": 81,
-        "is_stale": false
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
       },
       {
         "source": "Pumangol",
@@ -31,6 +33,20 @@
       }
     ],
     "source_errors": [
+      {
+        "source": "OpenStreetMap",
+        "status": "stale_reused",
+        "record_count": 258,
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
+      },
+      {
+        "source": "SonangolOpenStreetMap",
+        "status": "stale_reused",
+        "record_count": 81,
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
+      },
       {
         "source": "Pumangol",
         "status": "failed",
@@ -54,45 +70,1389 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-09-21T11:39:01+00:00",
+      "scraped_at": "2026-09-23T10:12:41+00:00",
       "rejection_reasons": [
         "null island coordinates"
       ]
     },
     {
-      "operator": "TotalEnergies",
-      "station": "TotalEnergies - P.A. SÃO PAULO",
-      "address": "",
+      "operator": "Unknown",
+      "station": "node/2266863113",
+      "address": "Cacula",
       "province": "",
-      "municipality": "",
+      "municipality": "Cacula",
       "country": "Angola",
-      "latitude": -8.816587,
-      "longitude": 13.2564595,
+      "latitude": -14.4930607,
+      "longitude": 14.1172436,
       "source_type": "openstreetmap",
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
-      "source_id": "way/641259539",
+      "source_id": "node/2266863113",
       "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
       "rejection_reasons": [
-        "possible encoding or html entity issue"
+        "station name is an OSM element id"
       ]
     },
     {
-      "operator": "TotalEnergies",
-      "station": "TotalEnergies - P.A. ALTO DA CONCEIÇÃO",
+      "operator": "Unknown",
+      "station": "node/5169888524",
+      "address": "Estrada da Samba, Luanda",
+      "province": "",
+      "municipality": "Luanda",
+      "country": "Angola",
+      "latitude": -8.9309883,
+      "longitude": 13.1618743,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/5169888524",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/5553546454",
+      "address": "Luanda",
+      "province": "",
+      "municipality": "Luanda",
+      "country": "Angola",
+      "latitude": -8.8037945,
+      "longitude": 13.4007389,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/5553546454",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/605403342",
+      "address": "Luanda",
+      "province": "",
+      "municipality": "Luanda",
+      "country": "Angola",
+      "latitude": -8.968846,
+      "longitude": 13.4098958,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/605403342",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/605403376",
+      "address": "Avenida Comandante Fidel Castro, Luanda",
+      "province": "",
+      "municipality": "Luanda",
+      "country": "Angola",
+      "latitude": -8.9724142,
+      "longitude": 13.4035176,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/605403376",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/636517464",
+      "address": "Avenida Hoji Ya Henda (ex Avenida Brasil), Luanda",
+      "province": "",
+      "municipality": "Luanda",
+      "country": "Angola",
+      "latitude": -8.8219117,
+      "longitude": 13.2507886,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/636517464",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/1650583781",
       "address": "",
       "province": "",
       "municipality": "",
       "country": "Angola",
-      "latitude": -14.9010565,
-      "longitude": 13.5138464,
+      "latitude": -12.7700736,
+      "longitude": 15.7431688,
       "source_type": "openstreetmap",
       "source_name": "OpenStreetMap",
       "source_url": "https://www.openstreetmap.org",
-      "source_id": "way/912806787",
+      "source_id": "node/1650583781",
       "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
       "rejection_reasons": [
-        "possible encoding or html entity issue"
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/2020014114",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.9245442,
+      "longitude": 13.4759467,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/2020014114",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/2542138305",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -12.8057012,
+      "longitude": 15.641858,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/2542138305",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/3094144003",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -12.3621922,
+      "longitude": 13.5650802,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/3094144003",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/3507061952",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -12.5860324,
+      "longitude": 13.4091244,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/3507061952",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/3747403904",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -13.7635166,
+      "longitude": 15.0317678,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/3747403904",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/3747403906",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -13.3966744,
+      "longitude": 15.4191671,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/3747403906",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/3747439909",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -11.8485304,
+      "longitude": 15.3514889,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/3747439909",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/4224378190",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.9944126,
+      "longitude": 13.1936972,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/4224378190",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/4634526889",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -15.8001983,
+      "longitude": 11.8541275,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/4634526889",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/4639642647",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -12.773799,
+      "longitude": 15.7352953,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/4639642647",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6436550885",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -5.6860615,
+      "longitude": 12.2519119,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6436550885",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6436565014",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -5.5547495,
+      "longitude": 12.1953199,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6436565014",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6440232586",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -6.1464521,
+      "longitude": 12.3879056,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6440232586",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6466143496",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.5389828,
+      "longitude": 16.330752,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6466143496",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6964921387",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.6642032,
+      "longitude": 17.6915763,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6964921387",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/6964921388",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.6626467,
+      "longitude": 17.6982556,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/6964921388",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/7291448285",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -11.5282084,
+      "longitude": 13.8120166,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/7291448285",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/10621426129",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.8816495,
+      "longitude": 13.2536878,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/10621426129",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/11358589547",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -12.9533993,
+      "longitude": 13.0973206,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/11358589547",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/11967461569",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -5.5523848,
+      "longitude": 12.2464504,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/11967461569",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/11967461769",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -4.9551052,
+      "longitude": 12.1383899,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/11967461769",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "node/13404088501",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.8972336,
+      "longitude": 13.31538,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "node/13404088501",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/424826302",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.8395369,
+      "longitude": 13.2632888,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/424826302",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/434750815",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.6102621,
+      "longitude": 13.557989,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/434750815",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/496339360",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.6274197,
+      "longitude": 13.2431803,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/496339360",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/496950641",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.9935351,
+      "longitude": 14.893526,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/496950641",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/498247609",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.6465551,
+      "longitude": 14.9402624,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/498247609",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/636984173",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.8512292,
+      "longitude": 13.2815304,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/636984173",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/637660684",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.974097,
+      "longitude": 13.2405824,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/637660684",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/641259538",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.8156978,
+      "longitude": 13.2583712,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/641259538",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/655437006",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.9914236,
+      "longitude": 13.3970185,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/655437006",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/675117984",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -15.7974944,
+      "longitude": 11.880724,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/675117984",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/701039570",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.0008156,
+      "longitude": 13.5186784,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/701039570",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/701039573",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.9816853,
+      "longitude": 13.4918322,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/701039573",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/705430395",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.7698702,
+      "longitude": 13.8442402,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/705430395",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/705448437",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.7380222,
+      "longitude": 14.9711199,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/705448437",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/741808858",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.5267184,
+      "longitude": 13.9198654,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/741808858",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/744958362",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.1117754,
+      "longitude": 13.6826737,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/744958362",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/820001160",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.9153992,
+      "longitude": 13.4994535,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/820001160",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/838018956",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.3056889,
+      "longitude": 16.2555095,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/838018956",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/838018959",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.3035689,
+      "longitude": 16.2549434,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/838018959",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/916358592",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.8720842,
+      "longitude": 13.4976899,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/916358592",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1050674682",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -17.3001548,
+      "longitude": 15.8411304,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1050674682",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1051585059",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -13.5039332,
+      "longitude": 16.744701,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1051585059",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1052308010",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -10.5106548,
+      "longitude": 16.0156558,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1052308010",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1052758335",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -9.0544801,
+      "longitude": 13.5722308,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1052758335",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1053081661",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -10.7316397,
+      "longitude": 13.7580015,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1053081661",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1158307699",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -13.0295593,
+      "longitude": 13.7356332,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1158307699",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1178800353",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -8.9749781,
+      "longitude": 13.2199169,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1178800353",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1200821193",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -5.6188347,
+      "longitude": 12.1945812,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1200821193",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1234291482",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -7.7709547,
+      "longitude": 15.269752,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1234291482",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1235181162",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.7680086,
+      "longitude": 13.8959658,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1235181162",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
+      ]
+    },
+    {
+      "operator": "Unknown",
+      "station": "way/1275729957",
+      "address": "",
+      "province": "",
+      "municipality": "",
+      "country": "Angola",
+      "latitude": -14.7827525,
+      "longitude": 13.781047,
+      "source_type": "openstreetmap",
+      "source_name": "OpenStreetMap",
+      "source_url": "https://www.openstreetmap.org",
+      "source_id": "way/1275729957",
+      "scraped_at": "2026-09-21T11:39:22+00:00",
+      "is_stale": true,
+      "stale_reason": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)",
+      "merged_sources": [
+        "OpenStreetMap"
+      ],
+      "rejection_reasons": [
+        "station name is an OSM element id"
       ]
     }
   ]

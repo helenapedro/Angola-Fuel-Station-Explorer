@@ -120,5 +120,146 @@ class IngestionValidationTest(unittest.TestCase):
         self.assertEqual(records[0]["source_name"], "SonangolOpenStreetMap")
 
 
+class DataQualityGatesTest(unittest.TestCase):
+    def _record(self, **overrides):
+        record = {
+            "operator": "Unknown",
+            "station": "Some station",
+            "address": "",
+            "province": "Luanda",
+            "municipality": "Luanda",
+            "country": "Angola",
+            "latitude": -8.83,
+            "longitude": 13.24,
+            "source_type": "openstreetmap",
+            "source_name": "OpenStreetMap",
+            "source_id": "node/1",
+        }
+        record.update(overrides)
+        return record
+
+    def test_registry_contains_only_verified_brands(self):
+        from ingestion.operators import CANONICAL_OPERATORS
+
+        self.assertEqual(
+            set(CANONICAL_OPERATORS),
+            {"Sonangol", "Pumangol", "TotalEnergies", "Sonangalp"},
+        )
+
+    def test_operator_variants_canonicalize(self):
+        from ingestion.operators import canonicalize_operator
+
+        cases = {
+            "Pumangol": "Pumangol",
+            "Puma": "Pumangol",
+            "Puma Energy": "Pumangol",
+            "PUMANGOL": "Pumangol",
+            "pumangol": "Pumangol",
+            "Sonagol": "Sonangol",
+            "Sonagalp": "Sonangalp",
+            "TotalEnergies Marketing & Services Angola, S.A.": "TotalEnergies",
+            "Pumangol, Lda.": "Pumangol",
+        }
+        for raw, expected in cases.items():
+            self.assertEqual(canonicalize_operator(raw), expected, raw)
+
+    def test_unknown_operator_stays_unknown(self):
+        from ingestion.operators import canonicalize_operator
+
+        self.assertEqual(canonicalize_operator(""), "Unknown")
+        self.assertEqual(canonicalize_operator(None), "Unknown")
+        self.assertEqual(canonicalize_operator("Some Random Brand"), "Unknown")
+
+    def test_operator_inferred_from_station_name(self):
+        from ingestion.operators import canonicalize_operator
+
+        self.assertEqual(
+            canonicalize_operator("Unknown", "TotalEnergies - P.A. BOA ENTRADA"),
+            "TotalEnergies",
+        )
+        # An explicit (even wrong-looking) tag is never overridden by the name.
+        self.assertEqual(canonicalize_operator("Pumangol", "Sonangol Maianga"), "Pumangol")
+
+    def test_merge_osm_id_duplicate_into_branded_record(self):
+        branded = self._record(
+            operator="Sonangol",
+            station="Sonangol",
+            source_type="openstreetmap_operator",
+            source_name="SonangolOpenStreetMap",
+            latitude=-8.8300,
+            longitude=13.2400,
+        )
+        unnamed = self._record(
+            station="way/954638665",
+            latitude=-8.8305,  # ~55 m away
+            longitude=13.2405,
+        )
+
+        clean, rejected = split_valid_records([branded, unnamed])
+
+        self.assertEqual(rejected, [])
+        self.assertEqual(len(clean), 1)
+        self.assertEqual(clean[0]["station"], "Sonangol")
+        self.assertEqual(clean[0]["operator"], "Sonangol")
+        self.assertEqual(
+            clean[0]["merged_sources"], ["OpenStreetMap", "SonangolOpenStreetMap"]
+        )
+
+    def test_different_brands_close_together_do_not_merge(self):
+        sonangol = self._record(
+            operator="Sonangol", station="Sonangol X", latitude=-8.83, longitude=13.24
+        )
+        pumangol = self._record(
+            operator="Pumangol",
+            station="Pumangol Y",
+            latitude=-8.8305,  # ~55 m away, across the street
+            longitude=13.2405,
+        )
+
+        deduped = deduplicate_records([sonangol, pumangol])
+
+        self.assertEqual(len(deduped), 2)
+
+    def test_same_brand_far_apart_does_not_merge(self):
+        first = self._record(
+            operator="Sonangol", station="Sonangol X", latitude=-8.83, longitude=13.24
+        )
+        second = self._record(
+            operator="Sonangol",
+            station="Sonangol Y",
+            latitude=-8.84,  # ~1.1 km away: a different site
+            longitude=13.25,
+        )
+
+        deduped = deduplicate_records([first, second])
+
+        self.assertEqual(len(deduped), 2)
+
+    def test_lone_osm_id_name_is_rejected(self):
+        unnamed = self._record(station="node/123456")
+
+        clean, rejected = split_valid_records([unnamed])
+
+        self.assertEqual(clean, [])
+        self.assertEqual(len(rejected), 1)
+        self.assertIn("station name is an OSM element id", rejected[0]["rejection_reasons"])
+
+    def test_brand_variants_merge_into_one_station(self):
+        variant_a = self._record(
+            operator="pumangol", station="Panguila", latitude=-8.681717, longitude=13.469734
+        )
+        variant_b = self._record(
+            operator="Puma Energy",
+            station="Panguila",
+            latitude=-8.681800,  # ~10 m away
+            longitude=13.469800,
+        )
+
+        clean, _ = split_valid_records([variant_a, variant_b])
+
+        self.assertEqual(len(clean), 1)
+        self.assertEqual(clean[0]["operator"], "Pumangol")
+
+
 if __name__ == "__main__":
     unittest.main()
