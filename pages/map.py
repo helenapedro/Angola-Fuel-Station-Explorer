@@ -1,6 +1,8 @@
 import dash
 from dash import Input, Output, callback
+from datetime import datetime, timezone
 
+import dataset_meta
 from data_fetch import get_stations_df
 from map_dashboard.data import (
     apply_station_filters,
@@ -40,6 +42,17 @@ def refresh_filter_options(_, search_text, operator, province, municipality):
 
     filter_options = build_filter_options(df, filtered_df)
     return *filter_options, (err or "")
+
+
+@callback(
+    Output("dataset-updated-badge", "children"),
+    Output("dataset-updated-badge", "className"),
+    Input("map-refresh", "n_intervals"),
+)
+def update_dataset_badge(_):
+    meta = dataset_meta.load_dataset_meta(datetime.now(timezone.utc))
+    text, status = dataset_meta.format_dataset_badge(meta)
+    return text, f"map-dashboard__dataset-badge map-dashboard__dataset-badge--{status}"
 
 
 @callback(

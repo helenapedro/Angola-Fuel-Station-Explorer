@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
 
 from api.deps import StationData, get_station_data
-from api.routers import stations
+from api.routers import meta, stations
 from api.schemas import Health
 
 API_VERSION = "1.0.0"
@@ -35,6 +35,7 @@ app.add_middleware(
 )
 
 app.include_router(stations.router)
+app.include_router(meta.router)
 
 
 @app.get("/health", response_model=Health, tags=["meta"])
@@ -49,7 +50,7 @@ def api_index():
     # endpoints are added or renamed. (In recent FastAPI versions
     # include_router nests routes instead of flattening them into
     # app.routes, hence the explicit router list.)
-    sources = [app, stations.router]
+    sources = [app, stations.router, meta.router]
     endpoints = sorted(
         f"{' '.join(sorted(route.methods))} {route.path}"
         for source in sources

@@ -75,6 +75,10 @@ def _build_sidebar():
 def _build_content_area():
     return html.Div(
         [
+            # Dataset freshness badge: deliberately in the content area,
+            # directly above the counters, not in the footer, so a stale
+            # or overdue snapshot is visible with the map.
+            html.Div(id="dataset-updated-badge", className="map-dashboard__dataset-badge"),
             html.Div(
                 [
                     _build_stat_card("Stations", "station-count"),
