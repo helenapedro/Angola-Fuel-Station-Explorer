@@ -221,3 +221,19 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.map-dashboard__dataset-badge {
+  font-size: 0.9rem;
+  color: #47352d;
+  background: rgba(255, 252, 248, 0.92);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 12px 28px rgba(55, 36, 26, 0.08);
+}
+
+.map-dashboard__dataset-badge--stale,
+.map-dashboard__dataset-badge--overdue,
+.map-dashboard__dataset-badge--unavailable {
+  color: #8b1e13;
+  font-weight: 700;
+}

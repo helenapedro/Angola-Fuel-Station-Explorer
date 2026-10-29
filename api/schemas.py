@@ -35,3 +35,26 @@ class Health(BaseModel):
     version: str
     stations: int
     source: str
+
+
+class SourceStatus(BaseModel):
+    source: str
+    status: str
+    record_count: int = 0
+    is_stale: bool = False
+
+
+class DatasetMeta(BaseModel):
+    version_id: str | None = None
+    snapshot_origin: str
+    generated_at: str | None = None
+    record_count: int | None = None
+    rejected_count: int | None = None
+    source: str
+    freshness_status: str
+    is_stale: bool | None = None
+    age_days: int | None = None
+    fresh: bool
+    fresh_threshold_days: int
+    source_status: list[SourceStatus] = []
+    confidence_counts: dict[str, int] | None = None
