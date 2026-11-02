@@ -9,6 +9,7 @@ A Dash application for exploring Angolan fuel stations through a single interact
 - Summary cards for total stations, brands, municipalities, and provinces in the current view.
 - Stable brand colors on the map legend; filter dropdowns labeled with station counts.
 - Clickable map markers with a selected-station detail panel.
+- Methodology page at `/metodologia` (in Portuguese): data sources, quality policy, freshness and refresh governance, and what the project is not.
 - Graceful data loading with short request timeouts, in-memory caching, and bundled fallback station data.
 - **REST API (FastAPI)** serving the same station dataset as JSON — see below.
 

@@ -32,6 +32,11 @@ def _build_hero_section():
                 "Filter by operator, province, municipality, or station name and inspect location details directly from the map.",
                 className="map-dashboard__subtitle",
             ),
+            html.A(
+                "Como trabalhamos com os dados",
+                href="/metodologia",
+                className="map-dashboard__hero-link",
+            ),
         ],
         className="map-dashboard__hero",
     )
