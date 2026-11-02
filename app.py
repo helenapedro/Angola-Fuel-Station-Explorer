@@ -42,6 +42,7 @@ navbar = dbc.Navbar(
                 "FuelMap Angola",
             ],
             href="/",
+            style={"color": "white", "text-decoration": "none"},
         ),
     ]),
     color="#802917",
