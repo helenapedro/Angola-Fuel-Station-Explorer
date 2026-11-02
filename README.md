@@ -82,6 +82,31 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
    ```
 4. Open `http://127.0.0.1:8050/`.
 
+## Docker
+
+The same image serves the dashboard and the API, exactly as the `Procfile` does on Heroku:
+
+```bash
+docker compose up --build
+```
+
+Open `http://127.0.0.1:8050/`. The API is at `/api/v1/stations`, `/health` and `/docs` on the same port.
+
+Run the test suite in a container (exits when done):
+
+```bash
+docker compose --profile test up --build test
+```
+
+Or build and run the image directly:
+
+```bash
+docker build -t fuelmap-angola .
+docker run --rm -p 8050:8050 fuelmap-angola
+```
+
+Production stays on Heroku (see Deployment below); Docker is the local, reproducible way to run the app and to show the container setup.
+
 ## Deployment
 
 - Procfile for Gunicorn: `web: gunicorn app:server`
