@@ -19,6 +19,7 @@ from map_dashboard.metodologia_content import (
     format_meta_summary_pt,
     overdue_note_pt,
     source_status_lines,
+    translate_source_name,
     translate_source_status,
     version_lines,
 )
@@ -97,7 +98,50 @@ class MetodologiaTest(unittest.TestCase):
         }
         self.assertIn("em atraso", format_meta_summary_pt(overdue))
 
+    def test_rendering_source_avoids_unexplained_jargon(self):
+        # Proof 4 follow-up: partner language, no unexplained
+        # developer terms. /api/v1/meta stays as the evidence link.
+        text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")
+        for jargon in (
+            "generated_at",
+            "dyno",
+            "GitHub Actions",
+            "ficheiro JSON",
+            "cache de 300 segundos",
+            "portão de publicação",
+            "tria correções",
+            "Abrir uma issue",
+            "adaptador",
+            "BundledLegacyPumangol",
+            "acordo de nível de serviço",
+            "coordenadas (0, 0)",
+            "artefactos de texto",
+            "nome normalizado",
+        ):
+            self.assertNotIn(jargon, text)
+        for plain in (
+            "um único servidor",
+            "ficheiro de dados válido",
+            "pedido público de correção",
+            "Está previsto um formulário sem conta",
+        ):
+            self.assertIn(plain, text)
+
+    def test_quality_levels_highlighted_at_top_with_anchor(self):
+        text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")
+        highlight = text.index("Níveis de qualidade, em resumo")
+        self.assertLess(highlight, text.index("O que o projeto é"))
+        for level in ("base_publica_osm", "operador_via_osm", "confirmado_pelo_operador"):
+            self.assertIn(level, text[highlight : highlight + 1500])
+        self.assertIn('href="#niveis-de-qualidade"', text)
+        self.assertIn('section_id="niveis-de-qualidade"', text)
+
     def test_source_status_translation(self):
+        self.assertEqual(
+            translate_source_name("BundledLegacyPumangol"),
+            "Snapshot anterior da Pumangol",
+        )
+        self.assertEqual(translate_source_name("Pumangol"), "Pumangol")
         self.assertEqual(translate_source_status("loaded"), "carregada")
         self.assertEqual(
             translate_source_status("stale_reused"),
@@ -120,6 +164,20 @@ class MetodologiaTest(unittest.TestCase):
         self.assertIn("OpenStreetMap", lines[0])
         self.assertIn("reutilizada depois de uma falha", lines[0])
         self.assertIn("desatualizada", lines[0])
+        legacy = source_status_lines(
+            {
+                "source_status": [
+                    {
+                        "source": "BundledLegacyPumangol",
+                        "status": "loaded",
+                        "record_count": 80,
+                        "is_stale": False,
+                    }
+                ]
+            }
+        )
+        self.assertIn("Snapshot anterior da Pumangol", legacy[0])
+        self.assertNotIn("BundledLegacyPumangol", legacy[0])
 
     def test_version_lines_describe_each_version(self):
         lines = version_lines(

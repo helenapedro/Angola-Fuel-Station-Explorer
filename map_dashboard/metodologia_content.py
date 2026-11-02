@@ -18,9 +18,19 @@ _SOURCE_STATUS_PT = {
     "failed": "falhou nesta recolha",
 }
 
+# Internal source names, shown in plain language on the methodology
+# page. The API contract keeps the original names.
+_SOURCE_NAMES_PT = {
+    "BundledLegacyPumangol": "Snapshot anterior da Pumangol",
+}
+
 
 def translate_source_status(status):
     return _SOURCE_STATUS_PT.get(status, status)
+
+
+def translate_source_name(source):
+    return _SOURCE_NAMES_PT.get(source, source)
 
 
 def format_meta_summary_pt(meta):
@@ -100,7 +110,7 @@ def source_status_lines(meta):
     lines = []
     for entry in meta.get("source_status", []):
         lines.append(
-            f"{entry['source']}: {translate_source_status(entry['status'])} "
+            f"{translate_source_name(entry['source'])}: {translate_source_status(entry['status'])} "
             f"({entry['record_count']} registos)"
             + (" (marcada como desatualizada)" if entry["is_stale"] else "")
         )

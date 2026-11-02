@@ -64,7 +64,7 @@ METHODOLOGY_TEXT = (
     "O que o projeto não é. Política de qualidade do dado. "
     "Responsável pelo dataset: Helena Pedro, única responsável. "
     "Cadência prevista: recolha semanal automática, às segundas-feiras, às 06:00. "
-    "Antes de uma nova versão ser publicada, tem de passar no portão de publicação. "
+    "Antes de uma nova versão ser publicada, tem de passar numa verificação. "
     "A responsável revê uma falha da automação no prazo de 7 dias de calendário."
 )
 
