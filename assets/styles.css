@@ -181,6 +181,71 @@ body {
   color: #7d5a48;
 }
 
+.map-dashboard__textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+}
+
+.map-dashboard__report-button {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #802917;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.report-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(255, 252, 248, 0.88);
+  box-shadow: 0 18px 42px rgba(55, 36, 26, 0.08);
+}
+
+.report-page__summary {
+  margin: 12px 0 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fffaf5;
+}
+
+.map-dashboard__report-output {
+  margin-top: 12px;
+}
+
+.map-dashboard__report-error {
+  color: #9d2c1f;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.map-dashboard__report-success {
+  color: #2f5d33;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.map-dashboard__report-link {
+  display: block;
+  margin-top: 6px;
+  color: #802917;
+  font-weight: 700;
+}
+
+.map-dashboard__report-note {
+  margin-top: 12px;
+  color: #7d5a48;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 .map-dashboard__seo-section {
   margin-top: 24px;
   padding: 28px;
