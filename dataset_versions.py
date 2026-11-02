@@ -1,4 +1,4 @@
-"""Dataset version registry for the Angola Fuel Station Explorer.
+"""Dataset version registry for the FuelMap Angola.
 
 Git is the source of truth: the ingestion workflow appends one entry to
 ``data/dataset_versions.json`` in the same commit that updates

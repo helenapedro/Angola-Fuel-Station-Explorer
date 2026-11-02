@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes how the Angola Fuel Station Explorer is built
+This document describes how the FuelMap Angola is built
 and deployed, as verified against the code. It is the single overview
 for readers, reviewers and automated tooling: detail lives in the
 documents linked from each section, not duplicated here. If a change

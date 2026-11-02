@@ -4,7 +4,7 @@
 
 The repo contains two services over the same station dataset:
 
-- **Dash dashboard** — the primary app, deployed on Heroku (`gaspumpmap`,
+- **Dash dashboard** — the primary app, deployed on Heroku (`fuelmap-angola`,
   auto-deploy from `master`). The `Procfile` runs a single web process:
   `web: gunicorn app:server`.
 - **FastAPI REST API** (`api/`, `uvicorn api.main:app`) — added for
@@ -12,7 +12,7 @@ The repo contains two services over the same station dataset:
   `/docs`, …).
 
 Problem (verified 2026-09-23): the API code ships to the dyno, but no
-process serves it. `GET https://gaspump.hmpedro.com/api/v1/stations`
+process serves it. `GET https://fuelmap.hmpedro.com/api/v1/stations`
 returns the dashboard's HTML (the SPA fallback for unknown paths), not
 JSON. Deploying the repo is not the same as running everything in it —
 Heroku executes exactly one command from the `Procfile`.
@@ -22,7 +22,7 @@ Heroku executes exactly one command from the `Procfile`.
 Goals:
 
 - The REST API is reachable in production at
-  `https://gaspump.hmpedro.com/api/…` (plus `/health` and `/docs`).
+  `https://fuelmap.hmpedro.com/api/…` (plus `/health` and `/docs`).
 - Zero extra infrastructure cost (no additional dyno).
 - No behavior change to the dashboard; local dev (`python app.py`)
   serves both, like production.
@@ -114,7 +114,7 @@ the code describe the same contract; change both together.
 
 1. Merge the PR → Heroku auto-deploys `master`.
 2. Verify in production:
-   - `curl https://gaspump.hmpedro.com/api/v1/stations?page_size=1` → JSON
+   - `curl https://fuelmap.hmpedro.com/api/v1/stations?page_size=1` → JSON
    - dashboard still loads; `/docs` renders.
 3. Rollback: revert the merge commit. The dashboard is unaffected — the
    router only *adds* prefixes, it never intercepts existing paths.

@@ -32,7 +32,7 @@ def sitemap_xml():
 
 navbar = dbc.Navbar(
     dbc.Container([
-        dbc.NavbarBrand("Angola Fuel Station Explorer", href="/"),
+        dbc.NavbarBrand("FuelMap Angola", href="/"),
         dbc.NavLink(
             "Metodologia",
             href="/metodologia",

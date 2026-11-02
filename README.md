@@ -1,4 +1,4 @@
-# Angola Fuel Station Explorer
+# FuelMap Angola
 
 A Dash application for exploring Angolan fuel stations through a single interactive dashboard. It consumes a public stations API, lets users filter stations by search, brand, province, municipality, and station name, and surfaces live errors when data is unavailable.
 

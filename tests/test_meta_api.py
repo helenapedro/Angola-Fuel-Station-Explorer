@@ -129,7 +129,7 @@ class DatasetVersionsApiTest(unittest.TestCase):
     def test_versions_endpoint_returns_recorded_entries(self):
         entry = {
             "version_id": "2026-09-23T11:27:12+00:00",
-            "snapshot_origin": "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json",
+            "snapshot_origin": "helenapedro/fuelmap-angola:data/stations_clean.json",
             "generated_at": "2026-09-23T11:27:12+00:00",
             "record_count": 279,
             "rejected_count": 63,

@@ -1,1 +1,1 @@
-"""REST API for the Angola Fuel Station Explorer dataset (FastAPI)."""
+"""REST API for the FuelMap Angola dataset (FastAPI)."""

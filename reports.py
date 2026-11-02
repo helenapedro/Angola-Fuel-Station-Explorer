@@ -18,7 +18,7 @@ import re
 from dataclasses import dataclass, field
 from urllib.parse import parse_qs, urlencode, urlparse
 
-ISSUE_NEW_URL = "https://github.com/helenapedro/Angola-Fuel-Station-Explorer/issues/new"
+ISSUE_NEW_URL = "https://github.com/helenapedro/fuelmap-angola/issues/new"
 
 # No-account report form URL, supplied by Helena when she creates the
 # form. None until then: only the GitHub path is shown.
