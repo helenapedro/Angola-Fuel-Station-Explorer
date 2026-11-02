@@ -84,6 +84,37 @@ def get_selected_station_name(selected_station, click_data):
     return selected_station
 
 
+SELECTED_STATION_ZOOM = 15
+
+
+def map_view_for_selection(filtered_df, selected_station):
+    """Return (center, zoom) for the map figure.
+
+    Without a selection, the map centres on the mean of the filtered
+    rows, zoomed out (zoom 5), or closer (zoom 11) when only one row
+    remains. With a selected station, the map centres on that station
+    and zooms to street level, so clicking a marker shows the station
+    in its surroundings instead of leaving the user zoomed out.
+
+    This helper is pure pandas, with no Dash or Plotly dependency, so
+    it can be unit-tested in CI, which does not install those packages.
+    """
+    if selected_station:
+        selected_rows = filtered_df[filtered_df["station"] == selected_station]
+        if not selected_rows.empty:
+            row = selected_rows.iloc[0]
+            return (
+                {"lat": float(row["latitude"]), "lon": float(row["longitude"])},
+                SELECTED_STATION_ZOOM,
+            )
+    center = {
+        "lat": filtered_df["latitude"].mean(),
+        "lon": filtered_df["longitude"].mean(),
+    }
+    zoom = 5 if len(filtered_df) > 1 else 11
+    return center, zoom
+
+
 def build_summary_counts(filtered_df):
     if filtered_df.empty:
         return "0", "0", "0", "0"

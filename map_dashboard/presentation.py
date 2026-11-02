@@ -42,13 +42,11 @@ def build_empty_figure(message):
 
 def build_map_figure(filtered_df, selected_station):
     if filtered_df.empty:
-        return build_empty_figure("No stations match the current filters.")
+        return build_empty_figure("Nenhum posto corresponde aos filtros atuais.")
 
-    center = {
-        "lat": filtered_df["latitude"].mean(),
-        "lon": filtered_df["longitude"].mean(),
-    }
-    zoom = 5 if len(filtered_df) > 1 else 11
+    from map_dashboard.data import map_view_for_selection
+
+    center, zoom = map_view_for_selection(filtered_df, selected_station)
 
     fig = px.scatter_mapbox(
         filtered_df,
@@ -105,7 +103,7 @@ def build_map_figure(filtered_df, selected_station):
 def build_station_details(filtered_df, selected_station):
     if filtered_df.empty:
         return html.Div(
-            "No station available for the current filters.",
+            "Nenhum posto disponível para os filtros atuais.",
             className="map-dashboard__detail-empty",
         )
 
@@ -117,17 +115,17 @@ def build_station_details(filtered_df, selected_station):
 
     # Brand is already the panel header; the rows below start at the name.
     items = [
-        ("station", station_row.get("station")),
-        ("address", station_row.get("address")),
-        ("municipality", station_row.get("municipality")),
-        ("province", station_row.get("province")),
-        ("country", station_row.get("country")),
-        ("Coordinates", f'{station_row.get("latitude")}, {station_row.get("longitude")}'),
+        ("Posto", station_row.get("station")),
+        ("Morada", station_row.get("address")),
+        ("Município", station_row.get("municipality")),
+        ("Província", station_row.get("province")),
+        ("País", station_row.get("country")),
+        ("Coordenadas", f'{station_row.get("latitude")}, {station_row.get("longitude")}'),
     ]
 
     return html.Div(
         [
-            html.Div("Selected Station", className="map-dashboard__panel-title"),
+            html.Div("Posto selecionado", className="map-dashboard__panel-title"),
             html.H4(_safe_text(station_row.get("station")), className="map-dashboard__detail-name"),
             html.Div(_safe_text(station_row.get("operator")), className="map-dashboard__detail-brand"),
             html.Div(
@@ -146,7 +144,7 @@ def build_station_details(filtered_df, selected_station):
     )
 
 
-def _safe_text(value, fallback="Not available"):
+def _safe_text(value, fallback="Não disponível"):
     if value is None:
         return fallback
     text = str(value).strip()

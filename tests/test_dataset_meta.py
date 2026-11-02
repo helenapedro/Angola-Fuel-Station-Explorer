@@ -132,19 +132,19 @@ class DatasetMetaTest(unittest.TestCase):
         }
         self.assertEqual(
             dataset_meta.format_dataset_badge(fresh),
-            ("Updated on 28/10/2026 (0 days ago).", "fresh"),
+            ("Atualizado em 28/10/2026 (há 0 dias).", "fresh"),
         )
         self.assertEqual(
             dataset_meta.format_dataset_badge(stale),
-            ("Updated on 10/10/2026 (18 days ago). Data is outdated.", "stale"),
+            ("Atualizado em 10/10/2026 (há 18 dias). Dados desatualizados.", "stale"),
         )
         self.assertEqual(
             dataset_meta.format_dataset_badge(overdue),
-            ("Updated on 23/09/2026 (35 days ago). Data is overdue.", "overdue"),
+            ("Atualizado em 23/09/2026 (há 35 dias). Dados em atraso.", "overdue"),
         )
         self.assertEqual(
             dataset_meta.format_dataset_badge(None),
-            ("Dataset update date unavailable.", "unavailable"),
+            ("Data de atualização indisponível.", "unavailable"),
         )
 
 

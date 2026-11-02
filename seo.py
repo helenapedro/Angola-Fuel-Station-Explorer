@@ -3,14 +3,14 @@
 from datetime import date
 
 SITE_URL = "https://gaspump.hmpedro.com"
-SITE_TITLE = "Gas Stations in Angola | Angola Fuel Station Explorer"
+SITE_TITLE = "Postos de Combustível em Angola | Angola Fuel Station Explorer"
 SITE_DESCRIPTION = (
-    "Find gas stations in Angola by province, municipality, brand, and station name "
-    "with an interactive fuel station map."
+    "Encontra postos de combustível em Angola por província, município, marca e nome do posto "
+    "com um mapa interativo de postos de combustível."
 )
 SITE_KEYWORDS = (
-    "gas stations in Angola, Angola fuel stations, petrol stations Angola, "
-    "Angola service stations, fuel station map Angola, Luanda gas stations"
+    "postos de combustível em Angola, postos de gasolina Angola, mapa de postos de combustível Angola, "
+    "postos de combustível Luanda, localizador de postos Angola"
 )
 
 

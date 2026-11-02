@@ -26,16 +26,11 @@ def build_dashboard_layout():
 def _build_hero_section():
     return html.Div(
         [
-            html.Div("Station Finder", className="map-dashboard__eyebrow"),
-            html.H1("Explore fuel stations with the details you already have.", className="map-dashboard__title"),
+            html.Div("Localizador de postos", className="map-dashboard__eyebrow"),
+            html.H1("Explora postos de combustível com os detalhes que já tens.", className="map-dashboard__title"),
             html.P(
-                "Filter by operator, province, municipality, or station name and inspect location details directly from the map.",
+                "Filtra por operador, província, município ou nome do posto e consulta os detalhes diretamente no mapa.",
                 className="map-dashboard__subtitle",
-            ),
-            html.A(
-                "Como trabalhamos com os dados",
-                href="/metodologia",
-                className="map-dashboard__hero-link",
             ),
         ],
         className="map-dashboard__hero",
@@ -48,22 +43,22 @@ def _build_sidebar():
             dbc.Card(
                 dbc.CardBody(
                     [
-                        html.Div("Filters", className="map-dashboard__panel-title"),
-                        dbc.Label("Search"),
+                        html.Div("Filtros", className="map-dashboard__panel-title"),
+                        dbc.Label("Pesquisar"),
                         dcc.Input(
                             id="map-search",
                             type="text",
-                            placeholder="Search station, address, municipality...",
+                            placeholder="Pesquisar posto, morada, município...",
                             className="map-dashboard__input",
                         ),
-                        dbc.Label("Brand", className="map-dashboard__label"),
-                        dcc.Dropdown(id="operator-filter", options=[], placeholder="All brands"),
-                        dbc.Label("Province", className="map-dashboard__label"),
-                        dcc.Dropdown(id="province-filter", options=[], placeholder="All provinces"),
-                        dbc.Label("Municipality", className="map-dashboard__label"),
-                        dcc.Dropdown(id="municipality-filter", options=[], placeholder="All municipalities"),
-                        dbc.Label("Station", className="map-dashboard__label"),
-                        dcc.Dropdown(id="station-filter", options=[], placeholder="All stations"),
+                        dbc.Label("Marca", className="map-dashboard__label"),
+                        dcc.Dropdown(id="operator-filter", options=[], placeholder="Todas as marcas"),
+                        dbc.Label("Província", className="map-dashboard__label"),
+                        dcc.Dropdown(id="province-filter", options=[], placeholder="Todas as províncias"),
+                        dbc.Label("Município", className="map-dashboard__label"),
+                        dcc.Dropdown(id="municipality-filter", options=[], placeholder="Todos os municípios"),
+                        dbc.Label("Posto", className="map-dashboard__label"),
+                        dcc.Dropdown(id="station-filter", options=[], placeholder="Todos os postos"),
                     ]
                 ),
                 className="map-dashboard__panel",
@@ -86,10 +81,10 @@ def _build_content_area():
             html.Div(id="dataset-updated-badge", className="map-dashboard__dataset-badge"),
             html.Div(
                 [
-                    _build_stat_card("Stations", "station-count"),
-                    _build_stat_card("Brands", "operator-count"),
-                    _build_stat_card("Provinces", "province-count"),
-                    _build_stat_card("Municipalities", "municipality-count"),
+                    _build_stat_card("Postos", "station-count"),
+                    _build_stat_card("Marcas", "operator-count"),
+                    _build_stat_card("Províncias", "province-count"),
+                    _build_stat_card("Municípios", "municipality-count"),
                 ],
                 className="map-dashboard__stats",
             ),
@@ -123,17 +118,17 @@ def _build_stat_card(label, value_id):
 def _build_seo_content_section():
     return html.Section(
         [
-            html.H2("Find Gas Stations in Angola", className="map-dashboard__seo-title"),
+            html.H2("Encontrar postos de combustível em Angola", className="map-dashboard__seo-title"),
             html.P(
-                "Angola Fuel Station Explorer helps people find gas stations in Angola with an interactive map and searchable station directory.",
+                "O Angola Fuel Station Explorer ajuda a encontrar postos de combustível em Angola com um mapa interativo e um diretório de postos pesquisável.",
                 className="map-dashboard__seo-copy",
             ),
             html.P(
-                "Use the dashboard to search stations by brand, province, municipality, and station name. The app currently supports station discovery for locations across Angola, including Luanda and other major provinces.",
+                "Usa o painel para pesquisar postos por marca, província, município e nome do posto. A aplicação apoia a descoberta de postos em Angola, incluindo Luanda e outras províncias.",
                 className="map-dashboard__seo-copy",
             ),
             html.P(
-                "If you are searching for petrol stations in Angola, fuel stations in Luanda, or a station finder for Angola, this tool is designed to make those locations easier to browse.",
+                "Se procuras postos de gasolina em Angola, postos de combustível em Luanda ou um localizador de postos para Angola, esta ferramenta foi feita para tornar esses locais mais fáceis de consultar.",
                 className="map-dashboard__seo-copy",
             ),
         ],

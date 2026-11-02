@@ -326,10 +326,17 @@ def build_metodologia_layout():
                 "Como reportar um erro",
                 [
                     _para(
-                        "Se encontrar um erro num posto, abra uma issue pública no repositório do "
-                        "projeto, indicando o identificador do posto, a data do snapshot usado, o tipo "
-                        "de problema e, se possível, uma fonte pública. Não é pedido nome, email, "
+                        "O caminho principal para reportar um erro é um formulário sem conta: não é "
+                        "preciso ter conta GitHub, nem criar uma, para reportar. O formulário ainda "
+                        "não está publicado nesta página; quando estiver, o link fica aqui, com os "
+                        "mesmos campos: identificador do posto, data do snapshot usado, tipo de "
+                        "problema e, se possível, uma fonte pública. Não é pedido nome, email, "
                         "telefone ou localização do utilizador."
+                    ),
+                    _para(
+                        "Quem já tiver conta GitHub pode, em alternativa, abrir uma issue pública no "
+                        "repositório do projeto, com os mesmos campos. A issue é o caminho secundário, "
+                        "e não o único."
                     ),
                     html.A(
                         "Abrir uma issue no repositório público",
