@@ -26,7 +26,7 @@ jobs:
           python -m pip install pandas requests fastapi httpx a2wsgi openlocationcode
 
       - name: Compile Python sources
-        run: python -m compileall app.py data_fetch.py map_dashboard ingestion pages scrap.py tests api
+        run: python -m compileall app.py data_fetch.py map_dashboard ingestion pages tests api
 
       - name: Run tests
         run: python -m unittest discover -s tests

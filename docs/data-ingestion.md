@@ -92,12 +92,6 @@ This also runs the geocoding backfill (see `docs/geocoding-backfill.md`):
 empty addresses become locally computed plus codes (fully offline, no
 network calls).
 
-Run the old entrypoint, now a compatibility wrapper:
-
-```powershell
-python scrap.py
-```
-
 ## Validation Rules
 
 Records are rejected when:

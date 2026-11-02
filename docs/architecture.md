@@ -168,8 +168,7 @@ See `docs/data-ingestion.md` for the full source strategy,
 
 ## What this architecture is not
 
-- No database serves requests. `mysqlConnect.py` is a supporting
-  script, not part of the serving path.
+- No database serves requests. The serving path reads bundled JSON snapshots only.
 - No authentication, API keys, rate limiting, paid tier, or
   service-level agreement exists in Phase 0.
 - No real-time prices, fuel availability, stock, licensing or
