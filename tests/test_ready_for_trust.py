@@ -38,7 +38,7 @@ META = {
         {"source": "OpenStreetMap", "status": "loaded", "record_count": 187, "is_stale": False}
     ],
     "confidence_counts": {
-        "confirmado_pelo_operador": 0,
+        "operador_via_listagem_publica": 0,
         "operador_via_osm": 81,
         "base_publica_osm": 198,
     },
@@ -89,7 +89,7 @@ class ReadyForTrustTest(unittest.TestCase):
         self.assertNotIn(7, failed)
 
     def test_confidence_counts_must_sum_to_record_count(self):
-        bad = dict(META, confidence_counts={"confirmado_pelo_operador": 1})
+        bad = dict(META, confidence_counts={"operador_via_listagem_publica": 1})
         ready, failed = evaluate_ready_for_trust(bad, VERSIONS, METHODOLOGY_TEXT)
         self.assertFalse(ready)
         self.assertIn(1, failed)
@@ -132,7 +132,7 @@ class ReadyForTrustTest(unittest.TestCase):
             "rejected_count": 63,
             "source_status": [],
             "confidence_counts": {
-                "confirmado_pelo_operador": 0,
+                "operador_via_listagem_publica": 0,
                 "operador_via_osm": 81,
                 "base_publica_osm": 198,
             },
