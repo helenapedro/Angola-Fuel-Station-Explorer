@@ -1,0 +1,20 @@
+# FuelMap Angola: one image, two services.
+#   docker compose up --build                     # dashboard + API on http://127.0.0.1:8050
+#   docker compose --profile test up --build test  # full unit-test suite, exits when done
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fuelmap-angola:latest
+    ports:
+      - "8050:8050"
+    restart: unless-stopped
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fuelmap-angola:latest
+    profiles:
+      - test
+    command: ["python", "-m", "unittest", "discover", "-s", "tests"]
