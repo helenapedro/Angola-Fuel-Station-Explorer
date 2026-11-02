@@ -13,7 +13,7 @@ from map_dashboard.data import (
 from map_dashboard.layout import build_dashboard_layout
 from map_dashboard.presentation import build_empty_figure, build_map_figure, build_station_details
 
-dash.register_page(__name__, path="/", name="Map", title="Home")
+dash.register_page(__name__, path="/", name="Mapa", title="Início")
 
 layout = build_dashboard_layout()
 
@@ -83,7 +83,7 @@ def update_dashboard(_, search_text, operator, province, municipality, station, 
 
     selected_station = get_selected_station_name(station, click_data)
     if filtered_df.empty:
-        empty_message = err or "No stations available right now."
+        empty_message = err or "Nenhum posto disponível neste momento."
         return (
             build_empty_figure(empty_message),
             "0",

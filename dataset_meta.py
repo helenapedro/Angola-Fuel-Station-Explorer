@@ -2,7 +2,7 @@
 
 This module is the single source of truth for dataset freshness in
 Phase 0. Both the FastAPI ``/api/v1/meta`` endpoint and the Dash
-"Updated on" badge call :func:`load_dataset_meta` directly, so the UI
+"Atualizado em" badge call :func:`load_dataset_meta` directly, so the UI
 and the API cannot drift apart.
 
 The metadata comes from the ``metadata`` block of the bundled
@@ -163,26 +163,25 @@ def load_dataset_meta(now=None, data_path=None):
 def format_dataset_badge(meta):
     """Return (text, css_class_suffix) for the map badge.
 
-    The text is in English to match the rest of the dashboard UI; the
-    Portuguese methodology page lands in PR 2. The date format is
-    day/month/year, as used in Angola.
+    The text is in Portuguese, matching the rest of the dashboard UI.
+    The date format is day/month/year, as used in Angola.
     """
     if meta is None or meta.get("generated_at") is None or meta.get("age_days") is None:
-        return "Dataset update date unavailable.", "unavailable"
+        return "Data de atualização indisponível.", "unavailable"
     generated_at = _parse_generated_at(meta["generated_at"])
     if generated_at is None:
-        return "Dataset update date unavailable.", "unavailable"
+        return "Data de atualização indisponível.", "unavailable"
     label = generated_at.strftime("%d/%m/%Y")
     age_days = meta["age_days"]
     status = meta["freshness_status"]
     if status == "overdue":
         return (
-            f"Updated on {label} ({age_days} days ago). Data is overdue.",
+            f"Atualizado em {label} (há {age_days} dias). Dados em atraso.",
             "overdue",
         )
     if status == "stale":
         return (
-            f"Updated on {label} ({age_days} days ago). Data is outdated.",
+            f"Atualizado em {label} (há {age_days} dias). Dados desatualizados.",
             "stale",
         )
-    return f"Updated on {label} ({age_days} days ago).", "fresh"
+    return f"Atualizado em {label} (há {age_days} dias).", "fresh"
