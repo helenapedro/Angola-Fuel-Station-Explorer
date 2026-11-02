@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-09-23T11:27:12+00:00",
+    "generated_at": "2026-11-02T14:26:38+00:00",
     "record_count": 279,
     "rejected_count": 63,
     "province_backfill": {
@@ -9,7 +9,7 @@
     },
     "geocode_backfill": {
       "version": 2,
-      "address_filled": 52
+      "address_filled": 0
     },
     "source_status": [
       {
@@ -23,13 +23,14 @@
         "status": "stale_reused",
         "record_count": 187,
         "is_stale": true,
-        "error": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+        "error": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
       },
       {
         "source": "SonangolOpenStreetMap",
-        "status": "loaded",
-        "record_count": 81,
-        "is_stale": false
+        "status": "stale_reused",
+        "record_count": 80,
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
       },
       {
         "source": "Pumangol",
@@ -45,7 +46,14 @@
         "status": "stale_reused",
         "record_count": 187,
         "is_stale": true,
-        "error": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+        "error": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
+      },
+      {
+        "source": "SonangolOpenStreetMap",
+        "status": "stale_reused",
+        "record_count": 80,
+        "is_stale": true,
+        "error": "HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read timeout=30)"
       },
       {
         "source": "Pumangol",
@@ -54,7 +62,12 @@
         "is_stale": false,
         "error": "404 Client Error: Not Found for url: https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento"
       }
-    ]
+    ],
+    "confidence_counts": {
+      "operador_via_listagem_publica": 0,
+      "operador_via_osm": 80,
+      "base_publica_osm": 199
+    }
   },
   "stations": [
     {
@@ -70,7 +83,7 @@
       "source_name": "BundledLegacyPumangol",
       "source_url": "https://www.pumangol.co.ao/pt/institucional/mapa-de-postos-de-abastecimento",
       "source_id": "Caxito",
-      "scraped_at": "2026-09-23T11:26:46+00:00",
+      "scraped_at": "2026-11-02T14:26:04+00:00",
       "province_inferred": false,
       "rejection_reasons": [
         "null island coordinates"
@@ -95,7 +108,7 @@
         "possible encoding or html entity issue"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "TotalEnergies",
@@ -116,7 +129,7 @@
         "possible encoding or html entity issue"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -140,7 +153,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -164,7 +177,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -188,7 +201,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -212,7 +225,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -236,7 +249,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -260,7 +273,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -284,7 +297,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -308,7 +321,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -332,7 +345,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -356,7 +369,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -380,7 +393,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -404,7 +417,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -428,7 +441,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -452,7 +465,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -476,7 +489,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -500,7 +513,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -524,7 +537,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -548,7 +561,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -572,7 +585,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -596,7 +609,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -620,7 +633,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -644,7 +657,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -668,7 +681,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -692,7 +705,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -716,7 +729,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -740,7 +753,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -764,7 +777,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -788,7 +801,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -812,7 +825,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -836,7 +849,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -860,7 +873,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -884,7 +897,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -908,7 +921,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -932,7 +945,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -956,7 +969,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -980,7 +993,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1004,7 +1017,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1028,7 +1041,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1052,7 +1065,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1076,7 +1089,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1100,7 +1113,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1124,7 +1137,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1148,7 +1161,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1172,7 +1185,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1196,7 +1209,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1220,7 +1233,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1244,7 +1257,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1268,7 +1281,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1292,7 +1305,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1316,7 +1329,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1340,7 +1353,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1364,7 +1377,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1388,7 +1401,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1412,7 +1425,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1436,7 +1449,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1460,7 +1473,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1484,7 +1497,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1508,7 +1521,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1532,7 +1545,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     },
     {
       "operator": "Unknown",
@@ -1556,7 +1569,7 @@
         "station name is an OSM element id"
       ],
       "is_stale": true,
-      "stale_reason": "('Connection broken: IncompleteRead(8106 bytes read, 3722 more expected)', IncompleteRead(8106 bytes read, 3722 more expected))"
+      "stale_reason": "502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter"
     }
   ]
 }

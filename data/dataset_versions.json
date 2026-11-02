@@ -1,0 +1,36 @@
+[
+  {
+    "version_id": "2026-11-02T14:26:38+00:00",
+    "snapshot_origin": "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json",
+    "generated_at": "2026-11-02T14:26:38+00:00",
+    "record_count": 279,
+    "rejected_count": 63,
+    "freshness_status_at_publication": "fresh",
+    "source_status_summary": [
+      {
+        "source": "BundledLegacyPumangol",
+        "status": "loaded",
+        "record_count": 80,
+        "is_stale": false
+      },
+      {
+        "source": "OpenStreetMap",
+        "status": "stale_reused",
+        "record_count": 187,
+        "is_stale": true
+      },
+      {
+        "source": "SonangolOpenStreetMap",
+        "status": "stale_reused",
+        "record_count": 80,
+        "is_stale": true
+      },
+      {
+        "source": "Pumangol",
+        "status": "failed",
+        "record_count": 0,
+        "is_stale": false
+      }
+    ]
+  }
+]
