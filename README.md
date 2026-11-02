@@ -10,7 +10,7 @@ A Dash application for exploring Angolan fuel stations through a single interact
 - Stable brand colors on the map legend; filter dropdowns labeled with station counts.
 - Clickable map markers with a selected-station detail panel.
 - Methodology page at `/metodologia` (in Portuguese): data sources, quality policy, freshness and refresh governance, and what the project is not.
-- Error reporting for a selected station: validated in the dashboard, generating a pre-filled GitHub Issue link tied to the dataset version and generation date. Nothing is stored on the server; the report only exists once the user submits the issue.
+- Error reporting on a dedicated `/reportar-erro` page, reached from a "Reportar erro" button in the selected-station panel: validated in the dashboard, generating a pre-filled GitHub Issue link tied to the dataset version and generation date. Nothing is stored on the server; the report only exists once the user submits the issue.
 - Graceful data loading with short request timeouts, in-memory caching, and bundled fallback station data.
 - **REST API (FastAPI)** serving the same station dataset as JSON — see below.
 

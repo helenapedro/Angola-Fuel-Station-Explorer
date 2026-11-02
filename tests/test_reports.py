@@ -150,17 +150,39 @@ class NoSideEffectsTest(unittest.TestCase):
             self.assertNotIn(banned, source)
 
 
+class StationIdFromSearchTest(unittest.TestCase):
+    def test_parses_station_id_from_query_string(self):
+        self.assertEqual(reports.station_id_from_search("?station_id=123"), 123)
+        self.assertEqual(reports.station_id_from_search("station_id=456"), 456)
+
+    def test_missing_or_invalid_station_id_returns_none(self):
+        self.assertIsNone(reports.station_id_from_search(""))
+        self.assertIsNone(reports.station_id_from_search(None))
+        self.assertIsNone(reports.station_id_from_search("?station_id=abc"))
+        self.assertIsNone(reports.station_id_from_search("?other=123"))
+
+
 class ReportUiWiringTest(unittest.TestCase):
-    def test_report_form_is_static_and_validated_in_callback(self):
-        layout_source = (REPO / "map_dashboard" / "layout.py").read_text(encoding="utf-8")
-        for component_id in ["report-problem-type", "report-details", "report-source-url", "report-submit", "report-output", "report-station-id"]:
-            self.assertIn(component_id, layout_source)
-        self.assertIn("Reportar erro", layout_source)
-        page_source = (REPO / "pages" / "map.py").read_text(encoding="utf-8")
+    def test_report_page_holds_the_form_and_validates_in_callback(self):
+        page_source = (REPO / "pages" / "reportar_erro.py").read_text(encoding="utf-8")
+        self.assertIn('path="/reportar-erro"', page_source)
+        for component_id in ["report-problem-type", "report-details", "report-source-url", "report-submit", "report-output", "report-station-id", "report-station-select"]:
+            self.assertIn(component_id, page_source)
         self.assertIn("validate_report", page_source)
         self.assertIn("build_report_links", page_source)
         self.assertIn("REPORT_FORM_URL", page_source)
         self.assertNotIn("issues/new", page_source)
+
+    def test_home_page_has_only_a_report_button_not_the_form(self):
+        layout_source = (REPO / "map_dashboard" / "layout.py").read_text(encoding="utf-8")
+        self.assertNotIn("report-problem-type", layout_source)
+        self.assertNotIn("report-submit", layout_source)
+        presentation_source = (REPO / "map_dashboard" / "presentation.py").read_text(encoding="utf-8")
+        self.assertIn("Reportar erro", presentation_source)
+        self.assertIn("/reportar-erro?station_id=", presentation_source)
+        map_source = (REPO / "pages" / "map.py").read_text(encoding="utf-8")
+        self.assertNotIn("report-submit", map_source)
+        self.assertNotIn("validate_report", map_source)
 
 
 if __name__ == "__main__":

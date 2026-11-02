@@ -188,6 +188,7 @@ body {
 }
 
 .map-dashboard__report-button {
+  display: inline-block;
   margin-top: 14px;
   padding: 10px 16px;
   border: none;
@@ -196,6 +197,23 @@ body {
   color: #ffffff;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.report-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(255, 252, 248, 0.88);
+  box-shadow: 0 18px 42px rgba(55, 36, 26, 0.08);
+}
+
+.report-page__summary {
+  margin: 12px 0 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fffaf5;
 }
 
 .map-dashboard__report-output {

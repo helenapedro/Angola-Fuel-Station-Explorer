@@ -16,7 +16,7 @@ parameters if the form supports them. No URL is invented here.
 
 import re
 from dataclasses import dataclass, field
-from urllib.parse import urlencode
+from urllib.parse import parse_qs, urlencode, urlparse
 
 ISSUE_NEW_URL = "https://github.com/helenapedro/Angola-Fuel-Station-Explorer/issues/new"
 
@@ -66,6 +66,21 @@ class Report:
     details: str = ""
     source_url: str = ""
     errors: list = field(default_factory=list, init=False)
+
+
+def station_id_from_search(search):
+    """Return the station id from a URL query string, or None.
+
+    ``search`` is the ``dcc.Location`` search value, for example
+    ``"?station_id=123"``. Only the first value counts; anything
+    missing, empty or non-numeric returns None, never an invented id.
+    """
+    if not search:
+        return None
+    values = parse_qs(urlparse(search).query if "?" in search else search).get("station_id")
+    if not values:
+        return None
+    return _normalise_station_id(values[0])
 
 
 def _normalise_station_id(value):
