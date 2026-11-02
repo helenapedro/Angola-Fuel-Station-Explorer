@@ -2,6 +2,45 @@
 
 A Dash application for exploring Angolan fuel stations through a single interactive dashboard. It consumes a public stations API, lets users filter stations by search, brand, province, municipality, and station name, and surfaces live errors when data is unavailable.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Sources["Public sources"]
+        OSM["OpenStreetMap Overpass"]
+        OPS["Operator listings: Sonangol, Pumangol"]
+        LEG["Bundled legacy snapshot"]
+    end
+    subgraph Refresh["Weekly refresh: GitHub Actions, Mondays 06:00 UTC"]
+        ING["Ingestion: validate, dedup, backfills"]
+        GATE["Publication gate"]
+        SNAP["stations_clean.json + metadata"]
+        REG["dataset_versions.json: append-only"]
+        REJ["stations_rejected.json"]
+    end
+    subgraph Dyno["One Heroku dyno: gunicorn"]
+        READ["Shared read path: 300s cache, fallback"]
+        DASH["Dash dashboard"]
+        API["FastAPI: /api/v1, /health, /docs"]
+    end
+    OSM --> ING
+    OPS --> ING
+    LEG --> ING
+    ING --> GATE
+    GATE --> SNAP
+    GATE --> REG
+    GATE --> REJ
+    SNAP --> READ
+    REG --> READ
+    READ --> DASH
+    READ --> API
+    DASH --> Users["Users"]
+    API --> Consumers["API consumers"]
+    Users --> REP["Error reports: pre-filled GitHub issue, nothing stored"]
+```
+
+One dyno serves the dashboard and the API from the same snapshot, through the same read path. There is no database in the serving path, and error reports are never stored on the server. See `docs/architecture.md` for the full overview.
+
 ## Features
 
 - Interactive station explorer with map-first layout.
