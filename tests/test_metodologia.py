@@ -1,39 +1,37 @@
-"""Tests for the Portuguese methodology page (PR 2)."""
+"""Tests for the Portuguese methodology page (PR 2).
+
+CI installs only the non-Dash test dependencies, so no test in this
+file may import Dash or any module that imports Dash. The methodology
+content is therefore checked in two Dash-free ways: the pure helpers
+in ``map_dashboard/metodologia_content.py`` are imported and tested
+directly, and the rendering module's literal text is read from its
+source file and checked for required and banned phrases. The page
+registration is checked the same way, by reading
+``pages/metodologia.py``. A real browser check remains the proof that
+the page actually renders; these tests only prove the content and
+helpers are correct.
+"""
 
 import unittest
+from pathlib import Path
 
-import dash
-
-from map_dashboard.metodologia import (
-    build_metodologia_layout,
-    build_source_status_items,
+from map_dashboard.metodologia_content import (
     format_meta_summary_pt,
+    source_status_lines,
     translate_source_status,
 )
 
-
-def _collect_text(component):
-    if isinstance(component, str):
-        return component
-    if isinstance(component, (list, tuple)):
-        return " ".join(_collect_text(child) for child in component)
-    children = getattr(component, "children", None)
-    if children is None:
-        return ""
-    return _collect_text(children)
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class MetodologiaTest(unittest.TestCase):
     def test_page_registers_at_metodologia(self):
-        # register_page requires an app with use_pages=True, as in app.py.
-        dash.Dash(__name__, use_pages=True, pages_folder="")
-        import pages.metodologia  # noqa: F401  (registration side effect)
+        page_source = (REPO_ROOT / "pages" / "metodologia.py").read_text(encoding="utf-8")
+        self.assertIn('path="/metodologia"', page_source)
+        self.assertIn("register_page", page_source)
 
-        paths = [page["path"] for page in dash.page_registry.values()]
-        self.assertIn("/metodologia", paths)
-
-    def test_layout_contains_governance_and_quality_policy(self):
-        text = _collect_text(build_metodologia_layout())
+    def test_rendering_source_contains_governance_and_quality_policy(self):
+        text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")
         for required in (
             "Helena Pedro",
             "06:00",
@@ -47,8 +45,8 @@ class MetodologiaTest(unittest.TestCase):
         ):
             self.assertIn(required, text)
 
-    def test_layout_makes_no_positive_official_claim(self):
-        text = _collect_text(build_metodologia_layout())
+    def test_rendering_source_makes_no_positive_official_claim(self):
+        text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")
         for banned in (
             "oficial",
             "validado pelo IRDP",
@@ -59,6 +57,20 @@ class MetodologiaTest(unittest.TestCase):
             "garantido",
         ):
             self.assertNotIn(banned, text)
+
+    def test_no_test_or_content_module_imports_dash(self):
+        for path in (
+            REPO_ROOT / "tests" / "test_metodologia.py",
+            REPO_ROOT / "map_dashboard" / "metodologia_content.py",
+        ):
+            lines = path.read_text(encoding="utf-8").splitlines()
+            imports = [
+                line.strip()
+                for line in lines
+                if line.strip().startswith("import dash")
+                or line.strip().startswith("from dash")
+            ]
+            self.assertEqual(imports, [])
 
     def test_meta_summary_pt(self):
         self.assertEqual(
@@ -90,20 +102,22 @@ class MetodologiaTest(unittest.TestCase):
             "reutilizada depois de uma falha",
         )
         self.assertEqual(translate_source_status("failed"), "falhou nesta recolha")
-        meta = {
-            "source_status": [
-                {
-                    "source": "OpenStreetMap",
-                    "status": "stale_reused",
-                    "record_count": 187,
-                    "is_stale": True,
-                }
-            ]
-        }
-        text = _collect_text(build_source_status_items(meta))
-        self.assertIn("OpenStreetMap", text)
-        self.assertIn("reutilizada depois de uma falha", text)
-        self.assertIn("desatualizada", text)
+        lines = source_status_lines(
+            {
+                "source_status": [
+                    {
+                        "source": "OpenStreetMap",
+                        "status": "stale_reused",
+                        "record_count": 187,
+                        "is_stale": True,
+                    }
+                ]
+            }
+        )
+        self.assertEqual(len(lines), 1)
+        self.assertIn("OpenStreetMap", lines[0])
+        self.assertIn("reutilizada depois de uma falha", lines[0])
+        self.assertIn("desatualizada", lines[0])
 
 
 if __name__ == "__main__":

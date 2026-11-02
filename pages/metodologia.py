@@ -6,8 +6,8 @@ import dataset_meta
 from map_dashboard.metodologia import (
     build_metodologia_layout,
     build_source_status_items,
-    format_meta_summary_pt,
 )
+from map_dashboard.metodologia_content import format_meta_summary_pt
 
 dash.register_page(__name__, path="/metodologia", name="Metodologia", title="Metodologia")
 

@@ -9,59 +9,12 @@ confirmation, and it promises no service level that does not exist.
 
 from dash import dcc, html
 
-import dataset_meta
-
-_SOURCE_STATUS_PT = {
-    "loaded": "carregada",
-    "stale_reused": "reutilizada depois de uma falha",
-    "failed": "falhou nesta recolha",
-}
-
-
-def translate_source_status(status):
-    return _SOURCE_STATUS_PT.get(status, status)
-
-
-def format_meta_summary_pt(meta):
-    """Return a short Portuguese summary of a metadata dict."""
-    if meta is None or meta.get("generated_at") is None or meta.get("age_days") is None:
-        return "Data de atualização indisponível."
-    generated_at = dataset_meta._parse_generated_at(meta["generated_at"])
-    if generated_at is None:
-        return "Data de atualização indisponível."
-    label = generated_at.strftime("%d/%m/%Y")
-    age_days = meta["age_days"]
-    status = meta["freshness_status"]
-    record_count = meta.get("record_count")
-    counts = f"{record_count} registos" if record_count is not None else "registos sem contagem publicada"
-    if status == "overdue":
-        state = "em atraso"
-    elif status == "stale":
-        state = "desatualizado"
-    else:
-        state = "atualizado"
-    return (
-        f"Snapshot de {label} (há {age_days} dias), com {counts}. "
-        f"Estado de frescura: {state}."
-    )
+from map_dashboard.metodologia_content import source_status_lines
 
 
 def build_source_status_items(meta):
     """Build a list of public source-status lines from a metadata dict."""
-    if meta is None:
-        return [html.Li("Fonte e estado indisponíveis nesta altura.")]
-    items = []
-    for entry in meta.get("source_status", []):
-        items.append(
-            html.Li(
-                f"{entry['source']}: {translate_source_status(entry['status'])} "
-                f"({entry['record_count']} registos)"
-                + (" (marcada como desatualizada)" if entry["is_stale"] else "")
-            )
-        )
-    if not items:
-        return [html.Li("Nenhuma fonte publicada neste snapshot.")]
-    return items
+    return [html.Li(line) for line in source_status_lines(meta)]
 
 
 def _section(title, children):
