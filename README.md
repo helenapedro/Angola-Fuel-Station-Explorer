@@ -104,8 +104,6 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 - `data_fetch.py` - Cached, timeout-bound data fetch helper for the API with local fallback data.
 - `station_data.py` - Shared normalization: canonical columns, cleaning rules, coordinate validity, stable IDs (used by both the dashboard and the API).
 - `ingestion/` - Multi-source station ingestion, normalization, validation, and clean/rejected output generation.
-- `scrap.py` - Compatibility wrapper for `python -m ingestion.sync_stations`.
-- `mysqlConnect.py` - Loader to move scraped data into MySQL.
 - `docs/architecture.md` - Architecture overview: serving, read path, ingestion, automation, and what the architecture is not.
 - `docs/data-ingestion.md` - Data-source strategy and refresh runbook.
 - `assets/styles.css` - Dashboard styling.
@@ -187,7 +185,3 @@ See `docs/data-ingestion.md` for the full source strategy, output schema, and ru
 - `.github/workflows/ci.yml` runs compile checks, unit tests, and an offline ingestion smoke check on push and pull requests.
 - `.github/workflows/refresh-stations.yml` runs weekly and can be triggered manually to refresh live station data and commit changed `data/` outputs.
 
-## Notes on Supporting Scripts
-
-- `scrap.py` is retained only for compatibility and delegates to the ingestion pipeline.
-- `mysqlConnect.py` expects DB credentials via environment variables: `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`.
