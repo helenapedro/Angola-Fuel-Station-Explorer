@@ -159,8 +159,10 @@ The repository includes two GitHub Actions workflows:
 
 - `.github/workflows/refresh-stations.yml`
   - Runs every Monday at 06:00 UTC and can also be triggered manually from GitHub Actions.
-  - Runs `python -m ingestion.sync_stations` against live sources.
+  - Runs `python -m ingestion.sync_stations` against live sources. Ingestion computes `metadata.confidence_counts` over the clean records (operator website, operator via OpenStreetMap, public OpenStreetMap base), summing to `record_count`.
   - Runs ingestion tests.
-  - Commits changed `data/stations_clean.json` and `data/stations_rejected.json` back to the branch.
+  - Runs the publication gate (`python -m ingestion.publish_gate`): a snapshot with no or future `generated_at`, zero records, a record drop over 30%, or a rejected-count rise over 50% blocks publication and is never committed.
+  - Appends the new version to `data/dataset_versions.json` (append-only, keyed by `generated_at`) in the same commit.
+  - Commits changed `data/stations_clean.json`, `data/stations_rejected.json` and `data/dataset_versions.json` back to the branch.
 
 After each scheduled refresh, inspect the generated `metadata.source_status` before trusting the new dataset. A successful workflow can still contain `stale_reused` source status if one operator website or OSM was unavailable during the run.

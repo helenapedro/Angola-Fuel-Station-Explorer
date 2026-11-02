@@ -32,8 +32,20 @@ jobs:
       - name: Run ingestion tests
         run: python -m unittest discover -s tests
 
+      # Publication gate: a blocked snapshot never reaches the repo.
+      # The previous snapshot stays in production and the public stale
+      # warning appears on its own. The previous file comes from git,
+      # not from the working tree, which already holds the new data.
+      - name: Check publication gate
+        run: |
+          git show HEAD:data/stations_clean.json > /tmp/previous_clean.json || echo '{}' > /tmp/previous_clean.json
+          python -m ingestion.publish_gate --new data/stations_clean.json --previous /tmp/previous_clean.json
+
+      - name: Append dataset version
+        run: python -m ingestion.append_version
+
       - name: Commit refreshed station data
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Refresh station data"
-          file_pattern: data/stations_clean.json data/stations_rejected.json
+          file_pattern: data/stations_clean.json data/stations_rejected.json data/dataset_versions.json

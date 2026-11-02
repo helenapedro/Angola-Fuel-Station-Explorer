@@ -89,5 +89,72 @@ class MetaApiTest(unittest.TestCase):
         self.assertIn("GET /api/v1/meta", endpoints)
 
 
+class DatasetVersionsApiTest(unittest.TestCase):
+    def setUp(self):
+        app.dependency_overrides[get_station_data] = (
+            lambda: (pd.DataFrame([{"id": 1}]), "live")
+        )
+        dataset_meta.clear_dataset_meta_cache()
+        self.client = TestClient(app)
+        self._tmp = tempfile.TemporaryDirectory()
+        self._original_data_path = dataset_meta.CLEAN_DATA_PATH
+        import dataset_versions
+
+        self._versions_module = dataset_versions
+        self._original_versions_path = dataset_versions.VERSIONS_PATH
+        dataset_versions.VERSIONS_PATH = Path(self._tmp.name) / "dataset_versions.json"
+        path = Path(self._tmp.name) / "stations_clean.json"
+        path.write_text(
+            json.dumps(
+                {
+                    "metadata": {
+                        "generated_at": "2026-09-23T11:27:12+00:00",
+                        "record_count": 279,
+                        "rejected_count": 63,
+                        "source_status": [],
+                    }
+                }
+            ),
+            encoding="utf-8",
+        )
+        dataset_meta.CLEAN_DATA_PATH = path
+
+    def tearDown(self):
+        app.dependency_overrides.clear()
+        dataset_meta.clear_dataset_meta_cache()
+        dataset_meta.CLEAN_DATA_PATH = self._original_data_path
+        self._versions_module.VERSIONS_PATH = self._original_versions_path
+        self._tmp.cleanup()
+
+    def test_versions_endpoint_returns_recorded_entries(self):
+        entry = {
+            "version_id": "2026-09-23T11:27:12+00:00",
+            "snapshot_origin": "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json",
+            "generated_at": "2026-09-23T11:27:12+00:00",
+            "record_count": 279,
+            "rejected_count": 63,
+            "freshness_status_at_publication": "fresh",
+            "source_status_summary": [],
+        }
+        (Path(self._tmp.name) / "dataset_versions.json").write_text(
+            json.dumps([entry]), encoding="utf-8"
+        )
+        response = self.client.get("/api/v1/dataset-versions")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), [entry])
+
+    def test_versions_endpoint_falls_back_when_file_missing(self):
+        response = self.client.get("/api/v1/dataset-versions")
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertEqual(len(body), 1)
+        self.assertEqual(body[0]["version_id"], "2026-09-23T11:27:12+00:00")
+        self.assertEqual(body[0]["freshness_status_at_publication"], "unknown")
+
+    def test_api_index_lists_dataset_versions(self):
+        endpoints = self.client.get("/api/v1").json()["endpoints"]
+        self.assertIn("GET /api/v1/dataset-versions", endpoints)
+
+
 if __name__ == "__main__":
     unittest.main()

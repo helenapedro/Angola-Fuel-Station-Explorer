@@ -44,6 +44,16 @@ class SourceStatus(BaseModel):
     is_stale: bool = False
 
 
+class DatasetVersion(BaseModel):
+    version_id: str | None = None
+    snapshot_origin: str
+    generated_at: str | None = None
+    record_count: int | None = None
+    rejected_count: int | None = None
+    freshness_status_at_publication: str = "unknown"
+    source_status_summary: list[SourceStatus] = []
+
+
 class DatasetMeta(BaseModel):
     version_id: str | None = None
     snapshot_origin: str
