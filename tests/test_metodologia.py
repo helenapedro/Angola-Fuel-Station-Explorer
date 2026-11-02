@@ -41,7 +41,7 @@ class MetodologiaTest(unittest.TestCase):
             "Política de qualidade do dado",
             "base_publica_osm",
             "operador_via_osm",
-            "confirmado_pelo_operador",
+            "operador_via_listagem_publica",
             "O que o projeto não é",
             "Como reportar um erro",
             "14 dias",
@@ -131,7 +131,7 @@ class MetodologiaTest(unittest.TestCase):
         text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")
         highlight = text.index("Níveis de qualidade, em resumo")
         self.assertLess(highlight, text.index("O que o projeto é"))
-        for level in ("base_publica_osm", "operador_via_osm", "confirmado_pelo_operador"):
+        for level in ("base_publica_osm", "operador_via_osm", "operador_via_listagem_publica"):
             self.assertIn(level, text[highlight : highlight + 1500])
         self.assertIn('href="#niveis-de-qualidade"', text)
         self.assertIn('section_id="niveis-de-qualidade"', text)

@@ -134,7 +134,7 @@ See `docs/data-ingestion.md` for the full source strategy,
   stay empty, honestly.
 - Ingestion computes `metadata.confidence_counts` over the clean
   records only, so the counts sum to `record_count`. Levels:
-  `confirmado_pelo_operador` (found in a public operator listing),
+  `operador_via_listagem_publica` (found in a public operator listing),
   `operador_via_osm`, and `base_publica_osm`. Staleness does not
   change a record's level. Per-station confidence is not exposed:
   provenance does not travel through the read path in Phase 0.

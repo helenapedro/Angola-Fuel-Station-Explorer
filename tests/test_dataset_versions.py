@@ -31,7 +31,7 @@ META = {
 
 class ConfidenceTest(unittest.TestCase):
     def test_level_mapping(self):
-        self.assertEqual(confidence_level({"source_type": "operator_website"}), "confirmado_pelo_operador")
+        self.assertEqual(confidence_level({"source_type": "operator_website"}), "operador_via_listagem_publica")
         self.assertEqual(confidence_level({"source_type": "openstreetmap_operator"}), "operador_via_osm")
         self.assertEqual(confidence_level({"source_type": "openstreetmap"}), "base_publica_osm")
         self.assertEqual(confidence_level({"source_type": "legacy_snapshot"}), "base_publica_osm")
@@ -40,7 +40,7 @@ class ConfidenceTest(unittest.TestCase):
     def test_stale_does_not_change_level(self):
         self.assertEqual(
             confidence_level({"source_type": "operator_website", "is_stale": True}),
-            "confirmado_pelo_operador",
+            "operador_via_listagem_publica",
         )
 
     def test_counts_sum_to_record_count(self):
@@ -52,7 +52,7 @@ class ConfidenceTest(unittest.TestCase):
         ]
         counts = confidence_counts(records)
         self.assertEqual(sum(counts.values()), len(records))
-        self.assertEqual(counts["confirmado_pelo_operador"], 1)
+        self.assertEqual(counts["operador_via_listagem_publica"], 1)
         self.assertEqual(counts["operador_via_osm"], 1)
         self.assertEqual(counts["base_publica_osm"], 2)
 

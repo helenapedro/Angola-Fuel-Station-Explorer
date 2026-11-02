@@ -76,7 +76,7 @@ def build_metodologia_layout():
                                 className="metodologia__copy",
                             ),
                             html.Li(
-                                "confirmado_pelo_operador: registo encontrado numa listagem "
+                                "operador_via_listagem_publica: registo encontrado numa listagem "
                                 "pública do operador. Não prova que o posto está aberto, tem "
                                 "combustível, está licenciado, ou que o operador apoia este projeto.",
                                 className="metodologia__copy",
@@ -237,7 +237,7 @@ def build_metodologia_layout():
                                     ),
                                     html.Tr(
                                         [
-                                            html.Td("confirmado_pelo_operador"),
+                                            html.Td("operador_via_listagem_publica"),
                                             html.Td(
                                                 "Registo encontrado numa listagem pública do operador, "
                                                 "na data indicada. É o nível mais alto neste projeto."
@@ -255,7 +255,7 @@ def build_metodologia_layout():
                         className="metodologia__table",
                     ),
                     _para(
-                        "Em fase 0, confirmado_pelo_operador significa apenas que o registo foi "
+                        "Em fase 0, operador_via_listagem_publica significa apenas que o registo foi "
                         "encontrado numa listagem pública do operador. Não significa que o operador "
                         "forneceu os dados ao abrigo de um acordo, nem que confirmou os dados para "
                         "este projeto. Um nível com fornecimento direto por acordo só poderá ser usado "

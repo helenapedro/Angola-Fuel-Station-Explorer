@@ -12,7 +12,7 @@ Standard library only, so the ingestion workflow (which installs only
 has no Dash) can both use this module.
 
 Confidence derivation, from the raw per-station fields that already
-exist in the snapshot: ``operator_website`` is ``confirmado_pelo_operador``
+exist in the snapshot: ``operator_website`` is ``operador_via_listagem_publica``
 (found in a public listing on the operator's website at ``scraped_at``,
 not supplied under an agreement); ``openstreetmap_operator`` is
 ``operador_via_osm``; anything else is ``base_publica_osm``. A record
@@ -31,11 +31,11 @@ from dataset_meta import (
     SNAPSHOT_ORIGIN,
 )
 
-CONFIDENCE_LEVEL_CONFIRMED = "confirmado_pelo_operador"
+CONFIDENCE_LEVEL_OPERATOR_LISTING = "operador_via_listagem_publica"
 CONFIDENCE_LEVEL_OSM_OPERATOR = "operador_via_osm"
 CONFIDENCE_LEVEL_BASE = "base_publica_osm"
 CONFIDENCE_LEVELS = (
-    CONFIDENCE_LEVEL_CONFIRMED,
+    CONFIDENCE_LEVEL_OPERATOR_LISTING,
     CONFIDENCE_LEVEL_OSM_OPERATOR,
     CONFIDENCE_LEVEL_BASE,
 )
@@ -47,7 +47,7 @@ def confidence_level(record):
     """Return the confidence level for one raw station record."""
     source_type = record.get("source_type") if isinstance(record, dict) else None
     if source_type == "operator_website":
-        return CONFIDENCE_LEVEL_CONFIRMED
+        return CONFIDENCE_LEVEL_OPERATOR_LISTING
     if source_type == "openstreetmap_operator":
         return CONFIDENCE_LEVEL_OSM_OPERATOR
     return CONFIDENCE_LEVEL_BASE
