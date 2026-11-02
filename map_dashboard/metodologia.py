@@ -236,7 +236,7 @@ def build_metodologia_layout():
                     ),
                     _para(
                         "Os dados não representam o estado atual de funcionamento de um posto, a "
-                        "disponibilidade de combustível, os preços, a licenciamento, nem uma lista "
+                        "disponibilidade de combustível, os preços, o licenciamento, nem uma lista "
                         "completa de todos os postos do país."
                     ),
                     _para(
