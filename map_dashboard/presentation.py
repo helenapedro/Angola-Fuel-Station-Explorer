@@ -69,6 +69,27 @@ def build_map_figure(filtered_df, selected_station):
     )
 
     fig.update_traces(marker={"size": 12, "opacity": 0.9})
+
+    # Cluster nearby markers so overlapping stations (two posts 238 m
+    # apart in Zaire read as one dot at country zoom) show as one
+    # counted circle when zoomed out and split apart as the user
+    # zooms in. Clustering stops at zoom 14, one level below the
+    # street zoom used for a selected station, and each operator
+    # trace keeps its own brand color. This runs before the
+    # selected-station trace is added below, so the highlight marker
+    # itself is never clustered.
+    for trace in fig.data:
+        color = trace.marker.color
+        if isinstance(color, (list, tuple)):
+            color = color[0] if color else "#F46036"
+        trace.cluster = {
+            "enabled": True,
+            "maxzoom": 14,
+            "step": [5, 25],
+            "size": [26, 36, 48],
+            "color": [color, color, color],
+        }
+
     fig.update_layout(
         mapbox_style="open-street-map",
         mapbox_center=center,
