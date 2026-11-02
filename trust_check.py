@@ -27,7 +27,7 @@ BANNED_PHRASES = (
 _GOVERNANCE_PHRASES = (
     "Helena Pedro",
     "06:00",
-    "portão de publicação",
+    "passar numa verificação",
     "7 dias",
 )
 

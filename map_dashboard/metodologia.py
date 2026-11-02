@@ -22,10 +22,12 @@ def build_version_items(versions):
     return [html.Li(line) for line in version_lines(versions)]
 
 
-def _section(title, children):
+def _section(title, children, section_id=None):
+    kwargs = {"id": section_id} if section_id is not None else {}
     return html.Section(
         [html.H2(title, className="metodologia__section-title")] + children,
         className="metodologia__section",
+        **kwargs,
     )
 
 
@@ -55,6 +57,41 @@ def build_metodologia_layout():
             html.Div(id="metodologia-meta", className="metodologia__snapshot"),
             html.Div(id="metodologia-source-status", className="metodologia__snapshot"),
             html.Div(id="metodologia-overdue-note", className="metodologia__snapshot"),
+            html.Div(
+                [
+                    html.H2(
+                        "Níveis de qualidade, em resumo",
+                        className="metodologia__section-title",
+                    ),
+                    html.Ul(
+                        [
+                            html.Li(
+                                "base_publica_osm: informação pública útil para descoberta, "
+                                "sem confirmação do operador.",
+                                className="metodologia__copy",
+                            ),
+                            html.Li(
+                                "operador_via_osm: registo público filtrado pela marca do "
+                                "operador, com mais confiança, ainda sem confirmação direta.",
+                                className="metodologia__copy",
+                            ),
+                            html.Li(
+                                "confirmado_pelo_operador: registo encontrado numa listagem "
+                                "pública do operador. Não prova que o posto está aberto, tem "
+                                "combustível, está licenciado, ou que o operador apoia este projeto.",
+                                className="metodologia__copy",
+                            ),
+                        ],
+                        className="metodologia__list",
+                    ),
+                    html.A(
+                        "Ver a tabela completa e as regras de qualidade",
+                        href="#niveis-de-qualidade",
+                        className="metodologia__link",
+                    ),
+                ],
+                className="metodologia__highlight",
+            ),
             _section(
                 "O que o projeto é",
                 [
@@ -96,8 +133,9 @@ def build_metodologia_layout():
                 [
                     _para(
                         "A base de partida é o OpenStreetMap, com registos de postos de combustível "
-                        "em Angola. A essa base juntam-se listagens públicas de operadores, quando "
-                        "disponíveis, e filtros por marca aplicados aos registos públicos. A lista "
+                        "em Angola. A essa base juntam-se listagens públicas de operadores, como a "
+                        "Sonangol e a Pumangol, quando disponíveis. Os registos públicos são também "
+                        "filtrados por marca. A lista "
                         "de fontes e o estado de cada fonte em cada snapshot estão no início desta "
                         "página e em /api/v1/meta."
                     ),
@@ -119,8 +157,9 @@ def build_metodologia_layout():
                 [
                     _para(
                         "Um registo só entra no mapa se passar na validação: nome presente, operador "
-                        "presente, coordenadas válidas e dentro de Angola, sem coordenadas (0, 0) e "
-                        "sem artefactos de texto. O que falha vai para os registos rejeitados e nunca "
+                        "presente, coordenadas válidas e dentro de Angola, sem coordenadas em falta "
+                        "ou no ponto zero do mapa, e sem caracteres estranhos de formatação. O que "
+                        "falha vai para os registos rejeitados e nunca "
                         "aparece no mapa. Passar na validação significa que o registo pode ser usado "
                         "para descoberta de localização, e não que o posto está aberto ou a funcionar."
                     ),
@@ -135,7 +174,7 @@ def build_metodologia_layout():
                     _para("Sinais de um registo incompleto:"),
                     _bullets(
                         [
-                            "morada em falta, ou morada apenas com plus code;",
+                            "morada em falta, ou morada apenas com um código de localização (plus code);",
                             "província inferida a partir do município;",
                             "município em falta, ou preenchido por regra de recurso a partir da província;",
                             "nome genérico, igual ao nome do operador.",
@@ -223,13 +262,15 @@ def build_metodologia_layout():
                         "com um acordo escrito com o operador, e até lá esse rótulo não existe no dataset."
                     ),
                 ],
+                section_id="niveis-de-qualidade",
             ),
             _section(
                 "Como tratamos registos duplicados",
                 [
                     _para(
                         "Dois registos são considerados o mesmo posto quando têm o mesmo operador, o "
-                        "mesmo nome normalizado, e coordenadas arredondadas a 4 casas decimais. "
+                        "mesmo nome depois de uniformizar maiúsculas, acentos e espaços, e coordenadas "
+                        "arredondadas a 4 casas decimais. "
                         "Quando há duplicados, a ordem de preferência é: registo recente em vez de "
                         "registo desatualizado; listagem pública do operador em vez de OpenStreetMap; "
                         "registo filtrado por marca em vez de registo geral; registo com morada em vez "
@@ -267,9 +308,9 @@ def build_metodologia_layout():
                 "Frescura e atualização",
                 [
                     _para(
-                        "A única data de atualização do dataset é a data de geração do snapshot, "
-                        "generated_at, em /api/v1/meta e no selo junto aos contadores no mapa. Não é "
-                        "a data de publicação do site, nem o tempo de cache de 300 segundos."
+                        "A única data de atualização é a data de geração do snapshot, publicada "
+                        "em /api/v1/meta e no selo junto aos contadores no mapa. Não é a data de "
+                        "publicação do site."
                     ),
                     _para(
                         "O limiar de frescura é de 14 dias, porque a recolha é semanal e precisa de "
@@ -294,42 +335,44 @@ def build_metodologia_layout():
                 [
                     _para(
                         "Responsável pelo dataset: Helena Pedro, única responsável. A responsável "
-                        "aciona recolhas manuais, revê falhas da automação, tria correções, aprova "
-                        "publicações e publica notas datadas de atraso."
+                        "aciona recolhas manuais, revê falhas da recolha automática, analisa as "
+                        "correções recebidas, aprova publicações e publica notas datadas de atraso."
                     ),
                     _para(
-                        "Cadência prevista: recolha semanal automática, às segundas-feiras, às 06:00 "
-                        "UTC, através de GitHub Actions. A cadência é um objetivo público, e não uma "
-                        "garantia contratual de publicação todas as segundas-feiras."
+                        "Frequência prevista: recolha semanal automática, às segundas-feiras, às 06:00 "
+                        "UTC. Este ritmo é um objetivo público, e não uma garantia contratual de "
+                        "publicação todas as segundas-feiras."
                     ),
                     _para(
-                        "Antes de uma nova versão ser publicada, tem de passar no portão de publicação: "
-                        "testes aprovados, ficheiro JSON válido, data de geração presente e sem data no "
-                        "futuro, e número de registos superior a zero. Se o portão falhar, não há nova "
-                        "versão, e o snapshot anterior continua em produção, com a idade a crescer e o "
-                        "aviso a aparecer automaticamente depois de 14 dias."
+                        "Antes de uma nova versão ser publicada, tem de passar numa verificação: "
+                        "testes aprovados, ficheiro de dados válido, data de geração presente e sem data "
+                        "no futuro, e número de registos superior a zero. Se a verificação falhar, não "
+                        "há nova versão, e o snapshot anterior continua em produção, com a idade a "
+                        "crescer e o aviso a aparecer automaticamente depois de 14 dias."
                     ),
                     _para(
                         "Quando uma única fonte falha, os registos anteriores dessa fonte são reutilizados "
                         "e marcados como desatualizados, e a falha fica visível em /api/v1/meta e nesta "
                         "página. Quando a recolha falha no conjunto, ou um teste falha, não há novo "
-                        "snapshot. A falha fica no registo da automação, e nesta fase não há outro canal "
-                        "de alerta: o próprio selo de frescura é o controlo, e não pode ser suprimido."
+                        "snapshot. A falha fica no registo da recolha automática, e nesta fase não há "
+                        "outro canal de alerta: o próprio selo de frescura é o controlo, e não pode ser "
+                        "suprimido."
                     ),
                     _para(
-                        "Prazos públicos, que não são um acordo de nível de serviço: a responsável revê "
-                        "uma falha da automação no prazo de 7 dias de calendário, ou na próxima recolha "
-                        "prevista, consoante o que acontecer primeiro, e regista a decisão, que pode ser "
-                        "voltar a correr, corrigir o adaptador, ou deixar o aviso visível. Correções "
-                        "aceites entram apenas no próximo snapshot publicado, e nunca são editadas no "
-                        "snapshot atual. Se a idade passar os 28 dias, esta página tem de mostrar uma "
-                        "nota datada com a causa conhecida e o próximo passo, ou uma nota de pausa da "
-                        "cadência semanal. Um aviso a crescer em silêncio não é aceitável."
+                        "Prazos públicos, que não são uma garantia contratual: a responsável revê "
+                        "uma falha da recolha automática no prazo de 7 dias de calendário, ou na próxima "
+                        "recolha prevista, consoante o que acontecer primeiro, e regista a decisão, que "
+                        "pode ser voltar a correr, corrigir a ligação à fonte, ou deixar o aviso visível. "
+                        "Correções aceites entram apenas no próximo snapshot publicado, e nunca são "
+                        "editadas no snapshot atual. Se a idade passar os 28 dias, esta página tem de "
+                        "mostrar uma nota datada com a causa conhecida e o próximo passo, ou uma nota de "
+                        "pausa do ritmo semanal. Um aviso a crescer em silêncio não é aceitável."
                     ),
                     _para(
                         "Não há, nesta fase, uma pessoa de recurso formal, nem suporte 24 horas, nem "
-                        "garantia de disponibilidade do serviço, que corre num único dyno. A governança "
-                        "tem de ser revista antes de qualquer compromisso com um parceiro que pague."
+                        "garantia de disponibilidade do serviço, que corre num único servidor. A "
+                        "governança tem de ser revista antes de qualquer compromisso com um parceiro "
+                        "que pague."
                     ),
                 ],
             ),
@@ -349,20 +392,21 @@ def build_metodologia_layout():
                 "Como reportar um erro",
                 [
                     _para(
-                        "O caminho principal para reportar um erro é um formulário sem conta: não é "
-                        "preciso ter conta GitHub, nem criar uma, para reportar. O formulário ainda "
-                        "não está publicado nesta página; quando estiver, o link fica aqui, com os "
-                        "mesmos campos: identificador do posto, data do snapshot usado, tipo de "
-                        "problema e, se possível, uma fonte pública. Não é pedido nome, email, "
-                        "telefone ou localização do utilizador."
+                        "Está previsto um formulário sem conta para reportar erros: não será preciso "
+                        "ter conta GitHub, nem criar uma, para reportar. O formulário ainda não está "
+                        "publicado nesta página; quando estiver, o link fica aqui, com os mesmos "
+                        "campos: identificador do posto, data do snapshot usado, tipo de problema e, "
+                        "se possível, uma fonte pública. Não é pedido nome, email, telefone ou "
+                        "localização do utilizador."
                     ),
                     _para(
-                        "Quem já tiver conta GitHub pode, em alternativa, abrir uma issue pública no "
-                        "repositório do projeto, com os mesmos campos. A issue é o caminho secundário, "
-                        "e não o único."
+                        "Neste momento, o único meio disponível é abrir um pedido público de correção "
+                        "no repositório do projeto, com os mesmos campos. Para isso é preciso ter "
+                        "conta GitHub. Quando o formulário estiver publicado, passa a ser o caminho "
+                        "principal."
                     ),
                     html.A(
-                        "Abrir uma issue no repositório público",
+                        "Abrir um pedido público de correção no repositório",
                         href="https://github.com/helenapedro/Angola-Fuel-Station-Explorer/issues/new",
                         target="_blank",
                         className="metodologia__link",
