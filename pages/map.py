@@ -1,5 +1,5 @@
 import dash
-from dash import Input, Output, callback
+from dash import Input, Output, callback, callback_context, no_update
 from datetime import datetime, timezone
 
 import dataset_meta
@@ -9,6 +9,7 @@ from map_dashboard.data import (
     build_filter_options,
     build_summary_counts,
     get_selected_station_name,
+    is_cluster_click,
 )
 from map_dashboard.layout import build_dashboard_layout
 from map_dashboard.presentation import build_empty_figure, build_map_figure, build_station_details
@@ -71,6 +72,13 @@ def update_dataset_badge(_):
     Input("gas-stations-map", "clickData"),
 )
 def update_dashboard(_, search_text, operator, province, municipality, station, click_data):
+    # A cluster click is Plotly's own zoom-in: leave every output
+    # untouched so the map zooms instead of rebuilding zoomed out.
+    # The trigger check matters because clickData persists: a stale
+    # cluster click must not freeze later filter or search changes.
+    if callback_context.triggered_id == "gas-stations-map.clickData" and is_cluster_click(click_data):
+        return (no_update,) * 6
+
     df, err = get_stations_df()
     filtered_df = apply_station_filters(
         df,
