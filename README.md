@@ -65,6 +65,7 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 - `ingestion/` - Multi-source station ingestion, normalization, validation, and clean/rejected output generation.
 - `scrap.py` - Compatibility wrapper for `python -m ingestion.sync_stations`.
 - `mysqlConnect.py` - Loader to move scraped data into MySQL.
+- `docs/architecture.md` - Architecture overview: serving, read path, ingestion, automation, and what the architecture is not.
 - `docs/data-ingestion.md` - Data-source strategy and refresh runbook.
 - `assets/styles.css` - Dashboard styling.
 

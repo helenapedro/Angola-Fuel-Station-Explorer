@@ -22,9 +22,14 @@ jobs:
           python-version: "3.11"
 
       - name: Install ingestion dependencies
+        # Same dependencies CI uses: the test suite imports pandas and
+        # FastAPI, so installing only requests/openlocationcode made
+        # the "Run ingestion tests" step fail on every scheduled run
+        # (last three runs failed there, and no snapshot was ever
+        # committed). Dash is still not installed: no test imports it.
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests openlocationcode
+          python -m pip install requests openlocationcode pandas fastapi httpx a2wsgi
 
       - name: Refresh station data
         run: python -m ingestion.sync_stations
