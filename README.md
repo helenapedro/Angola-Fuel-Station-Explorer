@@ -106,6 +106,7 @@ Interactive docs: `http://127.0.0.1:8000/docs`. API tests: `python -m unittest t
 - `ingestion/` - Multi-source station ingestion, normalization, validation, and clean/rejected output generation.
 - `docs/architecture.md` - Architecture overview: serving, read path, ingestion, automation, and what the architecture is not.
 - `docs/data-ingestion.md` - Data-source strategy and refresh runbook.
+- `docs/methodology.md` - Public methodology in English: sources, quality levels, freshness, refresh governance, and what the project is not.
 - `assets/styles.css` - Dashboard styling.
 
 ## Getting Started
