@@ -12,8 +12,9 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends
 
 import dataset_meta
+import dataset_versions
 from api.deps import StationData, get_station_data
-from api.schemas import DatasetMeta
+from api.schemas import DatasetMeta, DatasetVersion
 
 router = APIRouter(tags=["meta"])
 
@@ -53,3 +54,19 @@ def dataset_metadata(station_data: StationData = Depends(get_station_data)):
         source_status=meta["source_status"],
         confidence_counts=meta["confidence_counts"],
     )
+
+
+@router.get("/api/v1/dataset-versions", response_model=list[DatasetVersion])
+def dataset_versions_list(station_data: StationData = Depends(get_station_data)):
+    """Return the immutable version registry, newest last.
+
+    If the registry file is missing, fall back to a single entry
+    derived from the current snapshot metadata, marked "unknown" for
+    ``freshness_status_at_publication``, so the page never fails for
+    lack of the file and a fallback is never mistaken for a recorded
+    publication.
+    """
+    _df, _source = station_data
+    meta = dataset_meta.load_dataset_meta(datetime.now(timezone.utc))
+    versions = dataset_versions.load_dataset_versions(meta=meta)
+    return [DatasetVersion(**entry) for entry in versions]

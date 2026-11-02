@@ -27,6 +27,7 @@ The station dataset is also served as a JSON REST API: the FastAPI app is mounte
 | GET | `/api/v1/stations/provinces` | Distinct provinces |
 | GET | `/api/v1/stations/operators` | Distinct operators |
 | GET | `/api/v1/meta` | Dataset metadata: generated date, record count, source status and freshness (never an invented date; `unavailable` when metadata is missing) |
+| GET | `/api/v1/dataset-versions` | Immutable dataset version registry (`data/dataset_versions.json`), newest last; falls back to the current snapshot when the registry file is missing |
 
 Run it:
 

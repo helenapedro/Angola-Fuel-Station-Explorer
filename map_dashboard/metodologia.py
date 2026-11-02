@@ -9,12 +9,17 @@ confirmation, and it promises no service level that does not exist.
 
 from dash import dcc, html
 
-from map_dashboard.metodologia_content import source_status_lines
+from map_dashboard.metodologia_content import source_status_lines, version_lines
 
 
 def build_source_status_items(meta):
     """Build a list of public source-status lines from a metadata dict."""
     return [html.Li(line) for line in source_status_lines(meta)]
+
+
+def build_version_items(versions):
+    """Build a list of version-history lines from a registry list."""
+    return [html.Li(line) for line in version_lines(versions)]
 
 
 def _section(title, children):
@@ -49,6 +54,7 @@ def build_metodologia_layout():
             ),
             html.Div(id="metodologia-meta", className="metodologia__snapshot"),
             html.Div(id="metodologia-source-status", className="metodologia__snapshot"),
+            html.Div(id="metodologia-overdue-note", className="metodologia__snapshot"),
             _section(
                 "O que o projeto é",
                 [
@@ -100,6 +106,11 @@ def build_metodologia_layout():
                         "de entidades públicas ou de operadores, que possa ser usada como fonte "
                         "principal. Por isso, a recolha depende de fontes públicas e da sua "
                         "disponibilidade em cada semana."
+                    ),
+                    _para(
+                        "Atribuição: os dados do OpenStreetMap são de © OpenStreetMap contributors, "
+                        "disponíveis sob a licença Open Database License (ODbL). As listagens de "
+                        "operadores mantêm os termos dos respetivos sites."
                     ),
                 ],
             ),
@@ -320,6 +331,18 @@ def build_metodologia_layout():
                         "garantia de disponibilidade do serviço, que corre num único dyno. A governança "
                         "tem de ser revista antes de qualquer compromisso com um parceiro que pague."
                     ),
+                ],
+            ),
+            _section(
+                "Histórico de versões",
+                [
+                    _para(
+                        "Cada snapshot publicado fica registado com a sua data, contagens e estado "
+                        "na publicação. As versões nunca são reescritas: uma semana sem publicação "
+                        "aparece como uma lacuna, não é preenchida. Cita sempre a versão usada, "
+                        "que nesta fase é igual à data de geração."
+                    ),
+                    html.Div(id="metodologia-versions", className="metodologia__snapshot"),
                 ],
             ),
             _section(

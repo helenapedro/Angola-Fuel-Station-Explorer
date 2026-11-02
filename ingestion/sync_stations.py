@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from dataset_versions import confidence_counts
 from ingestion.geocode import GEOCODE_BACKFILL_VERSION, backfill_geocode
 from ingestion.normalize import normalize_legacy_pumangol, utc_now_iso
 from ingestion.provinces import PROVINCE_BACKFILL_VERSION, count_backfilled
@@ -95,6 +96,11 @@ def build_dataset(include_network_sources=True,
         },
         "source_status": source_status,
         "source_errors": [status for status in source_status if status["status"] in {"failed", "stale_reused"}],
+        # Aggregates only: per-station confidence is out of Phase 0
+        # scope. Computed over the clean records, so the counts always
+        # sum to record_count. A missing key here means the snapshot
+        # predates this computation and is not "ready for trust".
+        "confidence_counts": confidence_counts(clean_records),
     }
     return {"metadata": metadata, "stations": clean_records}, {"metadata": metadata, "stations": rejected_records}
 
