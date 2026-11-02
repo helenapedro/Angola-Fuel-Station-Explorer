@@ -18,7 +18,7 @@ from api.schemas import Health
 API_VERSION = "1.0.0"
 
 app = FastAPI(
-    title="Angola Fuel Station Explorer API",
+    title="FuelMap Angola API",
     version=API_VERSION,
     description=(
         "JSON REST API over the Angolan fuel-station dataset. "
@@ -58,7 +58,7 @@ def api_index():
         if isinstance(route, APIRoute)
     )
     return {
-        "name": "Angola Fuel Station Explorer API",
+        "name": "FuelMap Angola API",
         "version": API_VERSION,
         "endpoints": endpoints,
     }

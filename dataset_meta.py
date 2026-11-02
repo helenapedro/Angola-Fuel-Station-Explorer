@@ -1,4 +1,4 @@
-"""Dataset metadata for the Angola Fuel Station Explorer.
+"""Dataset metadata for the FuelMap Angola.
 
 This module is the single source of truth for dataset freshness in
 Phase 0. Both the FastAPI ``/api/v1/meta`` endpoint and the Dash
@@ -27,7 +27,7 @@ FRESH_THRESHOLD_DAYS = 14
 OVERDUE_THRESHOLD_DAYS = 28
 CLEAN_DATA_PATH = Path(__file__).parent / "data" / "stations_clean.json"
 SNAPSHOT_ORIGIN = (
-    "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json"
+    "helenapedro/fuelmap-angola:data/stations_clean.json"
 )
 
 _CACHE = {"path": None, "metadata": None, "loaded_at": None}

@@ -120,7 +120,7 @@ def _build_seo_content_section():
         [
             html.H2("Encontrar postos de combustível em Angola", className="map-dashboard__seo-title"),
             html.P(
-                "O Angola Fuel Station Explorer ajuda a encontrar postos de combustível em Angola com um mapa interativo e um diretório de postos pesquisável.",
+                "O FuelMap Angola ajuda a encontrar postos de combustível em Angola com um mapa interativo e um diretório de postos pesquisável.",
                 className="map-dashboard__seo-copy",
             ),
             html.P(

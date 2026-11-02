@@ -50,7 +50,7 @@ def build_metodologia_layout():
             html.H1("Como recolhemos, tratamos e datamos os dados", className="metodologia__title"),
             _para(
                 "Esta página explica, em linguagem simples, de onde vêm os dados "
-                "do Angola Fuel Station Explorer, o que significam, o que não significam, "
+                "do FuelMap Angola, o que significam, o que não significam, "
                 "e como saber se um snapshot ainda é recente. Se uma frase aqui não for "
                 "clara, trate-a como um limite do projeto, não como uma garantia."
             ),
@@ -407,7 +407,7 @@ def build_metodologia_layout():
                     ),
                     html.A(
                         "Abrir um pedido público de correção no repositório",
-                        href="https://github.com/helenapedro/Angola-Fuel-Station-Explorer/issues/new",
+                        href="https://github.com/helenapedro/fuelmap-angola/issues/new",
                         target="_blank",
                         className="metodologia__link",
                     ),

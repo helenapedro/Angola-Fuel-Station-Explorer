@@ -30,7 +30,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 META = {
     "version_id": "2026-10-05T06:00:00+00:00",
-    "snapshot_origin": "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json",
+    "snapshot_origin": "helenapedro/fuelmap-angola:data/stations_clean.json",
     "generated_at": "2026-10-05T06:00:00+00:00",
     "record_count": 279,
     "rejected_count": 63,
@@ -51,7 +51,7 @@ META = {
 VERSIONS = [
     {
         "version_id": "2026-10-05T06:00:00+00:00",
-        "snapshot_origin": "helenapedro/Angola-Fuel-Station-Explorer:data/stations_clean.json",
+        "snapshot_origin": "helenapedro/fuelmap-angola:data/stations_clean.json",
         "generated_at": "2026-10-05T06:00:00+00:00",
         "record_count": 279,
         "rejected_count": 63,

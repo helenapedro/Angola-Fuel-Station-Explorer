@@ -1,9 +1,9 @@
-"""SEO helpers for the Angola Fuel Station Explorer."""
+"""SEO helpers for the FuelMap Angola."""
 
 from datetime import date
 
-SITE_URL = "https://gaspump.hmpedro.com"
-SITE_TITLE = "Postos de Combustível em Angola | Angola Fuel Station Explorer"
+SITE_URL = "https://fuelmap.hmpedro.com"
+SITE_TITLE = "Postos de Combustível em Angola | FuelMap Angola"
 SITE_DESCRIPTION = (
     "Encontra postos de combustível em Angola por província, município, marca e nome do posto "
     "com um mapa interativo de postos de combustível."
