@@ -123,25 +123,36 @@ def build_station_details(filtered_df, selected_station):
         ("Coordenadas", f'{station_row.get("latitude")}, {station_row.get("longitude")}'),
     ]
 
-    return html.Div(
-        [
-            html.Div("Posto selecionado", className="map-dashboard__panel-title"),
-            html.H4(_safe_text(station_row.get("station")), className="map-dashboard__detail-name"),
-            html.Div(_safe_text(station_row.get("operator")), className="map-dashboard__detail-brand"),
-            html.Div(
-                [
-                    html.Div(
-                        [
-                            html.Span(label, className="map-dashboard__detail-label"),
-                            html.Span(_safe_text(value), className="map-dashboard__detail-value"),
-                        ],
-                        className="map-dashboard__detail-row",
-                    )
-                    for label, value in items
-                ]
-            ),
-        ]
-    )
+    children = [
+        html.Div("Posto selecionado", className="map-dashboard__panel-title"),
+        html.H4(_safe_text(station_row.get("station")), className="map-dashboard__detail-name"),
+        html.Div(_safe_text(station_row.get("operator")), className="map-dashboard__detail-brand"),
+        html.Div(
+            [
+                html.Div(
+                    [
+                        html.Span(label, className="map-dashboard__detail-label"),
+                        html.Span(_safe_text(value), className="map-dashboard__detail-value"),
+                    ],
+                    className="map-dashboard__detail-row",
+                )
+                for label, value in items
+            ]
+        ),
+    ]
+    # The report form lives on its own page, so the home page stays
+    # map-first. The button carries the stable station id, never just
+    # the name, because names repeat across operators and locations.
+    station_id = station_row.get("id") if "id" in station_row else None
+    if station_id is not None and str(station_id) not in ("", "nan", "None"):
+        children.append(
+            html.A(
+                "Reportar erro",
+                href=f"/reportar-erro?station_id={int(station_id)}",
+                className="map-dashboard__report-button",
+            )
+        )
+    return html.Div(children)
 
 
 def _safe_text(value, fallback="Não disponível"):
