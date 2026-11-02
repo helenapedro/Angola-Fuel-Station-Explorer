@@ -84,21 +84,6 @@ def get_selected_station_name(selected_station, click_data):
     return selected_station
 
 
-def is_cluster_click(click_data):
-    """True when a map click hit a cluster marker, not a station.
-
-    Cluster points carry no customdata (station markers always do:
-    custom_data is set in build_map_figure). Treating a cluster click
-    as a station click would rebuild the figure zoomed out and cancel
-    Plotly's own cluster zoom-in, so the dashboard leaves the figure
-    untouched for cluster clicks instead.
-    """
-    if not click_data or not click_data.get("points"):
-        return False
-    point = click_data["points"][0]
-    return not (point.get("customdata") or [])
-
-
 SELECTED_STATION_ZOOM = 15
 
 
