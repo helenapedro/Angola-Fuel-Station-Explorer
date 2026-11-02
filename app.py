@@ -33,11 +33,6 @@ def sitemap_xml():
 navbar = dbc.Navbar(
     dbc.Container([
         dbc.NavbarBrand("FuelMap Angola", href="/"),
-        dbc.NavLink(
-            "Metodologia",
-            href="/metodologia",
-            style={"color": "white"},
-        ),
     ]),
     color="#802917",
     dark=True,
@@ -47,6 +42,12 @@ footer = html.Footer(
     dbc.Container([
         html.Div([
             html.Span("(c) 2026 | All rights reserved."),
+            html.Span(" | "),
+            html.A(
+                "Metodologia",
+                href="/metodologia",
+                style={"color": "white", "text-decoration": "underline"},
+            ),
         ], className="text-center"),
     ], fluid=True, className="py-3"),
     style={"background-color": "#802917", "color": "white"},
