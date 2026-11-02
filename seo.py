@@ -3,6 +3,7 @@
 from datetime import date
 
 SITE_URL = "https://fuelmap.hmpedro.com"
+SITE_IMAGE = f"{SITE_URL}/assets/logo.png"
 SITE_TITLE = "Postos de Combustível em Angola | FuelMap Angola"
 SITE_DESCRIPTION = (
     "Encontra postos de combustível em Angola por província, município, marca e nome do posto "
@@ -23,9 +24,11 @@ def build_meta_tags():
         {"property": "og:title", "content": SITE_TITLE},
         {"property": "og:description", "content": SITE_DESCRIPTION},
         {"property": "og:url", "content": SITE_URL},
+        {"property": "og:image", "content": SITE_IMAGE},
         {"name": "twitter:card", "content": "summary_large_image"},
         {"name": "twitter:title", "content": SITE_TITLE},
         {"name": "twitter:description", "content": SITE_DESCRIPTION},
+        {"name": "twitter:image", "content": SITE_IMAGE},
     ]
 
 
