@@ -32,7 +32,17 @@ def sitemap_xml():
 
 navbar = dbc.Navbar(
     dbc.Container([
-        dbc.NavbarBrand("FuelMap Angola", href="/"),
+        dbc.NavbarBrand(
+            [
+                html.Img(
+                    src="/assets/logo.png",
+                    height="30px",
+                    style={"margin-right": "8px"},
+                ),
+                "FuelMap Angola",
+            ],
+            href="/",
+        ),
     ]),
     color="#802917",
     dark=True,
