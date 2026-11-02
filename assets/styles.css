@@ -181,6 +181,53 @@ body {
   color: #7d5a48;
 }
 
+.map-dashboard__textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+}
+
+.map-dashboard__report-button {
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #802917;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-dashboard__report-output {
+  margin-top: 12px;
+}
+
+.map-dashboard__report-error {
+  color: #9d2c1f;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.map-dashboard__report-success {
+  color: #2f5d33;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.map-dashboard__report-link {
+  display: block;
+  margin-top: 6px;
+  color: #802917;
+  font-weight: 700;
+}
+
+.map-dashboard__report-note {
+  margin-top: 12px;
+  color: #7d5a48;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 .map-dashboard__seo-section {
   margin-top: 24px;
   padding: 28px;

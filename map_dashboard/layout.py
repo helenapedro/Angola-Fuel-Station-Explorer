@@ -3,6 +3,8 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 
+from reports import PROBLEM_TYPE_LABELS
+
 
 def build_dashboard_layout():
     return html.Div(
@@ -67,8 +69,63 @@ def _build_sidebar():
                 dbc.CardBody(html.Div(id="selected-station-card")),
                 className="map-dashboard__panel map-dashboard__detail-panel",
             ),
+            _build_report_card(),
         ],
         className="map-dashboard__sidebar",
+    )
+
+
+def _build_report_card():
+    # Static, not inside the detail panel: the detail panel is
+    # re-rendered by the dashboard callback, which would reset a form
+    # inside it, and Dash callbacks cannot target components that do
+    # not exist in the initial layout. The card is hidden by the
+    # dashboard callback when no station is available, so the form
+    # only appears with a selected station, as the design requires.
+    return dbc.Card(
+        dbc.CardBody(
+            [
+                html.Div("Reportar erro", className="map-dashboard__panel-title"),
+                dcc.Store(id="report-station-id", data=None),
+                dbc.Label("Tipo de problema", className="map-dashboard__label"),
+                dcc.Dropdown(
+                    id="report-problem-type",
+                    options=[
+                        {"label": label, "value": code}
+                        for code, label in PROBLEM_TYPE_LABELS.items()
+                    ],
+                    placeholder="Escolhe o tipo de problema",
+                ),
+                dbc.Label("Detalhes", className="map-dashboard__label"),
+                dcc.Textarea(
+                    id="report-details",
+                    placeholder="Descreve o erro (opcional, máximo 500 caracteres)...",
+                    className="map-dashboard__input map-dashboard__textarea",
+                ),
+                dbc.Label("Fonte pública (opcional)", className="map-dashboard__label"),
+                dcc.Input(
+                    id="report-source-url",
+                    type="text",
+                    placeholder="https://...",
+                    className="map-dashboard__input",
+                ),
+                html.Button(
+                    "Gerar link para reportar",
+                    id="report-submit",
+                    n_clicks=0,
+                    className="map-dashboard__report-button",
+                ),
+                html.Div(id="report-output", className="map-dashboard__report-output"),
+                html.P(
+                    "O report só fica registado depois de submeteres a issue no GitHub. "
+                    "Não é pedido nenhum dado pessoal.",
+                    className="map-dashboard__report-note",
+                ),
+            ]
+        ),
+        id="report-card",
+        className="map-dashboard__panel map-dashboard__report-panel",
+        style={"display": "none"},
     )
 
 
