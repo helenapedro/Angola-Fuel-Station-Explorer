@@ -10,6 +10,7 @@ confirmation, and it promises no service level that does not exist.
 from dash import dcc, html
 
 from map_dashboard.metodologia_content import source_status_lines, version_lines
+from reports import REPORT_FORM_URL
 
 
 def build_source_status_items(meta):
@@ -392,18 +393,22 @@ def build_metodologia_layout():
                 "Como reportar um erro",
                 [
                     _para(
-                        "Está previsto um formulário sem conta para reportar erros: não será preciso "
-                        "ter conta GitHub, nem criar uma, para reportar. O formulário ainda não está "
-                        "publicado nesta página; quando estiver, o link fica aqui, com os mesmos "
-                        "campos: identificador do posto, data do snapshot usado, tipo de problema e, "
+                        "Existe um formulário sem conta para reportar erros: não é preciso "
+                        "ter conta GitHub, nem criar uma, para reportar. Os campos são os "
+                        "mesmos: identificador do posto, data do snapshot usado, tipo de problema e, "
                         "se possível, uma fonte pública. Não é pedido nome, email, telefone ou "
                         "localização do utilizador."
                     ),
+                    html.A(
+                        "Reportar um erro sem conta (formulário)",
+                        href=REPORT_FORM_URL,
+                        target="_blank",
+                        className="metodologia__link",
+                    ),
                     _para(
-                        "Neste momento, o único meio disponível é abrir um pedido público de correção "
+                        "Também é possível abrir um pedido público de correção "
                         "no repositório do projeto, com os mesmos campos. Para isso é preciso ter "
-                        "conta GitHub. Quando o formulário estiver publicado, passa a ser o caminho "
-                        "principal."
+                        "conta GitHub."
                     ),
                     html.A(
                         "Abrir um pedido público de correção no repositório",

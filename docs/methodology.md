@@ -209,15 +209,13 @@ is the same as the generation date. The full history is available at
 
 ## How to report an error
 
-A no-account form for reporting errors is planned: no GitHub account will
-be needed to report. The form is not published yet. When it is, the link
-will be on the methodology page, with the same fields: station identifier,
-snapshot date used, problem type, and a public source if possible. No name,
-email, phone, or user location is asked for.
+A no-account form for reporting errors is published: no GitHub account is
+needed to report. The link is on the methodology page, with the same
+fields: station identifier, snapshot date used, problem type, and a public
+source if possible. No name, email, phone, or user location is asked for.
 
-At the moment, the only available path is to open a public correction
-request in the project repository, with the same fields. That requires a
-GitHub account. When the form is published, it becomes the main path:
+It is also possible to open a public correction request in the project
+repository, with the same fields. That requires a GitHub account:
 https://github.com/helenapedro/fuelmap-angola/issues/new
 
 An accepted correction appears only in a later version, and is never edited
