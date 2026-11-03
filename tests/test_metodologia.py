@@ -123,9 +123,11 @@ class MetodologiaTest(unittest.TestCase):
             "um único servidor",
             "ficheiro de dados válido",
             "pedido público de correção",
-            "Está previsto um formulário sem conta",
+            "Existe um formulário sem conta",
         ):
             self.assertIn(plain, text)
+        self.assertIn("REPORT_FORM_URL", text)
+        self.assertIn("Reportar um erro sem conta", text)
 
     def test_quality_levels_highlighted_at_top_with_anchor(self):
         text = (REPO_ROOT / "map_dashboard" / "metodologia.py").read_text(encoding="utf-8")

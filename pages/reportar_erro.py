@@ -54,7 +54,8 @@ layout = html.Div(
         html.H1("Reportar um erro num posto", className="metodologia__title"),
         html.P(
             "Indica o posto, o tipo de problema e, se souberes, uma fonte pública. "
-            "O report só fica registado depois de submeteres a issue no GitHub. "
+            "Depois, escolhe como submeter: sem conta, através do formulário, "
+            "ou no GitHub. O report só fica registado depois de o submeteres. "
             "Não é pedido nenhum dado pessoal.",
             className="metodologia__copy",
         ),
@@ -154,12 +155,13 @@ def update_report_station(station_id):
     prevent_initial_call=True,
 )
 def submit_report(_, station_id, problem_type, details, source_url):
-    """Validate a report and generate the pre-filled issue link.
+    """Validate a report and generate the pre-filled submission links.
 
     Nothing is stored: an invalid report generates no link, and a
-    valid report only produces a link for the user to review and
-    submit on GitHub. The station is re-derived from the current
-    dataset, never trusted from the form alone.
+    valid report only produces links for the user to review and
+    submit, through the no-account form or on GitHub. The station is
+    re-derived from the current dataset, never trusted from the form
+    alone.
     """
     df, err = get_stations_df()
     normalized_df = apply_station_filters(df) if not df.empty else df
@@ -195,14 +197,8 @@ def submit_report(_, station_id, problem_type, details, source_url):
     )
     children = [
         html.Div(
-            "Revê e submete no GitHub. O report só fica registado depois de submeteres a issue.",
+            "Revê os dados e escolhe como submeter. O report só fica registado depois de o submeteres.",
             className="map-dashboard__report-success",
-        ),
-        html.A(
-            "Rever e submeter no GitHub",
-            href=links["github_url"],
-            target="_blank",
-            className="map-dashboard__report-link",
         ),
     ]
     if links.get("form_url"):
@@ -214,4 +210,12 @@ def submit_report(_, station_id, problem_type, details, source_url):
                 className="map-dashboard__report-link",
             )
         )
+    children.append(
+        html.A(
+            "Rever e submeter no GitHub",
+            href=links["github_url"],
+            target="_blank",
+            className="map-dashboard__report-link",
+        )
+    )
     return html.Div(children)

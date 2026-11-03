@@ -1,17 +1,20 @@
-"""Error reports: pure validation and pre-filled issue URL building.
+"""Error reports: pure validation and pre-filled submission links.
 
 Phase 0, design section 8.3 and 10.5. A report is never stored on the
-server: the dashboard only generates a link to a pre-filled GitHub
-Issue, and the report only exists once the user submits that issue.
-No file writes, no token, no network call to GitHub from the server,
-no personal data (no name, email, phone or user location).
+server: the dashboard only generates links, and the report only exists
+once the user submits it through one of them. No file writes, no token,
+no network call to GitHub or Google from the server, no personal data
+(no name, email, phone or user location).
 
-The no-account form is the planned primary path (Helena's decision,
-2026-11-01), but the form does not exist yet and Helena deferred
-creating it. ``REPORT_FORM_URL`` stays ``None`` until she supplies
-the form URL; the callback then shows only the GitHub link. Wiring
-the form later is setting this one constant, plus pre-fill
-parameters if the form supports them. No URL is invented here.
+The no-account form is the primary path (Helena's decision,
+2026-11-01; form created 2026-11-03). ``REPORT_FORM_URL`` holds its
+responder URL. The link is plain, with no pre-fill parameters:
+pre-fill was tried with the question IDs returned by the Forms API
+and verified in a real browser, and the fields stayed empty, because
+those IDs are not the form's pre-fill entry IDs. Pre-fill stays
+deferred until the real entry IDs are known, from a pre-filled link
+generated in the Forms interface. The pre-filled GitHub Issue link
+stays as the alternative path.
 """
 
 import re
@@ -20,9 +23,19 @@ from urllib.parse import parse_qs, urlencode, urlparse
 
 ISSUE_NEW_URL = "https://github.com/helenapedro/fuelmap-angola/issues/new"
 
-# No-account report form URL, supplied by Helena when she creates the
-# form. None until then: only the GitHub path is shown.
-REPORT_FORM_URL = None
+# No-account report form URL (Google Form created 2026-11-03,
+# published, accepting responses, no email collected).
+REPORT_FORM_URL = (
+    "https://docs.google.com/forms/d/e/"
+    "1FAIpQLSdkDQsxJ2FH67y6MdQM6690tknWiEyNc3TOGKzGoYI55UuvmA/viewform"
+)
+
+# Pre-fill is intentionally not built here: the question IDs returned
+# by the Forms API are not the form's pre-fill entry IDs (verified in
+# a real browser, 2026-11-03: fields stayed empty). The real entry
+# IDs come from a pre-filled link generated in the Forms interface;
+# until they are known, the link stays plain and the respondent fills
+# the fields in.
 
 PROBLEM_TYPES = (
     "posto_fechado",
@@ -170,8 +183,9 @@ def build_report_links(report, station, version_id, dataset_generated_at, form_u
     """Return the links to show for a validated report.
 
     Always the GitHub issue link. The no-account form link is added
-    only when ``form_url`` is set; no pre-fill parameters are
-    invented for a form that does not exist yet.
+    only when ``form_url`` is set. The form link is plain: pre-fill
+    stays deferred until the form's real entry IDs are known (see the
+    note at ``REPORT_FORM_URL``).
     """
     links = {
         "github_url": build_issue_url(report, station, version_id, dataset_generated_at),

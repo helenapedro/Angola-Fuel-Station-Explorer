@@ -125,22 +125,32 @@ class BuildIssueUrlTest(unittest.TestCase):
 
 
 class BuildReportLinksTest(unittest.TestCase):
+    def test_report_form_url_is_set_to_the_published_form(self):
+        self.assertEqual(
+            reports.REPORT_FORM_URL,
+            "https://docs.google.com/forms/d/e/"
+            "1FAIpQLSdkDQsxJ2FH67y6MdQM6690tknWiEyNc3TOGKzGoYI55UuvmA/viewform",
+        )
+
     def test_no_form_url_means_github_only(self):
+        report = _valid_report()
+        links = build_report_links(
+            report, STATION, "2026-09-23T11:27:12+00:00", "2026-09-23T11:27:12+00:00",
+            form_url=None,
+        )
+        self.assertEqual(list(links), ["github_url"])
+
+    def test_form_url_adds_the_plain_form_link(self):
+        # No pre-fill parameters: the Forms API question IDs are not
+        # the form's pre-fill entry IDs (verified in a real browser),
+        # so the link stays plain until the real entry IDs are known.
         report = _valid_report()
         links = build_report_links(
             report, STATION, "2026-09-23T11:27:12+00:00", "2026-09-23T11:27:12+00:00",
             form_url=reports.REPORT_FORM_URL,
         )
-        self.assertIsNone(reports.REPORT_FORM_URL)
-        self.assertEqual(list(links), ["github_url"])
-
-    def test_form_url_adds_form_link_without_inventing_prefill(self):
-        report = _valid_report()
-        links = build_report_links(
-            report, STATION, "2026-09-23T11:27:12+00:00", "2026-09-23T11:27:12+00:00",
-            form_url="https://example.com/form",
-        )
-        self.assertEqual(links["form_url"], "https://example.com/form")
+        self.assertEqual(links["form_url"], reports.REPORT_FORM_URL)
+        self.assertEqual(urlparse(links["form_url"]).query, "")
 
 
 class NoSideEffectsTest(unittest.TestCase):
